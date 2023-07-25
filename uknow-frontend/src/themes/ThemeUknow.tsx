@@ -1,9 +1,8 @@
-import { createTheme } from "@mui/material";
+import { PaletteColorOptions, Palette, createTheme, colors } from "@mui/material";
 import '@fontsource/poppins'
 import '@fontsource/poppins/700.css'
 import '@fontsource/poppins/500.css'
 import '@mui/material/Typography'
-// import React from 'react'
 
 declare module '@mui/system/createTheme/createBreakpoints' {
     interface BreakpointOverrides {
@@ -27,25 +26,23 @@ declare module "@mui/material/Typography" {
     }
 }
 
-declare module '@material-ui/core/styles/createPalette' {
-    interface PaletteOptions {    
-        darkBlue?: PaletteColorOptions;
-        lightBlue?: PaletteColorOptions;
-        orange?: PaletteColorOptions;
+declare module '@mui/material/styles' {
+    interface Palette {
+      uDarkBlue: Palette;
     }
-    interface Palette {    
-        darkBlue?: PaletteColor;
-        lightBlue?: PaletteColor;
-        orange?: PaletteColor;
+  
+    interface PaletteOptions {
+      uDarkBlue?: PaletteOptions;
     }
-}
+  }
 
-export const SoundWaveTheme = createTheme({
+export const UknowTheme = createTheme({
     palette: {
         primary: {
-            main: '#2F303A',
-            light: 'dfds',
-            dark: '484584'
+            main: '#ff0000'
+        },
+        secondary: {
+            main: '#ff0000'
         },
         background: {
             default: '#2F303A'
@@ -53,9 +50,10 @@ export const SoundWaveTheme = createTheme({
         text: {
             primary: '#fff',
         },
-        darkBlue: {
-            main: "#124873"
+        uDarkBlue: {
+            main: '#ff0000'
         }
+       
     },
     typography: () => ({
         fontFamily: 'Poppins',

@@ -1,4 +1,6 @@
 import React, { useEffect, useState} from 'react'
+import { UknowTheme } from '../themes/ThemeUknow';
+import { Box } from '@mui/system';
 
 function Home() {
 
@@ -18,7 +20,7 @@ function Home() {
     <div>
         {
             data.map(course => {
-                return <botton color='darkBlue'>{course.name}</botton>
+                return <Box style={{ color: 'secondary' }} >{course.name}</Box>
             })
         }
     </div>
