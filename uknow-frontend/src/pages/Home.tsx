@@ -20,7 +20,7 @@ function Home() {
     <div>
         {
             data.map(course => {
-                return <Box style={{ color: 'secondary' }} >{course.name}</Box>
+                return <Box style={{ color: UknowTheme.palette.uDarkBlue.main }} >{course.name}</Box>
             })
         }
     </div>

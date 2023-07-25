@@ -1,4 +1,4 @@
-import { PaletteColorOptions, Palette, createTheme, colors } from "@mui/material";
+import { createTheme } from "@mui/material";
 import '@fontsource/poppins'
 import '@fontsource/poppins/700.css'
 import '@fontsource/poppins/500.css'
@@ -45,13 +45,13 @@ export const UknowTheme = createTheme({
             main: '#ff0000'
         },
         background: {
-            default: '#2F303A'
+            default: '##EEEEE'
         },
         text: {
             primary: '#fff',
         },
         uDarkBlue: {
-            main: '#ff0000'
+            main: '#124873'
         }
        
     },
