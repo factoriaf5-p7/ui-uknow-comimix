@@ -18,7 +18,7 @@ function Home() {
     <div>
         {
             data.map(course => {
-                return <p>{course.name}</p>
+                return <botton color='darkBlue'>{course.name}</botton>
             })
         }
     </div>
