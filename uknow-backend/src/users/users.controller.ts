@@ -23,6 +23,12 @@ export class UsersController {
   		return this.usersService.findAllAdmin();
   	}
 
+	@Get('admin/:id')
+	// @UseGuards(AuthGuard) //admin
+	findOneAdmin(@Param('id') id: ObjectId) {
+		return this.usersService.findOneAdmin(id);
+	}
+
   	@Get(':id')
 	// @UseGuards(AuthGuard) //admin
   	findOne(@Param('id') id: ObjectId) {

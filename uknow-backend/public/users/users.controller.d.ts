@@ -42,6 +42,13 @@ export declare class UsersController {
             _id: import("mongoose").Types.ObjectId;
         }, never>)[];
     }>;
+    findOneAdmin(id: ObjectId): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: import("mongoose").Document<unknown, {}, import("./schemas/user.schema").User> & Omit<import("./schemas/user.schema").User & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>;
+    }>;
     findOne(id: ObjectId): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
