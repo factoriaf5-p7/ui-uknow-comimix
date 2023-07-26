@@ -32,21 +32,25 @@ declare module '@mui/material/styles' {
       uLightBlue: Palette;
       uBlue: Palette;
       uOrange: Palette;
+      uGrey: Palette;
     }
   
     interface PaletteOptions {
       uDarkBlue?: PaletteOptions;
+      uLightBlue: PaletteOptions;
+      uBlue: PaletteOptions;
       uOrange: PaletteOptions;
+      uGrey: PaletteOptions;
     }
   }
 
 export const UknowTheme = createTheme({
     palette: {
         primary: {
-            main: '#ff0000'
+            main: '#000'
         },
         secondary: {
-            main: '#ff0000'
+            main: '#fff'
         },
         background: {
             default: '#EEEEEE'
@@ -59,6 +63,15 @@ export const UknowTheme = createTheme({
         },
         uOrange: {
             main: '#DEA01E'
+        },
+        uLightBlue: {
+            main: '#dbf2ff'
+        },
+        uBlue: {
+            main: '#4f78a7'
+        },
+        uGrey: {
+            main: '#eeeeee'
         }
        
     },
@@ -100,4 +113,7 @@ export const UknowTheme = createTheme({
 export const uColors = {
     uOrange: UknowTheme.palette.uOrange.main,
     uDarkBlue: UknowTheme.palette.uDarkBlue.main,
+    uLightBlue: UknowTheme.palette.uLightBlue.main,
+    uBlue: UknowTheme.palette.uBlue.main,
+    uGrey: UknowTheme.palette.uGray.main,
 }
