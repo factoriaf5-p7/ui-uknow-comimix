@@ -4,4 +4,6 @@ export declare class CreateCourseDto {
     difficulty: string;
     tags: [string, string, string];
     content: string;
+    image: string;
+    description: string;
 }

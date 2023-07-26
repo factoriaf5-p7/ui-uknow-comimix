@@ -96,9 +96,11 @@ export declare class UsersService {
     findAllBoughtCourses(user: any, filter: any): Promise<{
         message: string;
         status: HttpStatus;
-        data: (mongoose.FlattenMaps<User> & {
-            _id: mongoose.Types.ObjectId;
-        })[];
+        data: {
+            course_id: import("../courses/schemas/course.schema").Course;
+            stars: number;
+            commented: boolean;
+        }[];
     }>;
     deleteUserByAdmin(id: ObjectId): Promise<{
         message: string;

@@ -46,7 +46,21 @@ export declare class CoursesController {
     findAllSortedByAverage(): Promise<{
         message: string;
         status: number;
-        data: any[];
+        data: {
+            numRatings: number;
+            rating: number;
+            average: number;
+            name: string;
+            price: number;
+            topic: string;
+            difficulty: string;
+            tags: [];
+            bought: boolean;
+            content: string;
+            image: string;
+            description: string;
+            _id: import("mongoose").Types.ObjectId;
+        }[];
     }>;
     findAllSortedByPriceDesc(): Promise<{
         message: string;

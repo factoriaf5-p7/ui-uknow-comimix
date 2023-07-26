@@ -136,42 +136,23 @@ let CoursesService = exports.CoursesService = class CoursesService {
     }
     async findAllSortedByAverage() {
         try {
-            const calculates = [];
-            const idCoursesAll = await this.courseModel.find({}, { _id: 1, name: 1 });
-            const { data, message, status } = await this.userService.findAllBoughtCourses({}, { bought_courses: 1, _id: 0 });
-            idCoursesAll.forEach((course) => {
-                const courseId = course._id;
-                let totalStars = 0;
-                let numRating = 0;
-                data.forEach((boughtCourses) => {
-                    const bcourses = Array.from(boughtCourses.bought_courses);
-                    bcourses.forEach((courseObj) => {
-                        if (String(courseObj.course_id) === String(courseId)) {
-                            totalStars += courseObj.stars;
-                            numRating++;
-                        }
-                    });
+            const allCourses = await this.courseModel.find().select('-content -bought -__v').lean().exec();
+            const { data } = await this.userService.findAllBoughtCourses({}, { bought_courses: 1, _id: 0 });
+            const ratedCourses = allCourses.map(course => {
+                const newCourse = Object.assign(Object.assign({}, course), { numRatings: 0, rating: 0, average: 0 });
+                data.forEach(bCourse => {
+                    let ratings = 0;
+                    if (String(course._id) === String(bCourse.course_id)) {
+                        newCourse.rating += bCourse.stars;
+                        newCourse.numRatings++;
+                    }
                 });
-                calculates.push({
-                    _id: courseId,
-                    name: course.name,
-                    totalStars,
-                    numRating,
-                });
-            });
-            const hash = {};
-            const filteredCourses = calculates.filter((course) => {
-                return hash[course._id] || course.numRating === 0
-                    ? false
-                    : (hash[course._id] = true);
-            });
-            filteredCourses.map((course) => {
-                if (course.numRating > 0) {
-                    course.average = course.totalStars / course.numRating;
-                    return Number(course.average.toFixed(2));
+                if (newCourse.numRatings !== 0) {
+                    newCourse.average = newCourse.rating / newCourse.numRatings;
                 }
+                return newCourse;
             });
-            const sortedCourses = filteredCourses.sort((a, b) => b.average - a.average);
+            const sortedCourses = ratedCourses.sort((a, b) => b.average - a.average);
             return {
                 message: 'Retrieved all courses succesfully',
                 status: 200,

@@ -207,9 +207,11 @@ export class UsersService {
 
 	async findAllBoughtCourses( user, filter ) {
 		try {
-			const usersBoughtCourses = await this.userModel.find( user, filter ).lean().exec();		
+			const usersBoughtCoursesTemp = await this.userModel.find( user, filter ).populate('bought_courses');	
+			const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
+
 			return {
-				message: 'All users retrieved succesfully',
+				message: 'All bought courses retrieved succesfully',
 				status: HttpStatus.OK,
 				data: usersBoughtCourses
 			}; 	
@@ -223,7 +225,7 @@ export class UsersService {
 			const findUser = await this.userModel.findByIdAndDelete( id );
 			if (!findUser) throw new HttpException('User not found', HttpStatus.NOT_FOUND);
 			return {
-				message: 'User deleted by Admin',
+				message: 'User deleted succesfully',
 				status: HttpStatus.OK,
 				data: ''
 			};

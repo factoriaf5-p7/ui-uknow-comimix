@@ -31,6 +31,8 @@ export declare class Course {
     tags: [];
     bought: boolean;
     content: string;
+    image: string;
+    description: string;
 }
 export declare const CourseSchema: import("mongoose").Schema<Course, import("mongoose").Model<Course, any, any, any, import("mongoose").Document<unknown, any, Course> & Omit<Course & {
     _id: import("mongoose").Types.ObjectId;
