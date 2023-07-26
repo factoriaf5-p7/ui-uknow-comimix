@@ -29,10 +29,14 @@ declare module "@mui/material/Typography" {
 declare module '@mui/material/styles' {
     interface Palette {
       uDarkBlue: Palette;
+      uLightBlue: Palette;
+      uBlue: Palette;
+      uOrange: Palette;
     }
   
     interface PaletteOptions {
       uDarkBlue?: PaletteOptions;
+      uOrange: PaletteOptions;
     }
   }
 
@@ -45,13 +49,16 @@ export const UknowTheme = createTheme({
             main: '#ff0000'
         },
         background: {
-            default: '##EEEEE'
+            default: '#EEEEEE'
         },
         text: {
-            primary: '#fff',
+            primary: '#000',
         },
         uDarkBlue: {
             main: '#124873'
+        },
+        uOrange: {
+            main: '#DEA01E'
         }
        
     },
@@ -89,3 +96,8 @@ export const UknowTheme = createTheme({
         }
     }
 })
+
+export const uColors = {
+    uOrange: UknowTheme.palette.uOrange.main,
+    uDarkBlue: UknowTheme.palette.uDarkBlue.main,
+}

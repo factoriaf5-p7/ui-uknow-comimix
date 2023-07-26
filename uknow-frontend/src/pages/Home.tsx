@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import { UknowTheme } from '../themes/ThemeUknow';
+import { uColors } from '../themes/ThemeUknow';
 import { Box } from '@mui/system';
 
 function Home() {
@@ -20,7 +20,7 @@ function Home() {
     <div>
         {
             data.map(course => {
-                return <Box style={{ color: UknowTheme.palette.uDarkBlue.main }} >{course.name}</Box>
+                return <Box style={{ color: uColors.uOrange }} >{course.name}</Box>
             })
         }
     </div>
