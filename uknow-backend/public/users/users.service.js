@@ -59,7 +59,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async findAll() {
         try {
-            const users = await this.userModel.find().select('-password').lean().exec();
+            const users = await this.userModel.find().select('-password -recovery_token').lean().exec();
             return {
                 message: 'All users retrieved succesfully',
                 status: common_1.HttpStatus.OK,
@@ -89,6 +89,22 @@ let UsersService = exports.UsersService = class UsersService {
     async findOne(id) {
         try {
             const user = await this.userModel.findOne({ _id: id }).select('-password -recovery_token');
+            return {
+                message: 'User retrived successfully',
+                status: common_1.HttpStatus.OK,
+                data: user
+            };
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    async getProfile(user) {
+        return await this.userModel.findOne({ email: user.email });
+    }
+    async findOneAdmin(id) {
+        try {
+            const user = await this.userModel.findOne({ _id: id });
             return {
                 message: 'User retrived successfully',
                 status: common_1.HttpStatus.OK,

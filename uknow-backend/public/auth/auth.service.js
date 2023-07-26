@@ -27,7 +27,7 @@ let AuthService = exports.AuthService = class AuthService {
         const { email, password } = user;
         const findUser = await this.userService.findOneLogin(email);
         if (!findUser)
-            throw new common_1.HttpException('USER_NOT_FOUND', common_1.HttpStatus.NOT_FOUND);
+            throw new common_1.HttpException('USER_NOT_FOUND', common_1.HttpStatus.FORBIDDEN);
         const checkPassword = await this.validatePassword(password, findUser.password);
         if (!checkPassword)
             throw new common_1.HttpException('INCORRECT_PASSWORD', common_1.HttpStatus.FORBIDDEN);

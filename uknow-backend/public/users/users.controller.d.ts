@@ -27,6 +27,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ObjectId } from 'mongoose';
 import { RegisterUserDto } from '../auth/dto/register-user.dto';
 import { UpdateUserByAdminDto } from './dto/update-user-byadmin.dto ';
+import { Request } from 'express';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
@@ -35,12 +36,22 @@ export declare class UsersController {
         status: import("@nestjs/common").HttpStatus;
         data: string;
     }>;
+    getProfile(request: Request): Promise<import("mongoose").Document<unknown, {}, import("./schemas/user.schema").User> & Omit<import("./schemas/user.schema").User & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
     findAllAdmin(): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
         data: (import("mongoose").Document<unknown, {}, import("./schemas/user.schema").User> & Omit<import("./schemas/user.schema").User & {
             _id: import("mongoose").Types.ObjectId;
         }, never>)[];
+    }>;
+    findOneAdmin(id: ObjectId): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: import("mongoose").Document<unknown, {}, import("./schemas/user.schema").User> & Omit<import("./schemas/user.schema").User & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>;
     }>;
     findOne(id: ObjectId): Promise<{
         message: string;
