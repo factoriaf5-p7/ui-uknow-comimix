@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from 'react'
 import { uColors } from '../themes/ThemeUknow';
 import { Box } from '@mui/system';
+import { Typography } from '@mui/material';
 
 function Home() {
 
@@ -18,6 +19,9 @@ function Home() {
 
   return (
     <div>
+         <Typography variant='uTitle'>
+                HOME AGAIN
+            </Typography>
         {
             data.map(course => {
                 return <Box style={{ color: uColors.uOrange }} >{course.name}</Box>

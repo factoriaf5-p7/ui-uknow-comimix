@@ -2,7 +2,9 @@ import { createTheme } from "@mui/material";
 import '@fontsource/poppins'
 import '@fontsource/poppins/700.css'
 import '@fontsource/poppins/500.css'
+import '@fontsource/mochiy-pop-one'
 import '@mui/material/Typography'
+
 
 declare module '@mui/system/createTheme/createBreakpoints' {
     interface BreakpointOverrides {
@@ -77,29 +79,28 @@ export const UknowTheme = createTheme({
     },
     typography: () => ({
         fontFamily: 'Poppins',
-        heroText: {
-            fontSize: '2rem',
-            fontWeight: 500
-        },
-        joinTitle: {
-            fontWeight: 700,
+        uTitle: {
+            fontFamily: ['Mochiy Pop One'],
             fontSize: '3rem',
-            lineHeight: '3.5rem'
+            color: '#000'
         },
-        accentText: {
-            fontFamily: ['Poppins'],
-            color: '#bf3681'
+        uSubtitle: {
+            fontFamily: ['Mochiy Pop One'],
+            fontSize: '2rem',
         },
-        inputLabel: {
+        uContent: {
             fontFamily: ['Poppins'],
-            fontSize: '0.75rem',
-            fontWeight: 700
+            fontSize: '1.2rem',
+            color: '#000'
         },
-        footerText: {
+        uDescription: {
             fontFamily: ['Poppins'],
-            fontWeight: 700,
+            fontSize: '1.5rem'
+        },
+        uButtonText: {
+            fontFamily: ['Poppins'],
             fontSize: '0.85rem',
-            color: '#fff'
+            color: '#000'
         }
     }),
     breakpoints: {
@@ -115,5 +116,5 @@ export const uColors = {
     uDarkBlue: UknowTheme.palette.uDarkBlue.main,
     uLightBlue: UknowTheme.palette.uLightBlue.main,
     uBlue: UknowTheme.palette.uBlue.main,
-    uGrey: UknowTheme.palette.uGray.main,
+    uGrey: UknowTheme.palette.uGrey.main,
 }
