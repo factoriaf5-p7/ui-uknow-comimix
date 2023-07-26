@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { CanActivate, ExecutionContext } from '@nestjs/common';
+import { Request } from 'express';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -12,7 +13,7 @@ export class RolesGuard implements CanActivate {
 			return false;
 		}
 		const request = context.switchToHttp().getRequest();
-		const userRoles = request.headers?.role?.split(',');    
+		const userRoles = request.headers?.role?.split(',');
 		return this.validateRoles(roles, userRoles);
 	}
 

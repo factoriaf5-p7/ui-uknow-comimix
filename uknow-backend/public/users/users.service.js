@@ -99,6 +99,9 @@ let UsersService = exports.UsersService = class UsersService {
             throw error;
         }
     }
+    async getProfile(user) {
+        return await this.userModel.findOne({ email: user.email });
+    }
     async findOneAdmin(id) {
         try {
             const user = await this.userModel.findOne({ _id: id });

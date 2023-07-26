@@ -98,6 +98,11 @@ export class UsersService {
 		}
 	}
 
+	async getProfile(user: any) {
+		// console.log(user);
+		return await this.userModel.findOne({ email: user.email });
+	}
+
 	async findOneAdmin(id : ObjectId) {
 		try {
 			const user = await this.userModel.findOne({ _id: id });

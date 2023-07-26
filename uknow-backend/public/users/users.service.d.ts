@@ -43,6 +43,9 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
+    getProfile(user: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
     findOneAdmin(id: ObjectId): Promise<{
         message: string;
         status: HttpStatus;
