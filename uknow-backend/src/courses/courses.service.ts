@@ -149,7 +149,6 @@ export class CoursesService {
 
 			const sortedCourses = ratedCourses.sort((a, b) => b.average - a.average);
 
-			//   respuesta
 			return {
 				message: 'Retrieved all courses succesfully',
 				status: 200,
