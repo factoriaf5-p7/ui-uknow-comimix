@@ -9,4 +9,7 @@ export default interface CourseData {
     content: string;
     create_date: string;
     update_date: string;
+    description: string;
+    image: string;
+    rating: number;
   }

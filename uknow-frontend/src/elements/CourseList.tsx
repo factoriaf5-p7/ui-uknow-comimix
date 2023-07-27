@@ -9,9 +9,10 @@ export default function CourseList() {
     queryFn: async (): Promise<CourseData[]> => {
       try {
         const response = await fetch(
-          "http://localhost:3000/courses/order-courses-price"
+          "http://localhost:3000/courses/average"
         );
         const data = await response.json();
+        console.log(data.data);
         return data.data;
       } catch (error) {
         throw new Error("Failed to fetch course data");
@@ -31,7 +32,7 @@ export default function CourseList() {
         {data.map((course) => (
           <li key={course._id}>
             Name: {course.name} | Price: {course.price} | Difficulty:{" "}
-            {course.difficulty} | Topic: {course.topic}
+            {course.difficulty} | Topic: {course.topic} | Description: {course.description} | Rating: {course.rating}
           </li>
         ))}
       </ul>
