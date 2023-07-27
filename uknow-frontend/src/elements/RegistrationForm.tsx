@@ -5,9 +5,8 @@ import {
   Container,
   TextField,
   Button,
-  ThemeProvider,
+
 } from "@mui/material";
-import { UknowTheme } from "../themes/ThemeUknow.tsx";
 
 interface RegisterState {
   name: string;
@@ -81,7 +80,6 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <ThemeProvider theme={UknowTheme}>
       <Container
         sx={{
           display: "flex",
@@ -146,13 +144,13 @@ export const RegistrationForm = () => {
             variant="outlined"
             type="password"
           />
-          <Box display="flex" justifyContent="center" mt={2}>
-            <Button type="submit" variant="contained" color="primary">
+      
+          <Box display="flex" justifyContent="center" mt={2} >
+            <Button type="submit" variant="contained">
               Submit
             </Button>
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 };
