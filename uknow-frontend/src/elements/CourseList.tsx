@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import CourseData from "../interfaces/course.interface";
 
 
-
 export default function CourseList() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ["courses"],
