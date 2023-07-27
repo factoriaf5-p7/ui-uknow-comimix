@@ -49,6 +49,16 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Course.prototype, "content", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'https://raw.githubusercontent.com//raulalhena/stablediffusionapi/blob/main/1.png' }),
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Course.prototype, "image", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'In this course you are to learn how to create a web application using NestJS. The backend is an important piece of the...' }),
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Course.prototype, "description", void 0);
 exports.Course = Course = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Course);

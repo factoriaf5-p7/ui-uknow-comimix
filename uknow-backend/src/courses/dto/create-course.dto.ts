@@ -33,4 +33,14 @@ export class CreateCourseDto {
 	@IsString()
 	@IsNotEmpty()
 		content: string;
+
+	@ApiProperty( { example: 'https://raw.githubusercontent.com/raulalhena/establedifussion/main/1.png' } )
+    @IsString()
+	@IsNotEmpty()
+		image: string;
+
+    @ApiProperty( { example: 'In this course you are to learn how to create a web application using NestJS. The backend is an important piece of the...' } )
+    @IsString()
+	@IsNotEmpty()
+    	description: string;
 }

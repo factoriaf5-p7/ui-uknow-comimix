@@ -52,4 +52,16 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateCourseDto.prototype, "content", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'https://raw.githubusercontent.com/raulalhena/establedifussion/main/1.png' }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateCourseDto.prototype, "image", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'In this course you are to learn how to create a web application using NestJS. The backend is an important piece of the...' }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], CreateCourseDto.prototype, "description", void 0);
 //# sourceMappingURL=create-course.dto.js.map
