@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <div>
-        <RegistrationForm/>
+        <SearchBar />
         <CourseList/>
         {/*  <Typography variant='uTitle'>
                 HOME AGAIN
