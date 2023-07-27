@@ -5,6 +5,8 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
       <Route path='/content' element={<Content />} />
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/signup' element={<Register />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
   )

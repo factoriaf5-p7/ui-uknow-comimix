@@ -2,6 +2,9 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div>Login</div>
+    <div>
+      <a href="/signup">Si no tienes cuenta click aquí</a>
+      Login form
+    </div>
   )
 }
