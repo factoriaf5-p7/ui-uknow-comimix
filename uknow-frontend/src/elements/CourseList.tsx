@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import CourseData from "../interfaces/course.interface";
 
 
-
 export default function CourseList() {
   const { isLoading, isError, data } = useQuery({
     queryKey: ["courses"],
@@ -32,7 +31,7 @@ export default function CourseList() {
         {data.map((course) => (
           <li key={course._id}>
             Name: {course.name} | Price: {course.price} | Difficulty:{" "}
-            {course.difficulty} | Topic: {course.topic} | Description: {course.description} | Rating: {course.rating}
+            {course.difficulty} | Topic: {course.topic} | Description: {course.description} | Rating: {course.average}
           </li>
         ))}
       </ul>
