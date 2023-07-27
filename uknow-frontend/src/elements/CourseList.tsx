@@ -13,40 +13,26 @@ interface CourseData {
   update_date: string;
 }
 
-async function getCourseData(): Promise<CourseData[]> {
-  const response = await fetch(
-    "http://localhost:3000/courses/average"
-   
-  );
-  const data = await response.json();
-
-  console.log(data);
-  return data.data;
-} 
-
-/* async function getCourseData(): Promise<CourseData[]> {
-    return new Promise((resolve) => {
-      setTimeout(async () => {
-        const response = await fetch("http://localhost:3000/courses/order-courses-price");
-        const data = await response.json();
-        resolve(data.data);
-      }, 3000); // 3-second delay
-    });
-  }  */
-
 export default function CourseList() {
-  const { isLoading, isError, data, error } = useQuery({
-   queryKey:["courses"],
-   queryFn: getCourseData
-});
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async (): Promise<CourseData[]> => {
+      try {
+        const response = await fetch(
+          "http://localhost:3000/courses/order-courses-price"
+        );
+        const data = await response.json();
+        return data.data;
+      } catch (error) {
+        throw new Error("Failed to fetch course data");
+      }
+    },
+  });
 
-if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>;
 
   if (isError)
-    return (
-      <div>An error has occurred: {error?.toString() || "Unknown error"}</div>
-    );
-
+    return <div>An error has occurred while retriving the data.</div>;
 
   return (
     <div>
@@ -54,9 +40,8 @@ if (isLoading) return <div>Loading...</div>;
       <ul>
         {data.map((course) => (
           <li key={course._id}>
-            Name: {course.name} | Price:{" "}
-            {course.price} | Difficulty: {course.difficulty} |{" "}
-            Topic: {course.topic}
+            Name: {course.name} | Price: {course.price} | Difficulty:{" "}
+            {course.difficulty} | Topic: {course.topic}
           </li>
         ))}
       </ul>
