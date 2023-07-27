@@ -11,5 +11,5 @@ export default interface CourseData {
     update_date: string;
     description: string;
     image: string;
-    rating: number;
+    average: number;
   }
