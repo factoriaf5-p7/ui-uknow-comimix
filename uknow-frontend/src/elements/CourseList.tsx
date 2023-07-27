@@ -1,17 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import CourseData from "../interfaces/course.interface";
 
-interface CourseData {
-  _id: string;
-  name: string;
-  price: number;
-  topic: string;
-  difficulty: string;
-  tags: string[];
-  bought: boolean;
-  content: string;
-  create_date: string;
-  update_date: string;
-}
+
 
 export default function CourseList() {
   const { isLoading, isError, data } = useQuery({

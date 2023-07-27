@@ -7,13 +7,9 @@ import {
   Button,
 
 } from "@mui/material";
+import RegisterState from "../interfaces/register.interface";
 
-interface RegisterState {
-  name: string;
-  last_name: string;
-  email: string;
-  password: string;
-}
+
 
 const createUser = async (userData: RegisterState) => {
   const response = await fetch("http://localhost:3000/auth/signup", {
