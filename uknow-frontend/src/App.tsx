@@ -5,10 +5,12 @@ import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
+import Footer from './elements/Footer'
 
 function App() {
 
   return (
+    <>
     <Routes>
       <Route path='/' element={<Hero />} />
       <Route path='/home' element={<Home />} />
@@ -17,6 +19,8 @@ function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
+    <Footer/>
+    </>
   )
 }
 
