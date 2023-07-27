@@ -1,6 +1,11 @@
-import React from 'react'
-
+import { Container, Box } from "@mui/system" 
+import { TextField, Button } from "@mui/material"
 function LoginForm() {
+
+    const handleSubmit = () => {
+        alert('Loged');
+    }
+
   return (
     <Container
     sx={{
@@ -22,8 +27,8 @@ function LoginForm() {
       <TextField
         label="Email"
         name="email"
-        value={register.email}
-        onChange={handleChangeInput}
+        // value={register.email}
+        // onChange={handleChangeInput}
         fullWidth
         margin="normal"
         variant="outlined"
@@ -31,14 +36,17 @@ function LoginForm() {
       <TextField
         label="Password"
         name="password"
-        value={register.password}
-        onChange={handleChangeInput}
+        // value={register.password}
+        // onChange={handleChangeInput}
         fullWidth
         margin="normal"
         variant="outlined"
         type="password"
       />
   
+        <Box display='flex' justifyContent='center'>
+            <a href="/signup">Si no tienes cuenta, click aquí</a>
+        </Box>
       <Box display="flex" justifyContent="center" mt={2} >
         <Button type="submit" variant="contained">
           Submit
