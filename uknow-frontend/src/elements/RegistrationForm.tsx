@@ -28,7 +28,7 @@ export const RegistrationForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    console.log("why not work")
     if (!register.password || !confirmPassword) {
       alert('Please fill in both password and confirm password fields.');
       return;
@@ -38,7 +38,7 @@ export const RegistrationForm = () => {
       alert('Passwords do not match. Please try again.');
       return;
     }
-
+    console.log(register);
     // userRegistrationMutation.mutate():
     // This function is used to trigger the mutation. It takes the register state (user registration data) as an argument 
     // and sends it to the server using the createUser function. When you call userRegistrationMutation.mutate(register), 
@@ -50,7 +50,7 @@ export const RegistrationForm = () => {
       <Container
         sx={{
           display: "flex",
-          alignItems: "center",
+          alignItems: "top",
           justifyContent: "center",
           height: "100vh",
         }}
@@ -60,7 +60,7 @@ export const RegistrationForm = () => {
           width="100%"
           component="form"
           onSubmit={handleSubmit}
-          sx={{ mt: 4 }}
+          sx={{ mt: 1 }}
         >
           <h1 style={{ textAlign: "center" }}>Signup</h1>
           <TextField
