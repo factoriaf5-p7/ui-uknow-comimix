@@ -7,6 +7,12 @@ import Tooltip from '@mui/material/Tooltip';
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
+import { MouseEventHandler } from 'react';
+
+interface CardProductProps {
+  courseData: CourseData;
+  onCardClick: MouseEventHandler<HTMLDivElement>; 
+}
 
 const TitleSubheaderContainer = styled('div')({
   height: '105px',
@@ -26,7 +32,7 @@ const CardContainer = styled(Card)({
   },
 });
 
-export const CardProduct = ({ courseData }: { courseData: CourseData }) => {
+export const CardProduct = ({ courseData }: CardProductProps) => {
   const create_date = courseData.createdAt ? format(new Date(courseData.createdAt), 'MM/dd/yyyy') : '';
   const update_date = courseData.updatedAt ? format(new Date(courseData.updatedAt), 'MM/dd/yyyy') : '';
   const showDate = courseData.updatedAt ? update_date : create_date;
