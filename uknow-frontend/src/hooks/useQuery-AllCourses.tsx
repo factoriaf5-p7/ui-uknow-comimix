@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import CourseData from "../interfaces/course.interface";
 
-export const useCourseData = () => {
+export const useAllCourses = () => {
     const { isLoading, isError, data: courseList } = useQuery({
       queryKey: ['courses'],
       queryFn: async (): Promise<CourseData[]> => {
