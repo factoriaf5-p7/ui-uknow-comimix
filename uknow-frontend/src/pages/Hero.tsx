@@ -1,8 +1,9 @@
-import React from 'react'
+import { HeroImage } from "../elements/HeroImage"
 
 function Hero() {
   return (
-    <div>Hero</div>
+    <div>        <HeroImage/>
+    </div>
   )
 }
 
