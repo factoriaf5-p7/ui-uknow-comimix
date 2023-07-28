@@ -1,8 +1,8 @@
-import { useCourseData } from "../hooks/useQuery-CourseData";
+import { useAllCourses } from "../hooks/useQuery-AllCourses";
 
 
 export const CourseList = () => {
-  const { isLoading, isError, courseList } = useCourseData();
+  const { isLoading, isError, courseList } = useAllCourses();
 
   if (isLoading) return <div>Loading...</div>;
 

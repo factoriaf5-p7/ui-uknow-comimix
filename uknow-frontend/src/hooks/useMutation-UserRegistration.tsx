@@ -1,7 +1,11 @@
 import { useMutation } from '@tanstack/react-query';
 import RegisterState from '../interfaces/register.interface';
+import { useNavigate } from 'react-router-dom';
 
 export const useUserRegistrationMutation = () => {
+  const navigate = useNavigate();
+
+
   const createUser = async (userData: RegisterState) => {
     const response = await fetch('http://localhost:3000/auth/signup', {
       method: 'POST',
@@ -18,7 +22,7 @@ export const useUserRegistrationMutation = () => {
 
   const mutation = useMutation(createUser, {
     onSuccess: () => {
-      alert('User registration successful!');
+      navigate('/login');
       /*queryClient.invalidateQueries("users");*/
     },
     onError: (error: any) => {
