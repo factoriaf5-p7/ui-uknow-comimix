@@ -1,9 +1,9 @@
 import { CardProduct } from './CardProduct';
-import { useCourseData } from '../hooks/useQuery-CourseData';
+import { useAllCourses } from '../hooks/useQuery-AllCourses';
 import { Grid } from '@mui/material';
 
 export default function CourseList() {
-  const { isLoading, isError, courseList } = useCourseData();
+  const { isLoading, isError, courseList } = useAllCourses();
 
   if (isLoading) return <div>Loading...</div>;
 

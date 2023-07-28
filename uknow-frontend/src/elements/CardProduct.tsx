@@ -51,6 +51,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
   return (
     <Card sx={{ maxWidth: 345, height: '100%' }}>
       <CardHeader
+        titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.3rem' } }}
         title={courseData.name}
         subheader={(
           <>
@@ -70,12 +71,22 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
         <Typography variant="body2" color="text.secondary">
         {shortDescription}
         </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Rating: {courseData.average} 
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Difficulty: {courseData.difficulty}
+        </Typography>
+
       </CardContent>
       <CardActions disableSpacing>
+      
         <IconButton aria-label="Buy">
           <AddShoppingCartIcon />
         </IconButton>
-
+        <Typography variant="body2" color="text.secondary">
+          Price: ${courseData.price}
+        </Typography>
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
