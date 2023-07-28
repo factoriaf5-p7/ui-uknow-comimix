@@ -7,8 +7,8 @@ export interface CourseData {
     tags: string[];
     bought: boolean;
     content: string;
-    create_date: string;
-    update_date: string;
+    createdAt: string;
+    updatedAt: string;
     description: string;
     image: string;
     average: number;
