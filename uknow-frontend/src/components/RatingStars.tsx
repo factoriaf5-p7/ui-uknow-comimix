@@ -1,6 +1,7 @@
 
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import { uColors } from '../themes/ThemeUknow';
 
 interface RatingStarsProps {
   average: number;
@@ -13,16 +14,17 @@ const RatingStars = ({ average }: RatingStarsProps) => {
 
   const stars = Array.from({ length: MAX_STARS }, (_, index) => {
     if (index < fullStars) {
-      return <StarIcon key={index} />;
-    } else if (index === fullStars && hasHalfStar) {
+      return <StarIcon key={index} style={{ color: uColors.uOrange }}/>;
+    } else if (index === fullStars && hasHalfStar ) {
       return (
         <div key={index} style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <StarIcon style={{ clipPath: 'inset(0 50% 0 0)', margin: 0 }} />
-          <StarOutlineIcon style={{ clipPath: 'inset(0 0 0 50%)',  marginLeft: '-1.5rem' }} />
+          <StarIcon style={{ clipPath: 'inset(0 50% 0 0)', margin: 0, color: uColors.uOrange }} />
+          <StarOutlineIcon
+            style={{ clipPath: 'inset(0 0 0 50%)', marginLeft: '-1.5rem', color: uColors.uOrange }} />
         </div>
       );
     } else {
-      return <StarOutlineIcon key={index} />;
+      return <StarOutlineIcon key={index} style={{ color: uColors.uOrange }} />;
     }
   });
 

@@ -36,6 +36,19 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
+const CardContentContainer = styled(CardContent)(({ theme }) => ({
+  maxHeight: '150px',
+  overflow: 'hidden',
+  marginBottom: '20px',
+  transition: theme.transitions.create('max-height', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+const ExpandedCardContent = styled(CardContent)({
+  maxHeight: 'none',
+  overflow: 'auto',
+});
 
 export const CardProduct = ({ courseData }: CardProductProps) => {
   const [expanded, setExpanded] = React.useState(false);
@@ -43,14 +56,14 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-
+  
   const create_date = courseData.createdAt ? format(new Date(courseData.createdAt), 'MM/dd/yyyy') : '';
   const update_date = courseData.updatedAt ? format(new Date(courseData.updatedAt), 'MM/dd/yyyy') : '';
   const showDate = courseData.updatedAt ? update_date : create_date;
   
   const hasDescription = courseData.description && courseData.description.trim() !== '';
   const shortDescription = hasDescription
-  ? courseData.description.substring(0, 100)
+  ? courseData.description.substring(0, 100) + '...'
   : 'No description available';
 
   const TitleSubheaderContainer = styled('div')({
@@ -86,7 +99,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
         
 
 
-      <CardContent sx={{ maxHeight: 150, overflow: 'auto', marginBottom: '20px' }}>
+      <CardContentContainer sx={{ maxHeight: expanded ? 'none' : '150px' }}>
         <Typography variant="body2" color="text.secondary">
           {shortDescription}
         </Typography>
@@ -97,7 +110,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           Difficulty: {courseData.difficulty}
         </Typography>
         <Typography variant="subtitle2" sx={{ fontSize: '0.7rem' }}> {showDate}</Typography>
-      </CardContent>  
+      </CardContentContainer>  
 
       <CardActions disableSpacing>
         <BottomGridContainer container justifyContent="space-between" alignItems="center">
@@ -125,12 +138,12 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
       </CardActions>
 
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
+        <ExpandedCardContent>
           <Typography paragraph>Description:</Typography>
           <Typography paragraph>
             {courseData.description}
           </Typography>
-        </CardContent>
+        </ExpandedCardContent>
       </Collapse>
     </Card>
   );

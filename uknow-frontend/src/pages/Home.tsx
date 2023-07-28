@@ -1,5 +1,4 @@
 import CourseList from "../elements/CourseList"
-import { Typography, } from '@mui/material';
 import SearchBar from '../components/SearchBar';
 
 function Home() {
@@ -9,10 +8,6 @@ function Home() {
     <div>
         <SearchBar />
         <CourseList/>
-          <Typography >
-              HOME AGAIN
-          </Typography>
-       
     </div>
   )
 }
