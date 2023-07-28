@@ -10,10 +10,12 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Grid } from '@mui/material';
 
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
 import RatingStars from '../components/RatingStars';
+
 
 interface CardProductProps {
   courseData: CourseData;
@@ -34,6 +36,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
+
 export const CardProduct = ({ courseData }: CardProductProps) => {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -43,34 +46,49 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
 
   const create_date = courseData.createdAt ? format(new Date(courseData.createdAt), 'MM/dd/yyyy') : '';
   const update_date = courseData.updatedAt ? format(new Date(courseData.updatedAt), 'MM/dd/yyyy') : '';
+  const showDate = courseData.updatedAt ? update_date : create_date;
   
   const hasDescription = courseData.description && courseData.description.trim() !== '';
   const shortDescription = hasDescription
   ? courseData.description.substring(0, 100)
   : 'No description available';
 
+  const TitleSubheaderContainer = styled('div')({
+    height: '105px', 
+    overflow: 'hidden',
+  });
+
+  const BottomGridContainer = styled(Grid)({
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    paddingBottom: '5px',
+    paddingTop: '5px',
+  });
+
   return (
-    <Card sx={{ maxWidth: 345, height: '100%' }}>
-      <CardHeader
-        titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.3rem' } }}
-        title={courseData.name}
-        subheader={(
-          <>
-            <div>Created: {create_date}</div>
-            <div>Updated: {update_date}</div>
-          </>
-        )}
-        
-      />
+    
+    <Card sx={{ maxWidth: 345, maxheight: 450, position: 'relative' }}>
+      
       <CardMedia
         component="img"
-        height="194"
+        height="185"
         image={courseData.image}
         alt="image de course"
       />
-      <CardContent sx={{ maxHeight: 150, overflow: 'auto' }}>
+      
+      <TitleSubheaderContainer>
+        <CardHeader
+          titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
+          title={courseData.name}
+        />
+      </TitleSubheaderContainer>
+        
+
+
+      <CardContent sx={{ maxHeight: 150, overflow: 'auto', marginBottom: '20px' }}>
         <Typography variant="body2" color="text.secondary">
-        {shortDescription}
+          {shortDescription}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           <RatingStars average={courseData.average} />
@@ -78,25 +96,34 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
         <Typography variant="body2" color="text.secondary">
           Difficulty: {courseData.difficulty}
         </Typography>
+        <Typography variant="subtitle2" sx={{ fontSize: '0.7rem' }}> {showDate}</Typography>
+      </CardContent>  
 
-      </CardContent>
       <CardActions disableSpacing>
-      
-        <IconButton aria-label="Buy">
-          <AddShoppingCartIcon />
-        </IconButton>
-        <Typography variant="body2" color="text.secondary">
-          Price: ${courseData.price}
-        </Typography>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
+        <BottomGridContainer container justifyContent="space-between" alignItems="center">
+          <Grid item>
+            <IconButton aria-label="Buy">
+              <AddShoppingCartIcon />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2" color="text.secondary">
+              Price: ${courseData.price}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </Grid>
+        </BottomGridContainer>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Description:</Typography>

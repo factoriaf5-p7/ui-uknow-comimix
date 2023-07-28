@@ -1,6 +1,6 @@
+import { Box } from '@mui/material';
 import { CardProduct } from './CardProduct';
 import { useAllCourses } from '../hooks/useQuery-AllCourses';
-import { Grid } from '@mui/material';
 
 export default function CourseList() {
   const { isLoading, isError, courseList } = useAllCourses();
@@ -10,14 +10,19 @@ export default function CourseList() {
   if (isError) return <div>An error has occurred while retrieving the data.</div>;
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <Grid container spacing={2}>
+    <Box display="flex" justifyContent="center">
+      <Box display="flex" flexDirection="column" alignItems="center">
         {courseList?.map((course) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={course._id}>
+          <Box
+            key={course._id} xs={2} 
+            my={2}
+            mb={5}
+            style={{ width: '330px', height: '450px' }}
+          >
             <CardProduct courseData={course} />
-          </Grid>
+          </Box>
         ))}
-      </Grid>
-    </div>
+      </Box>
+    </Box>
   );
 }
