@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Container, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const fadeIn = keyframes`
   0% {
@@ -97,13 +98,14 @@ export const HeroImage = () => {
       isMounted = false;
     };
   }, [imageLoaded]);
+ const navigate = useNavigate();
 
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
   const handleButtonClick = () => {
-    window.location.replace("/home");
+    navigate("/home");
   };
 
   return (

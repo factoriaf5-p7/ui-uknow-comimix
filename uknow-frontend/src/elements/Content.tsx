@@ -1,13 +1,20 @@
-import { Typography} from '@mui/material';
+
+import { Typography } from '@mui/material';
 import CourseData from '../interfaces/course.interface';
 
 function ContentDetail({ oneCourse }: { oneCourse: CourseData }) {
+  const accessToken = localStorage.getItem('token');
+
   return (
-    <div>
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
       <Typography variant="h4" gutterBottom>
         {oneCourse.name}
       </Typography>
-      <img src={oneCourse.image} alt={oneCourse.name} style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} />
+      <img
+        src={oneCourse.image}
+        alt={oneCourse.name}
+        style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }}
+      />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
         <div style={{ flex: 1 }}>
@@ -27,13 +34,17 @@ function ContentDetail({ oneCourse }: { oneCourse: CourseData }) {
             <strong>Tags:</strong> {oneCourse.tags.join(', ')}
           </Typography>
         </div>
+ // solo se puede ver si esta comprado y logueado,
+   si no se cumple, que aparezca boton de compra.
 
-        <div style={{ flex: 1 }}>
-          <Typography>{oneCourse.description}</Typography>
-          <Typography>
-            <strong>Content:</strong> {oneCourse.content}
-          </Typography>
-        </div>
+        {accessToken && (
+          <div style={{ flex: 1 }}>
+            <Typography >{oneCourse.description}</Typography>
+            <Typography>
+              <strong>Content:</strong> {oneCourse.content}
+            </Typography>
+          </div>
+        )}
       </div>
     </div>
   );

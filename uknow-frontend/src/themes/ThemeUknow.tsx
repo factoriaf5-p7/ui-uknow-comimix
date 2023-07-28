@@ -38,7 +38,7 @@ declare module '@mui/material/styles' {
     }
   
     interface PaletteOptions {
-      uDarkBlue?: PaletteOptions;
+      uDarkBlue: PaletteOptions;
       uLightBlue: PaletteOptions;
       uBlue: PaletteOptions;
       uOrange: PaletteOptions;

@@ -6,16 +6,19 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery/useMediaQuery';
+
 
 const Footer = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Set default to false initially
+  const matches = useMediaQuery('(min-width:600px)');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    // Check if the token exists in localStorage
+
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // Set isLoggedIn to true if token exists, false otherwise
-  }, []); // Run this effect only once when the component mounts
+    setIsLoggedIn(!!token); 
+  },); 
 
   const handleProfilePage = () => {
     navigate('/profile');
@@ -34,12 +37,11 @@ const Footer = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false); 
     navigate('/login');
-    console.log('Estado de inicio de sesión:', isLoggedIn);
   };
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-      <BottomNavigation sx={{ backgroundColor: '#DEA01E' }}>
+    <Paper  sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+      <BottomNavigation   sx={{ backgroundColor: '#DEA01E'  }}>
         {isLoggedIn && (
           <BottomNavigationAction onClick={handleProfilePage} label="Avatar" icon={<AccountCircleIcon />} />
         )}
