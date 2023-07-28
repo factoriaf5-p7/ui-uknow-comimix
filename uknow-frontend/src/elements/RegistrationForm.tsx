@@ -1,41 +1,20 @@
-import { useMutation /* useQueryClient */ } from "@tanstack/react-query";
 import { useState, ChangeEvent, FormEvent } from "react";
-import {
-  Box,
-  Container,
-  TextField,
-  Button,
-
-} from "@mui/material";
-import RegisterState from "../interfaces/register.interface";
-
-
-
-const createUser = async (userData: RegisterState) => {
-  const response = await fetch("http://localhost:3000/auth/signup", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
-  const data = await response.json();
-  return data;
-};
+import { Box, Container, TextField, Button } from "@mui/material";
+import { useUserRegistrationMutation } from "../hooks/useMutation-UserRegistration";
 
 export const RegistrationForm = () => {
-  const [register, setRegister] = useState<RegisterState>({
-    name: "",
-    last_name: "",
-    email: "",
-    password: "",
+  const [register, setRegister] = useState({
+    name: '',
+    last_name: '',
+    email: '',
+    password: '',
   });
 
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === "confirmPassword") {
+    if (name === 'confirmPassword') {
       setConfirmPassword(value);
     } else {
       setRegister({
@@ -45,34 +24,26 @@ export const RegistrationForm = () => {
     }
   };
 
-  /*   const queryClient = useQueryClient();
-   */
-  const createUserMutation = useMutation(createUser, {
-    onSuccess: () => {
-
-      alert("User registration successful!");
-      /*       queryClient.invalidateQueries("users");
-       */
-    },
-    onError: (error) => {
-      console.error("Registration error:", error);
-    },
-  });
-
+  const userRegistrationMutation = useUserRegistrationMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!register.password || !confirmPassword) {
-      alert("Please fill in both password and confirm password fields.");
+      alert('Please fill in both password and confirm password fields.');
       return;
     }
 
     if (register.password !== confirmPassword) {
-      alert("Passwords do not match. Please try again.");
+      alert('Passwords do not match. Please try again.');
       return;
     }
-    createUserMutation.mutate(register);
+
+    // userRegistrationMutation.mutate():
+    // This function is used to trigger the mutation. It takes the register state (user registration data) as an argument 
+    // and sends it to the server using the createUser function. When you call userRegistrationMutation.mutate(register), 
+    // React Query will execute the mutation, which performs the POST request to the server to create the user.
+    userRegistrationMutation.mutate(register);
   };
 
   return (

@@ -1,5 +1,4 @@
-import CourseList from "../elements/CourseList"
-import {RegistrationForm} from "../elements/RegistrationForm"
+import {CourseList} from "../elements/CourseList"
 import React, { useEffect, useState} from 'react'
 import { uColors } from '../themes/ThemeUknow';
 import { Box } from '@mui/system';
@@ -13,14 +12,10 @@ function Home() {
     <div>
         <SearchBar />
         <CourseList/>
-        {/*  <Typography variant='uTitle'>
+          <Typography variant='uTitle'>
                 HOME AGAIN
             </Typography>
-        {
-            data.map(course => {
-                return <Box style={{ color: uColors.uOrange }} >{course.name}</Box>
-            })
-        } */}
+       
     </div>
   )
 }
