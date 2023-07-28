@@ -13,6 +13,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
+import RatingStars from '../components/RatingStars';
 
 interface CardProductProps {
   courseData: CourseData;
@@ -72,7 +73,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
         {shortDescription}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Rating: {courseData.average} 
+          <RatingStars average={courseData.average} />
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Difficulty: {courseData.difficulty}
