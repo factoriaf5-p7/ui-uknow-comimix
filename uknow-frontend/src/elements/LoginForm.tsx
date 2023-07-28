@@ -14,7 +14,7 @@ function LoginForm() {
       justifyContent: "center",
       height: "100vh",
     }}
-  >
+    >
     <Box
       maxWidth="sm"
       width="100%"
@@ -44,8 +44,11 @@ function LoginForm() {
         type="password"
       />
   
-        <Box display='flex' justifyContent='center'>
-            <a href="/signup">Si no tienes cuenta, click aquí</a>
+      <Box display='flex' justifyContent='center'>
+        <a href="/signup">Si no tienes cuenta, click aquí</a>
+      </Box>
+      <Box display='flex' justifyContent='center'>
+            <a href="/recover">¿Has olvidado tu contraseña?</a>
         </Box>
       <Box display="flex" justifyContent="center" mt={2} >
         <Button type="submit" variant="contained">

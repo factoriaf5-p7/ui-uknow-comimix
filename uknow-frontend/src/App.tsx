@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Recover from './pages/Recover'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Register />} />
+      <Route path='/recover' element={<Recover />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
   )
