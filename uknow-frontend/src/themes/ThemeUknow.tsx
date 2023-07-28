@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme,PaletteColor, PaletteColorOptions } from "@mui/material";
 import '@fontsource/poppins'
 import '@fontsource/poppins/700.css'
 import '@fontsource/poppins/500.css'
@@ -30,19 +30,19 @@ declare module "@mui/material/Typography" {
 
 declare module '@mui/material/styles' {
     interface Palette {
-      uDarkBlue: Palette;
-      uLightBlue: Palette;
-      uBlue: Palette;
-      uOrange: Palette;
-      uGrey: Palette;
+      uDarkBlue: PaletteColor;
+      uLightBlue: PaletteColor;
+      uBlue: PaletteColor;
+      uOrange: PaletteColor;
+      uGrey: PaletteColor;
     }
   
     interface PaletteOptions {
-      uDarkBlue: PaletteOptions;
-      uLightBlue: PaletteOptions;
-      uBlue: PaletteOptions;
-      uOrange: PaletteOptions;
-      uGrey: PaletteOptions;
+      uDarkBlue?: PaletteColorOptions;
+      uLightBlue: PaletteColorOptions;
+      uBlue: PaletteColorOptions;
+      uOrange: PaletteColorOptions;
+      uGrey: PaletteColorOptions;
     }
   }
 

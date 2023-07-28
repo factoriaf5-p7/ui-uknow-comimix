@@ -1,6 +1,6 @@
 
 import { Typography } from '@mui/material';
-import CourseData from '../interfaces/course.interface';
+import {CourseData} from '../interfaces/course.interface';
 
 function ContentDetail({ oneCourse }: { oneCourse: CourseData }) {
   const accessToken = localStorage.getItem('token');
