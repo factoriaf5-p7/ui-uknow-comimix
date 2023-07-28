@@ -29,13 +29,13 @@ export class User {
   @Prop({ required: true, default: 100 })
   	wallet_balance: number;
 
-  @ApiProperty({ example: [ 'Bought Course 1', 'Bought Course 2' ] })
+  @ApiProperty({ example: [ { course_id: '684798574308', stars: 3, commented: false } , { course_id: '684753453', stars: 5, commented: true } ] })
   @Prop({ type: [ { course_id: { type: mongoose.Schema.Types.ObjectId, ref: Course.name }, stars: { type: Number }, commented: { type: Boolean } }  ] })
   	bought_courses: {
-    course_id: Course,
-    stars: number,
-    commented: boolean
-  }[];
+      course_id: Course,
+      stars: number,
+      commented: boolean
+    }[];
 
   @ApiProperty({ example: [ 'Created Course 1', 'Created Course 2' ] })
   @Prop({ type: [ { type: mongoose.Schema.Types.ObjectId, ref: Course.name } ] })

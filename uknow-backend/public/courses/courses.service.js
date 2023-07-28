@@ -82,6 +82,8 @@ let CoursesService = exports.CoursesService = class CoursesService {
     async addRating(userId, ratedCourse) {
         try {
             const { data, message, status } = await this.userService.addRating(userId, ratedCourse);
+            if (!data)
+                console.log('not updated user?', data);
             return {
                 message: 'Course rated successfully',
                 status: common_1.HttpStatus.OK,
