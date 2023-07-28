@@ -8,6 +8,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+
+  //falta implementar cambio de ustario de login/logout
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate(); 
 
@@ -18,7 +21,7 @@ const Footer = () => {
   const handleContentPage = () => {
     navigate('/content');
   };
-
+// falta utilizar ruta para despues de hacer login
   const handleHomePage = () => {
     navigate('');
   };
@@ -28,6 +31,8 @@ const Footer = () => {
     navigate('/');
     console.log('Estado de inicio de sesión:', isLoggedIn);
   };
+
+// falta utilizar colores globales
 
   return (
     <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
