@@ -39,7 +39,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
 
   return (
     <Tooltip title="Click to see more" placement="right" followCursor>
-      <CardContainer sx={{ maxWidth: 345, height: 460, position: 'relative' }}>
+      <CardContainer sx={{ maxWidth: 320, height: 460, position: 'relative' }}>
         <CardMedia
           component="img"
           height="190"
