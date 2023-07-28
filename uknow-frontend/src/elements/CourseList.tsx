@@ -16,7 +16,7 @@ export default function CourseList() {
   };
 
   return (
-    <Box display="flex" justifyContent="center" mb={10} >
+    <Box display="flex" justifyContent="center" m={10} >
       <Grid container spacing={3} justifyContent="center" >
         {courseList?.map((course) => (
           <Grid item key={course._id} sx={{ display: { xs: 'none', sm: 'block' } }} component="div">
