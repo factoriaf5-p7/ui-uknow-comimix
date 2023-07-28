@@ -11,6 +11,12 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
+import { CourseData } from '../interfaces/course.interface';
+
+interface CardProductProps {
+  courseData: CourseData;
+}
+
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
 }
@@ -26,7 +32,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export const CardProduct = ({ courseData }: CardProductProps) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -36,25 +42,25 @@ export default function RecipeReviewCard() {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        title="Shrimp and Chorizo Paella"
-        subheader="estrellas"
+        title={courseData.name} 
+        subheader={courseData.create_date} 
       />
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        image={courseData.image} 
+        alt="image de course"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          Mini description
+          ...
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Buy">
-          < AddShoppingCartIcon/>
+          <AddShoppingCartIcon />
         </IconButton>
-    
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -63,19 +69,15 @@ export default function RecipeReviewCard() {
         >
           <ExpandMoreIcon />
         </ExpandMore>
-
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-
         <CardContent>
           <Typography paragraph>Description:</Typography>
           <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-            aside for 10 minutes.
+            {courseData.description} 
           </Typography>
-          
         </CardContent>
       </Collapse>
     </Card>
   );
-}
+};

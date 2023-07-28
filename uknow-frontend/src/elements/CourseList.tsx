@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import CourseData from "../interfaces/course.interface";
+import { CourseData } from "../interfaces/course.interface";
+import { CardProduct } from './CardProduct';
 
 
 export default function CourseList() {
@@ -24,17 +25,25 @@ export default function CourseList() {
   if (isError)
     return <div>An error has occurred while retriving the data.</div>;
 
-  return (
-    <div>
-      <h2>Course List</h2>
-      <ul>
-        {data.map((course) => (
-          <li key={course._id}>
-            Name: {course.name} | Price: {course.price} | Difficulty:{" "}
-            {course.difficulty} | Topic: {course.topic} | Description: {course.description} | Rating: {course.average}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+      <div>
+        <h2>Course List</h2>
+        <ul>
+          {data.map((course) => (
+            <CardProduct key={course._id} courseData={course} />
+          ))}
+        </ul>
+      </div>
+    );
 }
+
+
+{/* <ul>
+{data.map((course) => (
+  
+  <li key={course._id}>
+    Name: {course.name} | Price: {course.price} | Difficulty:{" "}
+    {course.difficulty} | Topic: {course.topic} | Description: {course.description} | Rating: {course.average}
+  </li>
+))}
+</ul> */}
