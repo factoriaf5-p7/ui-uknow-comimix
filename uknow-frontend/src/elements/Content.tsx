@@ -1,9 +1,10 @@
-
-import { Typography } from '@mui/material';
-import {CourseData} from '../interfaces/course.interface';
+import { Typography, Button, Grid } from '@mui/material';
+import { CourseData } from '../interfaces/course.interface';
+import RatingStars from './RatingStars'; // Assuming you have a component for rendering star ratings.
 
 function ContentDetail({ oneCourse }: { oneCourse: CourseData }) {
   const accessToken = localStorage.getItem('token');
+  const isCoursePurchased = oneCourse.isPurchased; // Assuming you have a property indicating if the course is purchased.
 
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -34,17 +35,18 @@ function ContentDetail({ oneCourse }: { oneCourse: CourseData }) {
             <strong>Tags:</strong> {oneCourse.tags.join(', ')}
           </Typography>
         </div>
- // solo se puede ver si esta comprado y logueado,
-   si no se cumple, que aparezca boton de compra.
 
-        {accessToken && (
-          <div style={{ flex: 1 }}>
-            <Typography >{oneCourse.description}</Typography>
+        {accessToken && isCoursePurchased ? (
+          <Grid item style={{ flex: 1 }}>
+            <Typography>{oneCourse.description}</Typography>
             <Typography>
               <strong>Content:</strong> {oneCourse.content}
             </Typography>
-          </div>
-        )}
+            <Button variant="contained" color="primary">
+              Buy Now
+            </Button>
+          </Grid>
+        ) : null}
       </div>
     </div>
   );
