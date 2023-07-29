@@ -1,42 +1,56 @@
 import { useState } from 'react';
-import { TextField, IconButton, Button } from '@mui/material';
+import { TextField, IconButton, Button, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { SearchCourses } from '../hooks/useQuery-SearchCourses';
 
 interface SearchBarProps {
   onSearch: (searchResults: any[]) => void;
-  onClearSearch: () => void; // Nova prop para limpar a busca
+  onClearSearch: () => void;
 }
 
 export default function SearchBar({ onSearch, onClearSearch }: SearchBarProps) {
   const [searchText, setSearchText] = useState('');
+  const { searchResults } = SearchCourses(searchText);
+  const [showNoCoursesFound, setShowNoCoursesFound] = useState(false);
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`http://localhost:3000/courses/search?filters=name&keywords=${searchText}`);
-      const data = await response.json();
+  const handleSearch = () => {
+    // No hace nada si esta vacia
+    if (searchText.trim() === '') {
+      return;
+    }
 
-      onSearch(data.data); // estrutura { data: [] }.
-    } catch (error) {
-      console.error('Error during search:', error);
+    setShowNoCoursesFound(true);
+
+    if (searchResults && searchResults.length === 0) {
+      onSearch([]);
+    } else {
+      onSearch(searchResults || []);
     }
   };
 
   const handleClearSearch = () => {
     setSearchText('');
-    onClearSearch(); 
+    onClearSearch();
+    setShowNoCoursesFound(false); 
   };
 
   return (
-    <>
-      <TextField
-        label="Search for courses"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-      />
-      <IconButton onClick={handleSearch}>
-        <SearchIcon />
-      </IconButton>
-      <Button onClick={handleClearSearch}>Clear Search</Button>
-    </>
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <Box>
+        <TextField
+          label="Search for courses"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <IconButton onClick={handleSearch}>
+          <SearchIcon />
+        </IconButton>
+        <Button onClick={handleClearSearch}>Clear Search</Button>
+      </Box>
+
+      {showNoCoursesFound && searchResults !== undefined && searchResults.length === 0 && searchText && (
+        <Box mt={2}>No courses found.</Box>
+      )}
+    </Box>
   );
 }

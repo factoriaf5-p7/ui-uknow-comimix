@@ -6,10 +6,11 @@ import { CourseData } from '../interfaces/course.interface';
 
 interface CourseListProps {
   initialCourses: CourseData[];
+  showCourses: boolean; // Nova prop para indicar se os cursos devem ser mostrados ou não
 }
 
-export default function CourseList({ initialCourses }: CourseListProps) {
-  const [courses, setCourses] = useState<CourseData[]>(initialCourses);
+export default function CourseList({ initialCourses, showCourses }: CourseListProps) {
+  const [courses, setCourses] = useState<CourseData[]>([]);
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
@@ -17,24 +18,26 @@ export default function CourseList({ initialCourses }: CourseListProps) {
   };
 
   useEffect(() => {
-    setCourses(initialCourses);
+    if (initialCourses) {
+      setCourses(initialCourses);
+    }
   }, [initialCourses]);
 
-  if (!courses || courses.length === 0) {
-    return <div>No courses found.</div>;
-  }
-
   return (
-    <Box display="flex" justifyContent="center" m={10}>
-      <Grid container spacing={3} justifyContent="center">
-        {courses.map((course) => (
-          <Grid item key={course._id} sx={{ display: { xs: 'none', sm: 'block' } }} component="div">
-            <Box my={2} style={{ width: '330px', height: '450px' }}>
-              <CardProduct courseData={course} onCardClick={() => handleCardClick(course._id)} />
-            </Box>
+    <>
+      {showCourses && ( // Renderiza os cursos somente se showCourses for verdadeiro
+        <Box display="flex" justifyContent="center" m={10}>
+          <Grid container spacing={3} justifyContent="center">
+            {courses.map((course) => (
+              <Grid item key={course._id} sx={{ display: { xs: 'none', sm: 'block' } }} component="div">
+                <Box my={2} style={{ width: '330px', height: '450px' }}>
+                  <CardProduct courseData={course} onCardClick={() => handleCardClick(course._id)} />
+                </Box>
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-    </Box>
+        </Box>
+      )}
+    </>
   );
 }

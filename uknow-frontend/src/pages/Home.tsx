@@ -9,13 +9,16 @@ import { CourseData } from '../interfaces/course.interface';
 function Home() {
   const { isLoading, isError, courseList: allCourses } = useAllCourses();
   const [courses, setCourses] = useState<CourseData[]>([]);
+  const [isSearching, setIsSearching] = useState(false); // Add el estado isSearching
 
   const handleAllCourses = (courses: CourseData[]) => {
     setCourses(courses);
+    setIsSearching(true); // Update isSearching para true cuando la busqueda es realizada
   };
 
-    const handleClearSearch = () => {
-    setCourses(allCourses || []); 
+  const handleClearSearch = () => {
+    setCourses(allCourses || []);
+    setIsSearching(false); // Update isSearching para false caundo la busca es limpia
   };
 
   return (
@@ -31,7 +34,7 @@ function Home() {
       ) : isError ? (
         <div>Error fetching data</div>
       ) : (
-        <CourseList initialCourses={courses.length === 0 ? allCourses : courses} />
+        <CourseList initialCourses={courses.length === 0 ? allCourses : courses} showCourses={!isSearching} />
       )}
     </div>
   );
