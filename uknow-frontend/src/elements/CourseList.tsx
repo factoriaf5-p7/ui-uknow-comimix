@@ -9,7 +9,7 @@ interface CourseListProps {
 }
 
 export default function CourseList({ initialCourses }: CourseListProps) {
-  const [courses, setCourses] = useState<CourseData[]>([]);
+  const [courses, setCourses] = useState<CourseData[]>(initialCourses);
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
@@ -17,9 +17,7 @@ export default function CourseList({ initialCourses }: CourseListProps) {
   };
 
   useEffect(() => {
-    if (initialCourses) {
-      setCourses(initialCourses);
-    }
+    setCourses(initialCourses);
   }, [initialCourses]);
 
   if (!courses || courses.length === 0) {
