@@ -25,7 +25,7 @@ const CardContainer = styled(Card)({
   cursor: 'pointer',
   borderRadius: '15px',
   '&:hover': {
-    boxShadow: '0px 8px 16px rgba(0, 0, 255, 0.5)',
+    boxShadow: '0px 8px 16px rgba(18, 72, 115, 0.8)',
     '& $CourseDetailText': {
       opacity: 1,
     },
