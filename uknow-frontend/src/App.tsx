@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Recover from './pages/Recover'
 import Footer from './elements/Footer'
+import UnderConstruction from './pages/UnderConstruction';
 import { Course } from './pages/Course'
 
 
@@ -26,6 +27,7 @@ function App() {
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Register />} />
       <Route path='/recover' element={<Recover />} />
+      <Route path='/under-construction' element={<UnderConstruction />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
     <Footer/>
