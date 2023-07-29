@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { SearchCourses } from '../hooks/useQuery-SearchCourses';
 
 interface SearchBarProps {
-  onSearch: (searchResults: any[]) => void;
+  onSearch: (searchResults: CourseData[]) => void;
   onClearSearch: () => void;
 }
 
@@ -19,11 +19,11 @@ export default function SearchBar({ onSearch, onClearSearch }: SearchBarProps) {
       return;
     }
 
-    setShowNoCoursesFound(true);
-
     if (searchResults && searchResults.length === 0) {
+      setShowNoCoursesFound(true);
       onSearch([]);
     } else {
+      setShowNoCoursesFound(false);
       onSearch(searchResults || []);
     }
   };
