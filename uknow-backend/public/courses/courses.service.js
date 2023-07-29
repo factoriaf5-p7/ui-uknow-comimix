@@ -189,7 +189,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
         try {
             let allCourses = [];
             let regex;
-            const arrFilters = filters.split(',');
+            const arrFilters = filters ? filters.split(',') : [];
             try {
                 for (var _d = true, arrFilters_2 = __asyncValues(arrFilters), arrFilters_2_1; arrFilters_2_1 = await arrFilters_2.next(), _a = arrFilters_2_1.done, !_a; _d = true) {
                     _c = arrFilters_2_1.value;
