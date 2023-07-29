@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { TextField, IconButton } from '@mui/material';
+import { TextField, IconButton, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 interface SearchBarProps {
   onSearch: (searchResults: any[]) => void;
+  onClearSearch: () => void; // Nova prop para limpar a busca
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export default function SearchBar({ onSearch, onClearSearch }: SearchBarProps) {
   const [searchText, setSearchText] = useState('');
 
   const handleSearch = async () => {
@@ -20,6 +21,11 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     }
   };
 
+  const handleClearSearch = () => {
+    setSearchText('');
+    onClearSearch(); 
+  };
+
   return (
     <>
       <TextField
@@ -30,6 +36,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       <IconButton onClick={handleSearch}>
         <SearchIcon />
       </IconButton>
+      <Button onClick={handleClearSearch}>Clear Search</Button>
     </>
   );
 }
