@@ -11,6 +11,7 @@ import Recover from './pages/Recover'
 import Footer from './elements/Footer'
 import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
+import Navbar from './elements/Navbar'
 
 
 
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+    <Navbar/>
     <Routes>
       <Route path='/' element={<Hero />} />
       <Route path='/home' element={<Home />} />
