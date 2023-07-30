@@ -1,6 +1,7 @@
-import CourseData from '../interfaces/course.interface';
+
 import { useParams } from 'react-router-dom';
 import { useQuery } from "@tanstack/react-query";
+import { CourseData } from '../interfaces/course.interface';
 
 const useOneCourseData = () => {
   const { _id } = useParams();

@@ -10,7 +10,8 @@ import Register from './pages/Register'
 import Recover from './pages/Recover'
 import Footer from './elements/Footer'
 import UnderConstruction from './pages/UnderConstruction';
-import { Course } from './pages/Course'
+import Course from './pages/Course'
+
 
 
 function App() {
