@@ -47,6 +47,9 @@ declare module '@mui/material/styles' {
   }
 
 export const UknowTheme = createTheme({
+
+
+    
     palette: {
         primary: {
             main: '#000'
@@ -105,8 +108,8 @@ export const UknowTheme = createTheme({
     }),
     breakpoints: {
         values: {
-            mobile: 0,
-            desktop: 750
+            mobile: 600, 
+            desktop: 960,
         }
     }
 })
