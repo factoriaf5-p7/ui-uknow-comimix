@@ -233,6 +233,18 @@ export class UsersService {
 			throw error;
 		}
 	}
+
+	async removeCourseFromBought(id: ObjectId) {
+		try {
+			return {
+				status: HttpStatus.OK,
+				message: 'Course removed from bought successfully',
+				data: ''
+			};
+		} catch (error) {
+			throw error;
+		}
+	}
 	
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {

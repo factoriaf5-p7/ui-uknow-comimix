@@ -222,6 +222,18 @@ let UsersService = exports.UsersService = class UsersService {
             throw error;
         }
     }
+    async removeCourseFromBought(id) {
+        try {
+            return {
+                status: common_1.HttpStatus.OK,
+                message: 'Course removed from bought successfully',
+                data: ''
+            };
+        }
+        catch (error) {
+            throw error;
+        }
+    }
     async addRating(userId, ratedCourse) {
         try {
             console.log(ratedCourse._id);
