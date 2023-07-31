@@ -131,6 +131,7 @@ export declare class CoursesService {
             _id: import("mongoose").Types.ObjectId;
         }, never>)[];
     }>;
+    removeCourseFromBought(id: ObjectId): Promise<void>;
     deleteCourseByAdmin(id: ObjectId): Promise<{
         message: string;
         status: HttpStatus;
