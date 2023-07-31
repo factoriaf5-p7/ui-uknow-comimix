@@ -57,28 +57,31 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
     setModalOpen(false);
   };
 
-  
+
 
   return (
     <>
-    <Tooltip title="Click to see more" placement="right" followCursor>
+      
       <CardContainer
-      sx={{ maxWidth: 320, height: 460, position: 'relative' }}
-      onClick={handleCardClick}>
-        <CardMedia
-          component="img"
-          height="170"
-          image={courseData.image}
-          alt="image de course"
-        />
-        <TitleSubheaderContainer>
-          <CardHeader
-            titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
-            title={courseData.name}
-          />
-        </TitleSubheaderContainer>
+        sx={{ maxWidth: 320, height: 460, position: 'relative' }}
+      >
+        <Tooltip title="Click to see more" placement="right" followCursor>
+          <div onClick={handleCardClick}>
+            <CardMedia
+              component="img"
+              height="170"
+              image={courseData.image}
+              alt="image de course"
+            />
+            <TitleSubheaderContainer>
+              <CardHeader
+                titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
+                title={courseData.name}
+              />
+            </TitleSubheaderContainer>
+            </div>
+          </Tooltip>
         <CardContentSection
-          
           description={courseData.description}
           average={courseData.average}
           difficulty={courseData.difficulty}
@@ -86,8 +89,8 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           price={courseData.price}
         />
       </CardContainer>
-    </Tooltip>
-    <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
+      
+      <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
     </>
   );
 };

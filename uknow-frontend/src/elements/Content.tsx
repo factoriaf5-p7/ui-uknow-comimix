@@ -23,6 +23,13 @@ const Content = () => {
     return token 
   };
 
+
+  const handleBuyButtonClick = () => {
+    // Implement the logic here for what should happen when the "Buy" button is clicked.
+    // For example, you can show a purchase modal or redirect to a checkout page.
+    console.log("Buy button clicked!");
+  };
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center" p={4}>
       <CourseHeader name={oneCourse.name} description={oneCourse.description} />
@@ -42,7 +49,7 @@ const Content = () => {
           </Box>
         )}
       </Box>
-      <BuyButton />
+      <BuyButton onClick={handleBuyButtonClick}/>
     </Box>
   );
 };
