@@ -118,7 +118,6 @@ let UsersService = exports.UsersService = class UsersService {
     async findOneWithCreatedCourses(id) {
         try {
             const createdCourses = await this.userModel.findOne({ _id: id }).select('created_courses').populate('created_courses');
-            console.log('created', createdCourses);
             return {
                 message: 'User with created courses retrived successfully',
                 status: common_1.HttpStatus.OK,
@@ -131,9 +130,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async findOneWithBoughtCourses(id) {
         try {
-            console.log(typeof id);
             const boughtCourses = await this.userModel.findOne({ _id: new mongoose_2.default.Types.ObjectId(id) }).select('bought_courses.course_id').populate('bought_courses.course_id').lean().exec();
-            console.log('bought findonewith bought', boughtCourses.bought_courses[0].course_id);
             return {
                 message: 'User with bought courses retrived successfully',
                 status: common_1.HttpStatus.OK,
@@ -227,6 +224,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async removeCourseFromBought(id) {
         try {
+            await this.userModel.find({ _id: id });
             return {
                 status: common_1.HttpStatus.OK,
                 message: 'Course removed from bought successfully',
@@ -239,12 +237,9 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async addRating(userId, ratedCourse) {
         try {
-            console.log(ratedCourse._id);
-            console.log(await this.userModel.find({ bought_courses: { $elemMatch: { course_id: ratedCourse._id } } }));
-            const updatedUser = await this.userModel.findOneAndUpdate({ 'bought_courses.course_id': ratedCourse._id }, {
-                'bought_courses.$.stars': ratedCourse.stars
+            const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id }, {
+                $set: { 'bought_courses.$.stars': ratedCourse.stars }
             }).select('bought_courses');
-            console.log(updatedUser);
             if (!updatedUser)
                 throw new common_1.HttpException('Failed rating course', common_1.HttpStatus.BAD_REQUEST);
             return {

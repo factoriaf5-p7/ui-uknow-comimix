@@ -62,12 +62,9 @@ let CoursesService = exports.CoursesService = class CoursesService {
     }
     async findBoughtCourses(id) {
         try {
-            console.log(typeof id);
             const { message, status, data } = await this.userService.findOneWithBoughtCourses(id);
-            console.log('bought', data.bought_courses);
             const boughtCourses = [];
             const entries = Object.entries(data.bought_courses);
-            console.log('entries', entries);
             entries.forEach(course => {
                 boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
             });
@@ -262,9 +259,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
             const entries = Object.entries(data.created_courses);
             let courseUpdated;
             entries.forEach(async (course) => {
-                console.log(course[1]._id);
                 if (String(updateCourse._id) === String(course[1]._id)) {
-                    console.log('actualizando');
                     courseUpdated = await this.courseModel.findOneAndUpdate({ _id: updateCourse._id }, Object.assign({}, updateCourse));
                 }
                 else {
