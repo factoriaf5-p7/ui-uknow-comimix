@@ -7,7 +7,7 @@ interface CourseListProps {
   courses: CourseData[];
 }
 
-export default function CourseList({ courses }: CourseListProps) {
+export default function CourseList({ courses }: CourseListProps ) {
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
