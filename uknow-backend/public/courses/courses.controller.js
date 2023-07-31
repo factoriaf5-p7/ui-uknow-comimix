@@ -109,7 +109,7 @@ __decorate([
     (0, common_1.Get)('bought-courses/:userid'),
     __param(0, (0, common_1.Param)('userid')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CoursesController.prototype, "findBoughtCourses", null);
 __decorate([

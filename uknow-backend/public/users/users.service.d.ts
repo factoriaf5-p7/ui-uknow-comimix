@@ -60,12 +60,12 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
-    findOneWithBoughtCourses(id: ObjectId): Promise<{
+    findOneWithBoughtCourses(id: string): Promise<{
         message: string;
         status: HttpStatus;
-        data: mongoose.Document<unknown, {}, User> & Omit<User & {
+        data: mongoose.FlattenMaps<User> & {
             _id: mongoose.Types.ObjectId;
-        }, never>;
+        };
     }>;
     update(user: UpdateUserDto): Promise<{
         message: string;

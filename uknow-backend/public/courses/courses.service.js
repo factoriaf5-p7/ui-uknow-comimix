@@ -62,10 +62,12 @@ let CoursesService = exports.CoursesService = class CoursesService {
     }
     async findBoughtCourses(id) {
         try {
+            console.log(typeof id);
             const { message, status, data } = await this.userService.findOneWithBoughtCourses(id);
+            console.log('bought', data.bought_courses);
             const boughtCourses = [];
             const entries = Object.entries(data.bought_courses);
-            console.log(entries);
+            console.log('entries', entries);
             entries.forEach(course => {
                 boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
             });
@@ -354,7 +356,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
                 }
                 user.wallet_balance -= course.price;
                 const object = {
-                    course_id: course.id,
+                    course_id: course._id,
                     stars: 0,
                     commented: false
                 };
