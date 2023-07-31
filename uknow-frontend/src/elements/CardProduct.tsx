@@ -10,6 +10,8 @@ import { CardContentSection } from '../components/CardContentSection';
 import { MouseEventHandler } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UnderConstruction from '../pages/UnderConstruction';
+import { CourseModal } from '../components/CourseModal';
+import {useState} from 'react'
 
 interface CardProductProps {
   courseData: CourseData;
@@ -35,20 +37,29 @@ const CardContainer = styled(Card)({
 });
 
 export const CardProduct = ({ courseData }: CardProductProps) => {
-  const navigate = useNavigate();
+/*   const navigate = useNavigate();
 
   const handleCardClick: MouseEventHandler<HTMLDivElement> = () => {
     // pagina de detalle
     navigate('/under-construction');
-  };
+  }; */
 
   const create_date = courseData.createdAt ? format(new Date(courseData.createdAt), 'MM/dd/yyyy') : '';
   const update_date = courseData.updatedAt ? format(new Date(courseData.updatedAt), 'MM/dd/yyyy') : '';
   const showDate = courseData.updatedAt ? update_date : create_date;
   
+  const [modalOpen, setModalOpen] = useState(false);
 
+  const handleCardClick = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
+    <>
     <Tooltip title="Click to see more" placement="right" followCursor>
       <CardContainer
       sx={{ maxWidth: 320, height: 460, position: 'relative' }}
@@ -74,5 +85,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
         />
       </CardContainer>
     </Tooltip>
+    <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
+    </>
   );
 };
