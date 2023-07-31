@@ -9,7 +9,8 @@ import {
 import { styled } from "@mui/system";
 import BuyButton from "./BuyButton";
 import RatingStars from "./RatingStars";
-
+import PurchaseModal from "./PurchaseModal";
+import { useState } from "react";
 
 const BottomGridContainer = styled(Grid)({
   bottom: 0,
@@ -53,13 +54,32 @@ export const CardContentSection = ({
   showDate,
   price,
 }: CardContentSectionProps) => {
-  const theme = useTheme(); // Obter o objeto theme usando o hook useTheme
+  const theme = useTheme(); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
     const hasDescription = description && description.trim() !== '';
     const shortDescription = hasDescription ? description.substring(0, 70) + ' ...' : 'No description available';
 
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+  
+
+    
+    const handlePurchaseConfirm = () => {
+      // Implement the logic here to process the course purchase.
+      // For example, send a request to the server or perform some specific action.
+      console.log("Course purchased successfully!");
+      handleCloseModal(); // Close the modal after purchase is confirmed
+    };
+
   return (
     
+      
       <CardContentContainer theme={theme}>
         <Typography variant="body2" color="text.secondary">
           {shortDescription}
@@ -80,10 +100,11 @@ export const CardContentSection = ({
             </Typography>
             </Grid>
             <CartButtonGridItem item>
-                <BuyButton />
+                <BuyButton onClick={handleOpenModal}/>
             </CartButtonGridItem>
         </BottomGridContainer>
         </CardActions>
+        <PurchaseModal open={isModalOpen} onClose={handleCloseModal} onConfirm={handlePurchaseConfirm} />
       </CardContentContainer>
  
   );

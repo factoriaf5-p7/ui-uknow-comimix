@@ -57,6 +57,8 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
     setModalOpen(false);
   };
 
+  
+
   return (
     <>
     <Tooltip title="Click to see more" placement="right" followCursor>
@@ -76,6 +78,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           />
         </TitleSubheaderContainer>
         <CardContentSection
+          
           description={courseData.description}
           average={courseData.average}
           difficulty={courseData.difficulty}
