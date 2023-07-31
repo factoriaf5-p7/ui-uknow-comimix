@@ -77,8 +77,6 @@ export class CoursesService {
 				ratedCourse,
 			);
 
-			if(!data) console.log('not updated user?', data);
-
 			return {
 				message: 'Course rated successfully',
 				status: HttpStatus.OK,

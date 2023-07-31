@@ -249,8 +249,6 @@ export class UsersService {
 	
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {
-			// console.log(ratedCourse._id);
-			// console.log(await this.userModel.find({ bought_courses: { $elemMatch: { course_id: ratedCourse._id } } }));
 			const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id  }, {
 				$set: { 'bought_courses.$.stars': ratedCourse.stars }
 			}).select('bought_courses');
