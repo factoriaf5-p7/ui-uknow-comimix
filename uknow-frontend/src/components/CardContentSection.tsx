@@ -20,7 +20,7 @@ interface CardContentContainerProps {
 }
 
 const CardContentContainer = styled(CardContent)<CardContentContainerProps>(({ theme }) => ({
-  maxHeight: '150px',
+  maxHeight: '195px',
   overflow: 'hidden',
   marginBottom: '20px',
   padding: '20px',
@@ -42,17 +42,17 @@ export const CardContentSection = ({ description, average, difficulty, showDate,
   const theme = useTheme(); // Obter o objeto theme usando o hook useTheme
 
     const hasDescription = description && description.trim() !== '';
-    const shortDescription = hasDescription ? description.substring(0, 100) + ' ...' : 'No description available';
+    const shortDescription = hasDescription ? description.substring(0, 70) + ' ...' : 'No description available';
 
     return (
     <CardContentContainer theme={theme}>
         <Typography variant="body2" color="text.secondary">
         {shortDescription}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" my={1}>
         <RatingStars average={average} />
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" my={1}>
         Difficulty: {difficulty}
         </Typography>
         <Typography variant="subtitle2" sx={{ fontSize: '0.7rem' }}>{showDate}</Typography>
@@ -63,7 +63,7 @@ export const CardContentSection = ({ description, average, difficulty, showDate,
             </CartButtonGridItem>
             <Grid item>
             <Typography variant="body2" color="text.secondary">
-                Price: ${price}
+                knwl: ${price}
             </Typography>
             </Grid>
         </BottomGridContainer>

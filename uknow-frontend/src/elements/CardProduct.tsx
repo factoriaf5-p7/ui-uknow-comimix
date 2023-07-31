@@ -15,7 +15,7 @@ interface CardProductProps {
 }
 
 const TitleSubheaderContainer = styled('div')({
-  height: '105px',
+  height: '70px',
   overflow: 'hidden',
 });
 
@@ -42,7 +42,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
       <CardContainer sx={{ maxWidth: 320, height: 460, position: 'relative' }}>
         <CardMedia
           component="img"
-          height="190"
+          height="170"
           image={courseData.image}
           alt="image de course"
         />
