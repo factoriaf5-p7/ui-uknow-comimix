@@ -103,7 +103,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
             price={courseData.price}
           />
         </div>
-          <CardActions disableSpacing sx={{ padding: '0px 15px', marginBottom:'20px' }}>
+          <CardActions disableSpacing sx={{ padding: '0px 15px', marginBottom:'30px' }}>
             <BottomGridContainer container justifyContent="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>
