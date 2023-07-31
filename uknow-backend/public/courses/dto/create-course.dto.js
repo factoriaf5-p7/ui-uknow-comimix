@@ -14,7 +14,7 @@ const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 var Difficulty;
 (function (Difficulty) {
-    Difficulty["Begginer"] = "Begginer";
+    Difficulty["Begginer"] = "Beginner";
     Difficulty["Medium"] = "Medium";
     Difficulty["Advanced"] = "Advanced";
 })(Difficulty || (Difficulty = {}));
@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateCourseDto.prototype, "topic", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Beginner | Medium | Advanced' }),
+    (0, swagger_1.ApiProperty)({ example: 'Beginner | Intermediate | Advanced' }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsEnum)(Difficulty),
     (0, class_validator_1.IsNotEmpty)(),

@@ -193,14 +193,16 @@ let UsersService = exports.UsersService = class UsersService {
             throw error;
         }
     }
-    async findAllBoughtCourses(filter, fields) {
+    async findAllBoughtCourses(courseId, fields) {
         try {
-            const usersBoughtCoursesTemp = await this.userModel.find(filter, fields).populate('bought_courses');
-            const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
+            const usersBoughtCoursesTemp = await this.userModel.find({ 'bought_courses.course_id': courseId, 'bought_courses.stars': { $gt: 0 } });
+            const usersBoughtCourses = usersBoughtCoursesTemp.map(user => {
+                return user.bought_courses.filter(course => String(course.course_id) === String(courseId));
+            });
             return {
                 message: 'All bought courses retrieved succesfully',
                 status: common_1.HttpStatus.OK,
-                data: usersBoughtCourses
+                data: usersBoughtCourses.flat(Infinity)
             };
         }
         catch (error) {

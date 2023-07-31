@@ -205,15 +205,17 @@ export class UsersService {
 		}
 	}
 
-	async findAllBoughtCourses( filter: object, fields: object ) {
+	async findAllBoughtCourses( courseId: ObjectId, fields: object ) {
 		try {
-			const usersBoughtCoursesTemp = await this.userModel.find( filter, fields ).populate('bought_courses');	
-			const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
+			const usersBoughtCoursesTemp = await this.userModel.find({ 'bought_courses.course_id': courseId, 'bought_courses.stars': { $gt: 0 } }); //.populate('bought_courses');	
+			const usersBoughtCourses = usersBoughtCoursesTemp.map(user => {
+				return user.bought_courses.filter(course => String(course.course_id) === String(courseId));
+			});
 
 			return {
 				message: 'All bought courses retrieved succesfully',
 				status: HttpStatus.OK,
-				data: usersBoughtCourses
+				data: usersBoughtCourses.flat(Infinity)
 			}; 	
 		} catch (error) {
 			throw error;

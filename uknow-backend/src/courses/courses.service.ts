@@ -70,10 +70,15 @@ export class CoursesService {
 		}
 	}
 
-	async calculateCoursePrice(courseDto: RatedCourseDto) {
+	async calculateCoursePrice(userId: ObjectId, courseDto: RatedCourseDto) {
 		try {
-			const { data } = await this.userService.findAllBoughtCourses({ 'bought_courses.course_id': courseDto._id }, { bought_courses: 1, _id: 0 });
-			console.log(data)
+			const { data } = await this.userService.findAllBoughtCourses( courseDto._id, { bought_courses: 1, _id: 0 });
+			if(data.length < 5 && courseDto.stars < 5){
+				courseDto.stars = 4.8;
+				await this.userService.addRating(userId, courseDto);
+			} else {
+				await this.userService.addRating(userId, courseDto);
+			}
 		} catch (error) {
 			throw error;
 		}
@@ -87,7 +92,7 @@ export class CoursesService {
 			);
 
 			if(data){
-				await this.calculateCoursePrice(ratedCourse);
+				await this.calculateCoursePrice(userId, ratedCourse);
 			}
 
 			return {

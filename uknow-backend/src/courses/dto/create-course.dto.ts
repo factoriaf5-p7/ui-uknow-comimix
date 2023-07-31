@@ -3,7 +3,7 @@ import { ArrayMaxSize, IsArray, IsNotEmpty, IsString, IsEnum } from 'class-valid
 
 enum Difficulty {
 	Begginer = 'Beginner',
-	Medium = 'Intermediate',
+	Medium = 'Medium',
 	Advanced = 'Advanced'
 }
 
@@ -18,7 +18,7 @@ export class CreateCourseDto {
 	@IsNotEmpty()
 		topic: string;
 
-	@ApiProperty({ example: 'Beginner | Medium | Advanced' })
+	@ApiProperty({ example: 'Beginner | Intermediate | Advanced' })
 	@IsString()
 	@IsEnum(Difficulty)
 	@IsNotEmpty()
