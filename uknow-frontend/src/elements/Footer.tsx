@@ -36,13 +36,13 @@ const Footer = () => {
     navigate('/login');
   };
 
-  // Obtener el tema actual
+
   const theme = useTheme();
 
-  // Verificar si el breakpoint actual coincide con el valor de 'mobile'
+
   const isMobile = useMediaQuery(theme.breakpoints.only('mobile'));
 
-  // Si el breakpoint actual coincide con el valor de 'mobile', renderiza el Footer
+
   if (isMobile) {
     return (
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
@@ -64,7 +64,7 @@ const Footer = () => {
     );
   }
 
-  // Si no es un dispositivo móvil, no renderiza nada
+
   return null;
 };
 

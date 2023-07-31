@@ -105,7 +105,7 @@ export const UknowTheme = createTheme({
     }),
     breakpoints: {
         values: {
-            mobile: 600, 
+            mobile: 300, 
             desktop: 960,
         }
     }
