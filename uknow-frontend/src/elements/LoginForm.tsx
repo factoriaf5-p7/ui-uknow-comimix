@@ -3,6 +3,7 @@ import { TextField, Button } from "@mui/material";
 import { useLoginUser } from "../hooks/useMutation-LoginUser";
 import { ChangeEvent, FormEvent, useState } from "react";
 import LoginData from "../interfaces/login.interface";
+import { UknowTheme } from '../themes/ThemeUknow';
 
 export function LoginForm() {
   const [loginData, setLoginData] = useState<LoginData>({
@@ -72,7 +73,7 @@ export function LoginForm() {
           <a href="/recover">¿Has olvidado tu contraseña?</a>
         </Box>
         <Box display="flex" justifyContent="center" mt={2}>
-          <Button type="submit" variant="contained">
+          <Button type="submit" variant="contained" color="primary" style={{ backgroundColor: UknowTheme.palette.uOrange.main, color: '#fff' }} sx={{ fontSize: '1rem', padding: '0.8rem 3rem' }}>
             Submit
           </Button>
         </Box>

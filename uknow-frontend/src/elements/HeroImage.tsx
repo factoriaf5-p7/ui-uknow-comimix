@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Container, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 const fadeIn = keyframes`
   0% {
@@ -97,17 +99,18 @@ export const HeroImage = () => {
       isMounted = false;
     };
   }, [imageLoaded]);
+ const navigate = useNavigate();
 
   const handleImageLoad = () => {
     setImageLoaded(true);
   };
 
   const handleButtonClick = () => {
-    window.location.replace("/home");
+    navigate("/home");
   };
 
   return (
-    <Container>
+    <Container sx={{padding: '0'}}>
       <Box sx={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
         <Image src="./hero-image.jpg" alt="Splash" onLoad={handleImageLoad} />
         <HeroContent>

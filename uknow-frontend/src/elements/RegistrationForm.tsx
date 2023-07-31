@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Box, Container, TextField, Button } from "@mui/material";
 import { useUserRegistrationMutation } from "../hooks/useMutation-UserRegistration";
+import { UknowTheme } from '../themes/ThemeUknow';
 
 export const RegistrationForm = () => {
   const [register, setRegister] = useState({
@@ -28,7 +29,6 @@ export const RegistrationForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("why not work")
     if (!register.password || !confirmPassword) {
       alert('Please fill in both password and confirm password fields.');
       return;
@@ -113,7 +113,7 @@ export const RegistrationForm = () => {
           />
       
           <Box display="flex" justifyContent="center" mt={2} >
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" color="primary" style={{ backgroundColor: UknowTheme.palette.uOrange.main, color: '#fff' }} sx={{ fontSize: '1rem', padding: '0.8rem 3rem' }}>
               Submit
             </Button>
           </Box>
