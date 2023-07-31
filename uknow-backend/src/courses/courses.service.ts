@@ -76,8 +76,22 @@ export class CoursesService {
 			if(data.length < 5 && courseDto.stars < 5){
 				courseDto.stars = 4.8;
 				await this.userService.addRating(userId, courseDto);
+				return;
 			} else {
 				await this.userService.addRating(userId, courseDto);
+				let average = 0;
+				data.map(course => {
+					average += course['stars'];
+				});
+				average = average / data.length;
+				if(average < 3){
+					const course = await this.courseModel.findOne({ _id: courseDto._id });
+					const newPrice = (course.price - ((course.price * 10) / 100));
+					await this.courseModel.findOneAndUpdate({ _id: courseDto._id }, {
+						$set: { price: newPrice }
+					});
+				}
+				return;
 			}
 		} catch (error) {
 			throw error;

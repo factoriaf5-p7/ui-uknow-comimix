@@ -84,9 +84,23 @@ let CoursesService = exports.CoursesService = class CoursesService {
             if (data.length < 5 && courseDto.stars < 5) {
                 courseDto.stars = 4.8;
                 await this.userService.addRating(userId, courseDto);
+                return;
             }
             else {
                 await this.userService.addRating(userId, courseDto);
+                let average = 0;
+                data.map(course => {
+                    average += course['stars'];
+                });
+                average = average / data.length;
+                if (average < 3) {
+                    const course = await this.courseModel.findOne({ _id: courseDto._id });
+                    const newPrice = (course.price - ((course.price * 10) / 100));
+                    await this.courseModel.findOneAndUpdate({ _id: courseDto._id }, {
+                        $set: { price: newPrice }
+                    });
+                }
+                return;
             }
         }
         catch (error) {
@@ -96,12 +110,9 @@ let CoursesService = exports.CoursesService = class CoursesService {
     async addRating(userId, ratedCourse) {
         try {
             const { data, message, status } = await this.userService.addRating(userId, ratedCourse);
-<<<<<<< HEAD
             if (data) {
                 await this.calculateCoursePrice(userId, ratedCourse);
             }
-=======
->>>>>>> 46b6ffc83a3ac49cdbc7c72f731dc3d4905c31eb
             return {
                 message: 'Course rated successfully',
                 status: common_1.HttpStatus.OK,
