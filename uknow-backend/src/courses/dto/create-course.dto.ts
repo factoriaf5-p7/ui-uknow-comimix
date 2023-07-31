@@ -2,8 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ArrayMaxSize, IsArray, IsNotEmpty, IsString, IsEnum } from 'class-validator';
 
 enum Difficulty {
-	Begginer = 'Begginer',
-	Medium = 'Medium',
+	Begginer = 'Beginner',
+	Medium = 'Intermediate',
 	Advanced = 'Advanced'
 }
 

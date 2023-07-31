@@ -31,6 +31,7 @@ export declare class CoursesService {
         status: HttpStatus;
         data: any[];
     }>;
+    calculateCoursePrice(courseDto: RatedCourseDto): Promise<void>;
     addRating(userId: ObjectId, ratedCourse: RatedCourseDto): Promise<{
         message: string;
         status: HttpStatus;

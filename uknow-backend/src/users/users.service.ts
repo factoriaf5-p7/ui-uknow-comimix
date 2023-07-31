@@ -205,7 +205,22 @@ export class UsersService {
 		}
 	}
 
-	async findAllBoughtCourses( user, filter ) {
+	async findAllBoughtCourses( filter: object, fields: object ) {
+		try {
+			const usersBoughtCoursesTemp = await this.userModel.find( filter, fields ).populate('bought_courses');	
+			const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
+
+			return {
+				message: 'All bought courses retrieved succesfully',
+				status: HttpStatus.OK,
+				data: usersBoughtCourses
+			}; 	
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async findBoughtCourses( user, filter ) {
 		try {
 			const usersBoughtCoursesTemp = await this.userModel.find( user, filter ).populate('bought_courses');	
 			const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);

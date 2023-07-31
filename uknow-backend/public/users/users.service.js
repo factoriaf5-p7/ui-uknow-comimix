@@ -193,7 +193,21 @@ let UsersService = exports.UsersService = class UsersService {
             throw error;
         }
     }
-    async findAllBoughtCourses(user, filter) {
+    async findAllBoughtCourses(filter, fields) {
+        try {
+            const usersBoughtCoursesTemp = await this.userModel.find(filter, fields).populate('bought_courses');
+            const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
+            return {
+                message: 'All bought courses retrieved succesfully',
+                status: common_1.HttpStatus.OK,
+                data: usersBoughtCourses
+            };
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+    async findBoughtCourses(user, filter) {
         try {
             const usersBoughtCoursesTemp = await this.userModel.find(user, filter).populate('bought_courses');
             const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);

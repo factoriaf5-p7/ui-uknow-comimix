@@ -70,12 +70,25 @@ export class CoursesService {
 		}
 	}
 
+	async calculateCoursePrice(courseDto: RatedCourseDto) {
+		try {
+			const { data } = await this.userService.findAllBoughtCourses({ 'bought_courses.course_id': courseDto._id }, { bought_courses: 1, _id: 0 });
+			console.log(data)
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {
 			const { data, message, status } = await this.userService.addRating(
 				userId,
 				ratedCourse,
 			);
+
+			if(data){
+				await this.calculateCoursePrice(ratedCourse);
+			}
 
 			return {
 				message: 'Course rated successfully',
@@ -122,7 +135,7 @@ export class CoursesService {
 	async findAllSortedByAverage() {
 		try {
 			const allCourses = await this.courseModel.find().select('-content -bought -__v').lean().exec();
-			const { data } = await this.userService.findAllBoughtCourses({}, { bought_courses: 1, _id: 0 });
+			const { data } = await this.userService.findBoughtCourses({}, { bought_courses: 1, _id: 0 });
 			
 			const ratedCourses = allCourses.map(course => {
 				const newCourse = {

@@ -93,7 +93,16 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
-    findAllBoughtCourses(user: any, filter: any): Promise<{
+    findAllBoughtCourses(filter: object, fields: object): Promise<{
+        message: string;
+        status: HttpStatus;
+        data: {
+            course_id: import("../courses/schemas/course.schema").Course;
+            stars: number;
+            commented: boolean;
+        }[];
+    }>;
+    findBoughtCourses(user: any, filter: any): Promise<{
         message: string;
         status: HttpStatus;
         data: {
