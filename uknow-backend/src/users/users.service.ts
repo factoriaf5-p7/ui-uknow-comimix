@@ -99,7 +99,6 @@ export class UsersService {
 	}
 
 	async getProfile(user: any) {
-		// console.log(user);
 		return await this.userModel.findOne({ email: user.email });
 	}
 
@@ -120,7 +119,6 @@ export class UsersService {
 		try {
 			const createdCourses = await this.userModel.findOne({ _id: id }).select('created_courses').populate('created_courses');
 
-			console.log('created', createdCourses)
 			return {
 				message: 'User with created courses retrived successfully',
 				status: HttpStatus.OK,
@@ -134,10 +132,8 @@ export class UsersService {
 	async findOneWithBoughtCourses(id: string){
 		
 		try {
-			console.log(typeof id);
 			const boughtCourses = await this.userModel.findOne({ _id: new mongoose.Types.ObjectId(id) }).select('bought_courses.course_id').populate('bought_courses.course_id').lean().exec();
 			
-			console.log('bought findonewith bought', boughtCourses.bought_courses[0].course_id);
 			return {
 				message: 'User with bought courses retrived successfully',
 				status: HttpStatus.OK,
@@ -240,6 +236,7 @@ export class UsersService {
 
 	async removeCourseFromBought(id: ObjectId) {
 		try {
+			await 
 			return {
 				status: HttpStatus.OK,
 				message: 'Course removed from bought successfully',
