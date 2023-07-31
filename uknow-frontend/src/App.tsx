@@ -21,7 +21,6 @@ function App() {
     <>
    <AuthContexProvider>
     <Routes>
-
       <Route path='/' element={<Hero />} />
       <Route path='/home' element={<Home />} />
       <Route path='/course/:_id' element={<Course />} />
@@ -32,7 +31,6 @@ function App() {
       <Route path='/recover' element={<Recover />} />
       <Route path='/under-construction' element={<UnderConstruction />} />
       <Route path="*" element={<NotFound/>}/>
-  
     </Routes>
 
     </AuthContexProvider>
