@@ -1,8 +1,12 @@
 import React from 'react'
+import Footer from '../elements/Footer'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <>
+      <div>Dashboard</div>
+      <Footer/>
+    </>
   )
 }
 
