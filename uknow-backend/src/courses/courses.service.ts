@@ -193,7 +193,7 @@ export class CoursesService {
 		try {
 			let allCourses = [];
 			let regex;
-			const arrFilters = filters.split(',');
+			const arrFilters =  filters.split(',');
 
 			for await (const filter of arrFilters) {
 				if (filter !== 'price'){

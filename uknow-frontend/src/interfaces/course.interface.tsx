@@ -1,4 +1,4 @@
-export default interface CourseData {
+export interface CourseData {
     _id: string;
     name: string;
     price: number;
@@ -7,8 +7,8 @@ export default interface CourseData {
     tags: string[];
     bought: boolean;
     content: string;
-    create_date: string;
-    update_date: string;
+    createdAt: string;
+    updatedAt: string;
     description: string;
     image: string;
     average: number;

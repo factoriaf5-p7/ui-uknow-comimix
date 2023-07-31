@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import CourseData from "../interfaces/course.interface";
+import { CourseData } from "../interfaces/course.interface";
 
 export const useAllCourses = () => {
     const { isLoading, isError, data: courseList } = useQuery({

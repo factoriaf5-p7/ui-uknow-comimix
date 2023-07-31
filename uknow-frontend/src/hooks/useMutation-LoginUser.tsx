@@ -20,7 +20,7 @@ const loginUser = async (loginData: LoginData) => {
   return result
 };
 export const useLoginUser = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
 
   return useMutation(loginUser, {
     onSuccess: () => {
