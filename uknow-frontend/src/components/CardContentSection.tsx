@@ -1,6 +1,6 @@
 import { CardContent, Typography, CardActions, Grid, useTheme, Theme } from "@mui/material";
 import { styled } from "@mui/system";
-import { CartBuyButton } from "./CartBuyButton";
+import BuyButton from "./BuyButton";
 import RatingStars from "./RatingStars";
 
 const BottomGridContainer = styled(Grid)({
@@ -8,7 +8,7 @@ const BottomGridContainer = styled(Grid)({
   width: '100%',
   paddingBottom: '10px',
   paddingTop: '5px',
-  paddingLeft: '-20px',
+  paddingLeft: '-30px',
 });
 
 const CartButtonGridItem = styled(Grid)({
@@ -56,16 +56,17 @@ export const CardContentSection = ({ description, average, difficulty, showDate,
         Difficulty: {difficulty}
         </Typography>
         <Typography variant="subtitle2" sx={{ fontSize: '0.7rem' }}>{showDate}</Typography>
-        <CardActions disableSpacing>
+        <CardActions disableSpacing sx={{ padding: 0 }}>
         <BottomGridContainer container justifyContent="space-between" alignItems="center">
-            <CartButtonGridItem item>
-                <CartBuyButton />
-            </CartButtonGridItem>
+            
             <Grid item>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>
                 knwl: ${price}
             </Typography>
             </Grid>
+            <CartButtonGridItem item>
+                <BuyButton />
+            </CartButtonGridItem>
         </BottomGridContainer>
         </CardActions>
     </CardContentContainer>

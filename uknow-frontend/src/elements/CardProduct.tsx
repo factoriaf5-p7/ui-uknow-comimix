@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
 import { MouseEventHandler } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UnderConstruction from '../pages/UnderConstruction';
+
 
 interface CardProductProps {
   courseData: CourseData;
