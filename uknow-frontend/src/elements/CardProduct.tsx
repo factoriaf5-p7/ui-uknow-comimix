@@ -16,7 +16,6 @@ import { CardActions, Grid, Typography } from '@mui/material';
 const BottomGridContainer = styled(Grid)({
   bottom: 0,
   width: '100%',
-  paddingBottom: '10px',
   paddingTop: '5px',
   paddingLeft: '-30px',
 });
@@ -78,7 +77,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
     <>
     <Tooltip title="Click here" placement="right" followCursor>
       <CardContainer
-        sx={{ maxWidth: 320, height: 460, position: 'relative' }}
+        sx={{ maxWidth: 320, height: 470, position: 'relative' }}
         
       >
         <div onClick={handleCardClick}>
@@ -103,7 +102,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
             price={courseData.price}
           />
         </div>
-          <CardActions disableSpacing sx={{ padding: '0px 15px', marginBottom:'30px' }}>
+          <CardActions disableSpacing sx={{ padding: '0px 20px', marginBottom:'30px' }}>
             <BottomGridContainer container justifyContent="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>

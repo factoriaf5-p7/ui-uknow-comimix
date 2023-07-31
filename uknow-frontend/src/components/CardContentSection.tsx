@@ -22,7 +22,6 @@ const CardContentContainer = styled(CardContent)<CardContentContainerProps>(({ t
   maxHeight: '195px',
   overflow: 'hidden',
   padding: '20px',
-  paddingBottom: '0px',
   transition: theme.transitions.create('max-height', {
     duration: theme.transitions.duration.shortest,
   }),
