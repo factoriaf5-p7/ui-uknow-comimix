@@ -319,10 +319,19 @@ export class CoursesService {
 		}
 	}
 
+	async removeCourseFromBought(id: ObjectId) {
+		try {
+			await this.userService.removeCourseFromBought(id);
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async deleteCourseByAdmin(id: ObjectId) {
 		try {
 			const course = await this.courseModel.findOne({ _id: id });
 			if (course) {
+				await this.removeCourseFromBought(id);
 				await this.courseModel.deleteOne({ _id: id });
 				return {
 					message: 'Course deleted by admin',

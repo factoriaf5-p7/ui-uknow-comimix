@@ -47,8 +47,6 @@ declare module '@mui/material/styles' {
   }
 
 export const UknowTheme = createTheme({
-
-
     
     palette: {
         primary: {
@@ -78,7 +76,6 @@ export const UknowTheme = createTheme({
         uGrey: {
             main: '#eeeeee'
         }
-       
     },
     typography: () => ({
         fontFamily: 'Poppins',

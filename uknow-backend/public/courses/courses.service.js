@@ -311,10 +311,19 @@ let CoursesService = exports.CoursesService = class CoursesService {
             throw error;
         }
     }
+    async removeCourseFromBought(id) {
+        try {
+            await this.userService.removeCourseFromBought(id);
+        }
+        catch (error) {
+            throw error;
+        }
+    }
     async deleteCourseByAdmin(id) {
         try {
             const course = await this.courseModel.findOne({ _id: id });
             if (course) {
+                await this.removeCourseFromBought(id);
                 await this.courseModel.deleteOne({ _id: id });
                 return {
                     message: 'Course deleted by admin',
