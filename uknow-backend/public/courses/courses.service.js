@@ -65,7 +65,6 @@ let CoursesService = exports.CoursesService = class CoursesService {
             const { message, status, data } = await this.userService.findOneWithBoughtCourses(id);
             const boughtCourses = [];
             const entries = Object.entries(data.bought_courses);
-            console.log(entries);
             entries.forEach(course => {
                 boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
             });
@@ -82,6 +81,8 @@ let CoursesService = exports.CoursesService = class CoursesService {
     async addRating(userId, ratedCourse) {
         try {
             const { data, message, status } = await this.userService.addRating(userId, ratedCourse);
+            if (!data)
+                console.log('not updated user?', data);
             return {
                 message: 'Course rated successfully',
                 status: common_1.HttpStatus.OK,
@@ -258,9 +259,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
             const entries = Object.entries(data.created_courses);
             let courseUpdated;
             entries.forEach(async (course) => {
-                console.log(course[1]._id);
                 if (String(updateCourse._id) === String(course[1]._id)) {
-                    console.log('actualizando');
                     courseUpdated = await this.courseModel.findOneAndUpdate({ _id: updateCourse._id }, Object.assign({}, updateCourse));
                 }
                 else {
@@ -352,7 +351,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
                 }
                 user.wallet_balance -= course.price;
                 const object = {
-                    course_id: course.id,
+                    course_id: course._id,
                     stars: 0,
                     commented: false
                 };

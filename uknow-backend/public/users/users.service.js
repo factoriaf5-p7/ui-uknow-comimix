@@ -130,7 +130,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async findOneWithBoughtCourses(id) {
         try {
-            const boughtCourses = await this.userModel.findOne({ _id: id }, { bought_courses: 1 }).populate('bought_courses.course_id');
+            const boughtCourses = await this.userModel.findOne({ _id: new mongoose_2.default.Types.ObjectId(id) }).select('bought_courses.course_id').populate('bought_courses.course_id').lean().exec();
             return {
                 message: 'User with bought courses retrived successfully',
                 status: common_1.HttpStatus.OK,
@@ -224,6 +224,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async removeCourseFromBought(id) {
         try {
+            await this.userModel.find({ _id: id });
             return {
                 status: common_1.HttpStatus.OK,
                 message: 'Course removed from bought successfully',
@@ -236,8 +237,8 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async addRating(userId, ratedCourse) {
         try {
-            const updatedUser = await this.userModel.findOneAndUpdate({ 'bought_courses.course_id': ratedCourse._id, 'bought_courses.stars': { $eq: 0 } }, {
-                'bought_courses.$.stars': ratedCourse.stars
+            const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id }, {
+                $set: { 'bought_courses.$.stars': ratedCourse.stars }
             }).select('bought_courses');
             if (!updatedUser)
                 throw new common_1.HttpException('Failed rating course', common_1.HttpStatus.BAD_REQUEST);
@@ -255,7 +256,7 @@ let UsersService = exports.UsersService = class UsersService {
         const update = {
             $push: {
                 bought_courses: {
-                    course_id: course.id,
+                    course_id: course.course_id,
                     stars: 0,
                     commented: false,
                 },
