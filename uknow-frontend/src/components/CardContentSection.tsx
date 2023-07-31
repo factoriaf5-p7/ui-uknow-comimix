@@ -7,16 +7,16 @@ import {
   Theme,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import { CartBuyButton } from "./CartBuyButton";
+import BuyButton from "./BuyButton";
 import RatingStars from "./RatingStars";
 
 
 const BottomGridContainer = styled(Grid)({
   bottom: 0,
-  width: "100%",
-  paddingBottom: "10px",
-  paddingTop: "5px",
-  paddingLeft: "-20px",
+  width: '100%',
+  paddingBottom: '10px',
+  paddingTop: '5px',
+  paddingLeft: '-30px',
 });
 
 const CartButtonGridItem = styled(Grid)({
@@ -27,17 +27,15 @@ interface CardContentContainerProps {
   theme: Theme;
 }
 
-const CardContentContainer = styled(CardContent)<CardContentContainerProps>(
-  ({ theme }) => ({
-    maxHeight: "150px",
-    overflow: "hidden",
-    marginBottom: "20px",
-    padding: "20px",
-    transition: theme.transitions.create("max-height", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  })
-);
+const CardContentContainer = styled(CardContent)<CardContentContainerProps>(({ theme }) => ({
+  maxHeight: '195px',
+  overflow: 'hidden',
+  marginBottom: '20px',
+  padding: '20px',
+  transition: theme.transitions.create('max-height', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
 interface CardContentSectionProps {
   description: string;
@@ -57,11 +55,8 @@ export const CardContentSection = ({
 }: CardContentSectionProps) => {
   const theme = useTheme(); // Obter o objeto theme usando o hook useTheme
 
-
-  const hasDescription = description && description.trim() !== "";
-  const shortDescription = hasDescription
-    ? description.substring(0, 100) + " ..."
-    : "No description available";
+    const hasDescription = description && description.trim() !== '';
+    const shortDescription = hasDescription ? description.substring(0, 70) + ' ...' : 'No description available';
 
   return (
     
@@ -69,30 +64,25 @@ export const CardContentSection = ({
         <Typography variant="body2" color="text.secondary">
           {shortDescription}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <RatingStars average={average} />
+        <Typography variant="body2" color="text.secondary" my={1}>
+        <RatingStars average={average} />
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Difficulty: {difficulty}
+        <Typography variant="body2" color="text.secondary" my={1}>
+        Difficulty: {difficulty}
         </Typography>
-        <Typography variant="subtitle2" sx={{ fontSize: "0.7rem" }}>
-          {showDate}
-        </Typography>
-        <CardActions disableSpacing>
-          <BottomGridContainer
-            container
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <CartButtonGridItem item>
-              <CartBuyButton />
-            </CartButtonGridItem>
+        <Typography variant="subtitle2" sx={{ fontSize: '0.7rem' }}>{showDate}</Typography>
+        <CardActions disableSpacing sx={{ padding: 0 }}>
+        <BottomGridContainer container justifyContent="space-between" alignItems="center">
+            
             <Grid item>
-              <Typography variant="body2" color="text.secondary">
-                Price: ${price}
-              </Typography>
+            <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>
+                knwl: ${price}
+            </Typography>
             </Grid>
-          </BottomGridContainer>
+            <CartButtonGridItem item>
+                <BuyButton />
+            </CartButtonGridItem>
+        </BottomGridContainer>
         </CardActions>
       </CardContentContainer>
  

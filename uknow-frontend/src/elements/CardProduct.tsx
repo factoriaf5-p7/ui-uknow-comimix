@@ -9,9 +9,7 @@ import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
 import { MouseEventHandler } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UnderConstruction from '../pages/UnderConstruction';
-import { CourseModal } from '../components/CourseModal';
-import {useState} from 'react'
+
 
 interface CardProductProps {
   courseData: CourseData;
@@ -19,7 +17,7 @@ interface CardProductProps {
 }
 
 const TitleSubheaderContainer = styled('div')({
-  height: '105px',
+  height: '70px',
   overflow: 'hidden',
 });
 
@@ -66,7 +64,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
       onClick={handleCardClick}>
         <CardMedia
           component="img"
-          height="190"
+          height="170"
           image={courseData.image}
           alt="image de course"
         />
