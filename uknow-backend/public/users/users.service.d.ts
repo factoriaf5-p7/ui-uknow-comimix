@@ -107,6 +107,11 @@ export declare class UsersService {
         status: HttpStatus;
         data: string;
     }>;
+    removeCourseFromBought(id: ObjectId): Promise<{
+        status: HttpStatus;
+        message: string;
+        data: string;
+    }>;
     addRating(userId: ObjectId, ratedCourse: RatedCourseDto): Promise<{
         message: string;
         status: HttpStatus;
