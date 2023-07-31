@@ -7,8 +7,9 @@ import Tooltip from '@mui/material/Tooltip';
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
-import { MouseEventHandler } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { MouseEventHandler, useState } from 'react';
+import { CourseModal } from '../components/CourseModal';
+
 
 
 interface CardProductProps {

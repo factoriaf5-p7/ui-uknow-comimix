@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTitle, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { CourseData } from "../interfaces/course.interface";
 
 interface CourseModalProps {
