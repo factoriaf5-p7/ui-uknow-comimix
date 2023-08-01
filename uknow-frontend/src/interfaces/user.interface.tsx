@@ -10,6 +10,6 @@ export interface User {
   chat_notifications_sent: any[];
   chat_notifications_received: any[]; 
   profile: string;
-  bought_courses: CourseData["_id"][];
+  bought_courses: CourseData[];
   __v: number;
 }
