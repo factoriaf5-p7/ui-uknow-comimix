@@ -33,7 +33,7 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
       <Button
         variant="contained"
         color="primary"
-        style={{ backgroundColor: UknowTheme.palette.uOrange.main, color: '#fff', marginLeft: '10px' }}
+        style={{ backgroundColor: UknowTheme.palette.uOrange.main, color: '#fff', marginLeft: '0px' }}
         sx={{ fontSize: '.8rem', padding: '0.3rem 1rem' }}
         onClick={handleOpenModal} // Use handleOpenModal directly as the onClick handler
       >

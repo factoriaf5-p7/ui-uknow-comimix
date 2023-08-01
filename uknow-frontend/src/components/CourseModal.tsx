@@ -60,7 +60,7 @@ export const CourseModal = ({ open, onClose, course }: CourseModalProps) => {
             gap: theme.spacing(2), // Add spacing between elements
           }}
         >
-          <div style={{ flex: "0 0 50%" }}>
+          <div style={{ flex: "0 0 30%" }}>
             <img
               src={course.image}
               alt={course.name}
@@ -125,7 +125,7 @@ export const CourseModal = ({ open, onClose, course }: CourseModalProps) => {
           ))}
         </div> */}{" "}
       </DialogContent>
-      <BuyButton />
+      <BuyButton courseId={course._id}/>
     </Dialog>
   );
 };

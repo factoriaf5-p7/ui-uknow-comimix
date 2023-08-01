@@ -40,15 +40,16 @@ function SearchBar({ onSearch }: SearchBarProps) {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search for courses"
-        value={searchText}
+      <TextField
+        label="Search for courses"
+        value={searchText}   
         onChange={handleSearch}
-        style={{ width: '90%', maxWidth: '1400px' }}
+        sx={{ width: '90%' ,  maxWidth:'1400px'  }}
       />
+     
     </>
   );
 }
+
 
 export default SearchBar;
