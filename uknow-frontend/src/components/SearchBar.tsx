@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TextField, IconButton, Button, Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchCourses } from '../hooks/useQuery-SearchCourses';
+import { CourseData } from '../interfaces/course.interface';
 
 interface SearchBarProps {
   onSearch: (searchResults: CourseData[]) => void;
