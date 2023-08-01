@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import LoginBtn from "../components/LoginBtn";
 import LogoNavbar from "../components/LogoNavbar";
-
-
 import {
   AppBar,
   Slide,
