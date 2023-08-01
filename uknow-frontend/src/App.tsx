@@ -20,19 +20,18 @@ function App() {
   return (
     <>
    <AuthContexProvider>
-    <Routes>
-      <Route path='/' element={<Hero />} />
-      <Route path='/home' element={<Home />} />
-      <Route path='/course/:_id' element={<Course />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/profile' element={<Profile />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<Register />} />
-      <Route path='/recover' element={<Recover />} />
-      <Route path='/under-construction' element={<UnderConstruction />} />
-      <Route path="*" element={<NotFound/>}/>
-    </Routes>
-
+      <Routes>
+        <Route path='/' element={<Hero />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/course/:_id' element={<Course />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Register />} />
+        <Route path='/recover' element={<Recover />} />
+        <Route path='/under-construction' element={<UnderConstruction />} />
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
     </AuthContexProvider>
     </>
   )
