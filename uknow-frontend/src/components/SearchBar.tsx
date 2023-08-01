@@ -7,6 +7,7 @@ interface SearchBarProps {
   onSearch: (searchResults: CourseData[]) => void;
 }
 
+
 function SearchBar({ onSearch }: SearchBarProps) {
   const [searchText, setSearchText] = useState('');
  
@@ -49,6 +50,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
         label="Search for courses"
         value={searchText}   
         onChange={handleSearch}
+        sx={{ width: '90%' ,  maxWidth:'1400px'  }}
       />
      
     </>
