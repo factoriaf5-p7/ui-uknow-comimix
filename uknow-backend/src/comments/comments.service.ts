@@ -1,11 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, ObjectId } from 'mongoose';
 import { Comment } from './schemas/comment.schema';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UsersService } from 'src/users/users.service';
 import { CoursesService } from 'src/courses/courses.service';
-
 
 @Injectable()
 export class CommentsService {
@@ -35,12 +34,30 @@ export class CommentsService {
 		}
 	}
 
-	findAll() {
-		return this.commentModule.find();
+	async findAll() {
+		try {
+			const allComments = await this.commentModule.find();
+			return {
+				status: HttpStatus.OK,
+				message: 'All comments retrieved successfully',
+				data: allComments
+			};
+		} catch (error) {
+			throw error;
+		}
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} comment`;
+	async findComments(courseId: ObjectId) {
+		try {
+			const comments = await this.commentModule.find({ course_id: courseId });
+			return {
+				status: HttpStatus.OK,
+				message: 'All comments retrieved successfully',
+				data: comments
+			};
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	// update(id: number, updateCommentDto: UpdateCommentDto) {

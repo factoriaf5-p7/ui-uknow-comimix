@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import mongoose, { Model } from 'mongoose';
+import mongoose, { Model, ObjectId } from 'mongoose';
 import { Comment } from './schemas/comment.schema';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UsersService } from 'src/users/users.service';
@@ -14,10 +14,18 @@ export declare class CommentsService {
         message: string;
         data: string;
     }>;
-    findAll(): mongoose.Query<(mongoose.Document<unknown, {}, Comment> & Omit<Comment & {
-        _id: mongoose.Types.ObjectId;
-    }, never>)[], mongoose.Document<unknown, {}, Comment> & Omit<Comment & {
-        _id: mongoose.Types.ObjectId;
-    }, never>, {}, Comment, "find">;
-    findOne(id: number): string;
+    findAll(): Promise<{
+        status: HttpStatus;
+        message: string;
+        data: (mongoose.Document<unknown, {}, Comment> & Omit<Comment & {
+            _id: mongoose.Types.ObjectId;
+        }, never>)[];
+    }>;
+    findComments(courseId: ObjectId): Promise<{
+        status: HttpStatus;
+        message: string;
+        data: (mongoose.Document<unknown, {}, Comment> & Omit<Comment & {
+            _id: mongoose.Types.ObjectId;
+        }, never>)[];
+    }>;
 }

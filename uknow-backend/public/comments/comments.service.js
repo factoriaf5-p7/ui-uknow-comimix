@@ -44,11 +44,31 @@ let CommentsService = exports.CommentsService = class CommentsService {
             throw error;
         }
     }
-    findAll() {
-        return this.commentModule.find();
+    async findAll() {
+        try {
+            const allComments = await this.commentModule.find();
+            return {
+                status: common_1.HttpStatus.OK,
+                message: 'All comments retrieved successfully',
+                data: allComments
+            };
+        }
+        catch (error) {
+            throw error;
+        }
     }
-    findOne(id) {
-        return `This action returns a #${id} comment`;
+    async findComments(courseId) {
+        try {
+            const comments = await this.commentModule.find({ course_id: courseId });
+            return {
+                status: common_1.HttpStatus.OK,
+                message: 'All comments retrieved successfully',
+                data: comments
+            };
+        }
+        catch (error) {
+            throw error;
+        }
     }
 };
 exports.CommentsService = CommentsService = __decorate([

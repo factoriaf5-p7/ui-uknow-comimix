@@ -33,10 +33,18 @@ export declare class CommentsController {
         message: string;
         data: string;
     }>;
-    findAll(): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("./schemas/comment.schema").Comment> & Omit<import("./schemas/comment.schema").Comment & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>)[], import("mongoose").Document<unknown, {}, import("./schemas/comment.schema").Comment> & Omit<import("./schemas/comment.schema").Comment & {
-        _id: import("mongoose").Types.ObjectId;
-    }, never>, {}, import("./schemas/comment.schema").Comment, "find">;
-    findOne(id: ObjectId): string;
+    findAll(): Promise<{
+        status: import("@nestjs/common").HttpStatus;
+        message: string;
+        data: (import("mongoose").Document<unknown, {}, import("./schemas/comment.schema").Comment> & Omit<import("./schemas/comment.schema").Comment & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+    }>;
+    findComments(id: ObjectId): Promise<{
+        status: import("@nestjs/common").HttpStatus;
+        message: string;
+        data: (import("mongoose").Document<unknown, {}, import("./schemas/comment.schema").Comment> & Omit<import("./schemas/comment.schema").Comment & {
+            _id: import("mongoose").Types.ObjectId;
+        }, never>)[];
+    }>;
 }

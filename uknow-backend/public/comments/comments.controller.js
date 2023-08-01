@@ -26,8 +26,8 @@ let CommentsController = exports.CommentsController = class CommentsController {
     findAll() {
         return this.commentsService.findAll();
     }
-    findOne(id) {
-        return this.commentsService.findOne(+id);
+    findComments(id) {
+        return this.commentsService.findComments(id);
     }
 };
 __decorate([
@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], CommentsController.prototype, "findOne", null);
+], CommentsController.prototype, "findComments", null);
 exports.CommentsController = CommentsController = __decorate([
     (0, common_1.Controller)('comments'),
     __metadata("design:paramtypes", [comments_service_1.CommentsService])
