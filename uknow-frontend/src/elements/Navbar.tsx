@@ -6,6 +6,7 @@ import SignupBtn from "../components/SignupBtn";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { AuthContext } from "../context/AuthContex";
+import AvatarBtn from "../components/AvatarBtn";
 
 
 const Navbar = () => {
@@ -24,10 +25,13 @@ if(isDesktop)
         {!isLoggedIn ? (
           <>
             <LoginBtn />
-            <SignupBtn />
+            {/* <SignupBtn /> */}
           </>
         ) : (
-          <LogoutBtn  />
+          <>
+          <AvatarBtn/>
+          
+          </>
         )}
       </div>
     </nav>

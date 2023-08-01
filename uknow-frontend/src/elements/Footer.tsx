@@ -41,17 +41,17 @@ const Footer = () => {
       <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
         <BottomNavigation sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
           {isLoggedIn ? (
-            <>
-              <BottomNavigationAction key="profile" onClick={handleProfilePage} label="Avatar" icon={<AccountCircleIcon />} />
-              <BottomNavigationAction key="library" onClick={handleHomePage} label="Library" icon={<LocalLibraryIcon />} />
-              <BottomNavigationAction key="dashboard" onClick={handleDashboard} label="Dashboard" icon={<DashboardIcon />} />
+            [
+              <BottomNavigationAction key="profile" onClick={handleProfilePage} label="Avatar" icon={<AccountCircleIcon />} />,
+              <BottomNavigationAction key="library" onClick={handleHomePage} label="Library" icon={<LocalLibraryIcon />} />,
+              <BottomNavigationAction key="dashboard" onClick={handleDashboard} label="Dashboard" icon={<DashboardIcon />} />,
               <BottomNavigationAction key="logout" onClick={handleLogout} label="Logout" icon={<LogoutIcon />} />
-            </>
+            ]
           ) : (
-            <>
-            <BottomNavigationAction key="library" onClick={handleHomePage} label="Library" icon={<LocalLibraryIcon />} />
-            <BottomNavigationAction onClick={handleLogout} label="Avatar" icon={<AccountCircleIcon />} />
-            </>
+            [
+              <BottomNavigationAction key="library" onClick={handleHomePage} label="Library" icon={<LocalLibraryIcon />} />,
+              <BottomNavigationAction key="logout" onClick={handleLogout} label="Avatar" icon={<AccountCircleIcon />} />
+            ]
           )}
         </BottomNavigation>
       </Paper>
