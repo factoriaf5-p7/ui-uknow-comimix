@@ -14,18 +14,17 @@ import { CardActions, Grid, Typography } from '@mui/material';
 const CardActionsContainer = styled(CardActions)({
   cursor: 'default',
   padding: '0px 20px',
-  marginBottom: '30px',
 });
 
 const BottomGridContainer = styled(Grid)({
   bottom: 0,
   width: '100%',
-  paddingTop: '5px',
-  paddingLeft: '-30px',
 });
 
 const CartButtonGridItem = styled(Grid)({
-  marginLeft: "-20px",
+  position: 'absolute',
+  bottom: '20px', 
+  width: '100%', 
 });
 
 interface CardProductProps {
@@ -50,6 +49,15 @@ const CardContainer = styled(Card)({
     },
   },
 });
+
+
+const CardContentSectionContainer = styled('div')({
+  position: 'absolute',
+  bottom: '60px',
+  left: 0,
+  width: '100%',
+});
+
 
 export const CardProduct = ({ courseData }: CardProductProps) => {
   const theme = useTheme();
@@ -96,14 +104,16 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           <TitleSubheaderContainer>
             <CardHeader titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }} title={courseData.name} />
           </TitleSubheaderContainer>
-          <CardContentSection
-            courseData={courseData}
-            description={courseData.description}
-            average={courseData.average}
-            difficulty={courseData.difficulty}
-            showDate={showDate}
-            price={courseData.price}
-          />
+          <CardContentSectionContainer>
+            <CardContentSection
+              courseData={courseData}
+              description={courseData.description}
+              average={courseData.average}
+              difficulty={courseData.difficulty}
+              showDate={showDate}
+              price={courseData.price}
+            />
+          </CardContentSectionContainer>
         </div>
       </Tooltip>
       <CardActionsContainer disableSpacing sx={{ padding: '0px 20px', marginBottom: '30px' }}>
@@ -113,7 +123,6 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           <CartButtonGridItem item>
             <BuyButton
               courseId={courseData._id}
-              
             />
           </CartButtonGridItem>
         </BottomGridContainer>
