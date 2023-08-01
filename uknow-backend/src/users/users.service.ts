@@ -266,7 +266,7 @@ export class UsersService {
 	
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {
-			const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id  }, {
+			const updatedUser = await this.userModel.findOneAndUpdate({ '_id': userId, 'bought_courses.course_id': ratedCourse._id  }, {
 				$set: { 'bought_courses.$.stars': ratedCourse.stars }
 			}).select('bought_courses');
 			if(!updatedUser) throw new HttpException('Failed rating course', HttpStatus.BAD_REQUEST);

@@ -232,7 +232,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
                     else if (!isNaN(+keywords)) {
                         regex = +keywords;
                     }
-                    allCourses.push(...await this.courseModel.find({ [filter]: regex }).select('_id name'));
+                    allCourses.push(...await this.courseModel.find({ [filter]: regex }));
                 }
             }
             catch (e_2_1) { e_2 = { error: e_2_1 }; }

@@ -253,7 +253,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async addRating(userId, ratedCourse) {
         try {
-            const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id }, {
+            const updatedUser = await this.userModel.findOneAndUpdate({ '_id': userId, 'bought_courses.course_id': ratedCourse._id }, {
                 $set: { 'bought_courses.$.stars': ratedCourse.stars }
             }).select('bought_courses');
             if (!updatedUser)
