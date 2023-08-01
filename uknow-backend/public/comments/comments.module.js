@@ -6,29 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CoursesModule = void 0;
+exports.CommentsModule = void 0;
 const common_1 = require("@nestjs/common");
-const courses_service_1 = require("./courses.service");
-const courses_controller_1 = require("./courses.controller");
+const comments_service_1 = require("./comments.service");
+const comments_controller_1 = require("./comments.controller");
+const comment_schema_1 = require("./schemas/comment.schema");
 const mongoose_1 = require("@nestjs/mongoose");
-const course_schema_1 = require("./schemas/course.schema");
+const comment_schema_2 = require("./schemas/comment.schema");
 const users_module_1 = require("../users/users.module");
-let CoursesModule = exports.CoursesModule = class CoursesModule {
+const courses_module_1 = require("../courses/courses.module");
+let CommentsModule = exports.CommentsModule = class CommentsModule {
 };
-exports.CoursesModule = CoursesModule = __decorate([
+exports.CommentsModule = CommentsModule = __decorate([
     (0, common_1.Module)({
         imports: [
             users_module_1.UsersModule,
+            courses_module_1.CoursesModule,
             mongoose_1.MongooseModule.forFeature([
                 {
-                    name: course_schema_1.Course.name,
-                    schema: course_schema_1.CourseSchema
+                    name: comment_schema_2.Comment.name,
+                    schema: comment_schema_1.CommentSchema
                 }
             ])
         ],
-        controllers: [courses_controller_1.CoursesController],
-        providers: [courses_service_1.CoursesService],
-        exports: [courses_service_1.CoursesService]
+        controllers: [comments_controller_1.CommentsController],
+        providers: [comments_service_1.CommentsService]
     })
-], CoursesModule);
-//# sourceMappingURL=courses.module.js.map
+], CommentsModule);
+//# sourceMappingURL=comments.module.js.map

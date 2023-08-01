@@ -6,6 +6,7 @@ import { RegisterUserDto } from 'src/auth/dto/register-user.dto';
 import { RecoverUserDto } from 'src/auth/dto/recover-user.dto';
 import { RecoverRequestDto } from 'src/auth/dto/recover-request.dto';
 import { RatedCourseDto } from '../courses/dto/rate-course.dto';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 export declare class UsersService {
     private userModel;
     constructor(userModel: Model<User>);
@@ -133,4 +134,5 @@ export declare class UsersService {
     updateUserBoughtCourses(userId: mongoose.Types.ObjectId, course: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
+    updateCommentedCourse(createCommentDto: CreateCommentDto): Promise<void>;
 }
