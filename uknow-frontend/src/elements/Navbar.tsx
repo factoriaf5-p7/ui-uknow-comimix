@@ -13,8 +13,8 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "../context/AuthContex";
 import { UknowTheme } from "../themes/ThemeUknow";
-import AvatarBtn from "../components/AvatarBtn";
-
+/* import AvatarBtn from "../components/AvatarBtn";
+ */
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
   const { isLoggedIn } = useContext(AuthContext);
@@ -36,7 +36,7 @@ export default function HideAppBar() {
               }}
             >
               <LogoNavbar />
-              <div>
+             {/*  <div>
                 {!isLoggedIn ? (
                   <>
                     <LoginBtn />
@@ -45,7 +45,7 @@ export default function HideAppBar() {
                 ) : (
                   <AvatarBtn/>
                 )}
-              </div>
+              </div> */}
             </Toolbar>
           </AppBar>
         </Slide>
