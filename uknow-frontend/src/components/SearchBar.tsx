@@ -5,7 +5,6 @@ import { CourseData } from '../interfaces/course.interface';
 
 interface SearchBarProps {
   onSearch: (searchResults: CourseData[]) => void;
-  onClearSearch: () => void;
 }
 
 function SearchBar({ onSearch }: SearchBarProps) {
@@ -37,6 +36,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
       const data = await response.json();
      
       onSearch(data.data); // estrutura { data: [] }.
+      console.log(data.data)
     } catch (error) {
       console.error('Error during search:', error);
     }
@@ -47,8 +47,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
     <>
       <TextField
         label="Search for courses"
-        value={searchText}
-        
+        value={searchText}   
         onChange={handleSearch}
       />
      

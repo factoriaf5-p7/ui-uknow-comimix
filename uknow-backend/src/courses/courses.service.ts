@@ -233,7 +233,7 @@ export class CoursesService {
 				} else if(!isNaN(+keywords)) {
 					regex = +keywords;
 				}
-				allCourses.push(...await this.courseModel.find({ [filter] : regex }).select('_id name'));
+				allCourses.push(...await this.courseModel.find({ [filter] : regex }));
 			}
 
 			allCourses = allCourses.flat(Infinity);
