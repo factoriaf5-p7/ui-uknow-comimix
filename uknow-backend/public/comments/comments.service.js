@@ -17,13 +17,23 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const comment_schema_1 = require("./schemas/comment.schema");
+const users_service_1 = require("../users/users.service");
+const courses_service_1 = require("../courses/courses.service");
 let CommentsService = exports.CommentsService = class CommentsService {
-    constructor(commentModule) {
+    constructor(commentModule, userService, courseService) {
         this.commentModule = commentModule;
+        this.userService = userService;
+        this.courseService = courseService;
     }
     async create(createCommentDto) {
         try {
-            await this.commentModule.create(createCommentDto);
+            const { data } = await this.courseService.findOne(createCommentDto.course_id);
+            if (!data)
+                throw new common_1.HttpException('Course doesn\'t exists', common_1.HttpStatus.BAD_REQUEST);
+            const createdComment = await this.commentModule.create(createCommentDto);
+            if (createdComment) {
+                await this.userService.updateCommentedCourse(createCommentDto);
+            }
             return {
                 status: common_1.HttpStatus.OK,
                 message: 'Comment created successfully',
@@ -44,6 +54,8 @@ let CommentsService = exports.CommentsService = class CommentsService {
 exports.CommentsService = CommentsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(comment_schema_1.Comment.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model,
+        users_service_1.UsersService,
+        courses_service_1.CoursesService])
 ], CommentsService);
 //# sourceMappingURL=comments.service.js.map

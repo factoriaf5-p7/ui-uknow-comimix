@@ -280,6 +280,19 @@ let UsersService = exports.UsersService = class UsersService {
         };
         return this.userModel.findOneAndUpdate(userId, update);
     }
+    async updateCommentedCourse(createCommentDto) {
+        try {
+            await this.userModel.findOneAndUpdate({
+                '_id': createCommentDto.user_id,
+                'bought_courses.course_id': createCommentDto.course_id
+            }, {
+                $set: { 'bought_courses.$.commented': true }
+            });
+        }
+        catch (error) {
+            throw error;
+        }
+    }
 };
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
