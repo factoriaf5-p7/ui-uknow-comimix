@@ -1,7 +1,15 @@
+import Footer from "../elements/Footer"
+import Navbar from "../elements/Navbar"
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      <Navbar/>
+      <div>
+       Profile
+      </div>
+      <Footer/>
+    </div>
   )
 }
 
