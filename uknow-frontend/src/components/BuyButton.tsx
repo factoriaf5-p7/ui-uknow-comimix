@@ -1,4 +1,4 @@
-import { Button, useMediaQuery, } from '@mui/material'
+import { Button } from '@mui/material'
 
 import { UknowTheme } from '../themes/ThemeUknow';
 import { useState } from 'react';
@@ -10,7 +10,7 @@ interface BuyButtonProps {
 
 const BuyButton = ({ courseId }: BuyButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const isMobileScreen = useMediaQuery('(max-width: 600px)');
+
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -37,8 +37,8 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
         backgroundColor: UknowTheme.palette.uOrange.main,
         color: '#fff',
         marginLeft: '0px',
-        fontSize: isMobileScreen ? '1em' : '.8rem', 
-        padding: isMobileScreen ? '0.4rem 6.5rem' : '0.4rem 2rem', 
+        fontSize:  '1em' , 
+        padding:'0.4rem 6.5rem', 
       }}
       onClick={handleOpenModal}
     >

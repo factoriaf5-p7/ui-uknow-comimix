@@ -1,9 +1,8 @@
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Tooltip from '@mui/material/Tooltip';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
@@ -70,14 +69,12 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
     setModalOpen(false);
   };
 
-  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
 
   return (
     <>
-    <CardContainer sx={{ maxWidth: 320, height: 470, position: 'relative' }}>
+    <CardContainer sx={{ maxWidth: 320, height: 480, position: 'relative' }}>
       <Tooltip title="Click here" placement="right" followCursor>
         <div onClick={handleCardClick}>
-          {/* Price displayed on the top side of the image */}
           <Typography
             variant="body2"
             color="text.secondary"
@@ -112,18 +109,17 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
       <CardActionsContainer disableSpacing sx={{ padding: '0px 20px', marginBottom: '30px' }}>
         <BottomGridContainer container justifyContent="space-between" alignItems="center">
           <Grid item>
-            {/* Remove the price display from here */}
           </Grid>
           <CartButtonGridItem item>
             <BuyButton
               courseId={courseData._id}
-              sx={isSmallScreen ? { fontSize: '1em', padding: '0.5rem 1.2rem' } : undefined}
+              
             />
           </CartButtonGridItem>
         </BottomGridContainer>
       </CardActionsContainer>
     </CardContainer>
     <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
-    </>
+  </>
   );
 };
