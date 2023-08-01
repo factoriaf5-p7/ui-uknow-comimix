@@ -1,0 +1,34 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Comment } from './schemas/comment.schema';
+import { CreateCommentDto } from './dto/create-comment.dto';
+
+@Injectable()
+export class CommentsService {
+	constructor(@InjectModel(Comment.name) private readonly commentModule: Model<Comment>){}
+
+	async create(createCommentDto: CreateCommentDto) {
+		try {
+			await this.commentModule.create(createCommentDto);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	findAll() {
+		return `This action returns all comments`;
+	}
+
+	findOne(id: number) {
+		return `This action returns a #${id} comment`;
+	}
+
+	// update(id: number, updateCommentDto: UpdateCommentDto) {
+	// 	return `This action updates a #${id} comment`;
+	// }
+
+	// remove(id: number) {
+	// 	return `This action removes a #${id} comment`;
+	// }
+}
