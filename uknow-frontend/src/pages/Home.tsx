@@ -18,18 +18,13 @@ function Home() {
     setIsSearching(true);
   };
 
-  const handleClearSearch = () => {
-    setCourses(allCourses || []);
-    setIsSearching(false);
-  };
-
   return (
     <div>
       <Navbar/>
       <img src={uknowImg} alt="Uknow image" style={{ width: '100%', height: 'auto' }} />
       
       <Container sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
-        <SearchBar onSearch={handleAllCourses} onClearSearch={handleClearSearch} />
+        <SearchBar onSearch={handleAllCourses} />
       </Container>
 
       {isLoading ? (
