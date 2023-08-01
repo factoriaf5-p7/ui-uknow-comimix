@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Comment } from './schemas/comment.schema';
@@ -6,18 +6,23 @@ import { CreateCommentDto } from './dto/create-comment.dto';
 
 @Injectable()
 export class CommentsService {
-	constructor(@InjectModel(Comment.name) private readonly commentModule: Model<Comment>){}
+	constructor(@InjectModel(Comment.name) private commentModule: Model<Comment>){}
 
 	async create(createCommentDto: CreateCommentDto) {
 		try {
-			await this.commentModule.create(createCommentDto);
+			await this.commentModule.create( createCommentDto );
+			return {
+				status: HttpStatus.OK,
+				message: 'Comment created successfully',
+				data: ''
+			};
 		} catch (error) {
 			throw error;
 		}
 	}
 
 	findAll() {
-		return `This action returns all comments`;
+		return this.commentModule.find();
 	}
 
 	findOne(id: number) {

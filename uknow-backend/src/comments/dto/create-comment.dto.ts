@@ -4,9 +4,6 @@ import { ObjectId } from 'mongoose';
 
 export class CreateCommentDto {
     @IsNotEmpty()
-    	_id: ObjectId;
-
-    @IsNotEmpty()
     @IsString()
     	text: string;
     

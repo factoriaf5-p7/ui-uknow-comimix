@@ -24,13 +24,18 @@ let CommentsService = exports.CommentsService = class CommentsService {
     async create(createCommentDto) {
         try {
             await this.commentModule.create(createCommentDto);
+            return {
+                status: common_1.HttpStatus.OK,
+                message: 'Comment created successfully',
+                data: ''
+            };
         }
         catch (error) {
             throw error;
         }
     }
     findAll() {
-        return `This action returns all comments`;
+        return this.commentModule.find();
     }
     findOne(id) {
         return `This action returns a #${id} comment`;

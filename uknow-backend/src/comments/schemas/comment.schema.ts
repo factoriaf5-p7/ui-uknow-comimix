@@ -4,17 +4,18 @@ import { ObjectId, HydratedDocument } from 'mongoose';
 
 export type CommentDocument = HydratedDocument<Comment>;
 
+@Schema()
 export class Comment {
 	@ApiProperty({ example: 'Me ha gustado este curso porque lo explica todo minuciosamente.' })
-    @Prop()
+    @Prop({ required: true })
 		text: string;
 
     @ApiProperty({ example: '6asd88fasd8uu8891' })
-    @Prop()
+    @Prop({ required: true })
     	user_id: string;
 	
 	@ApiProperty({ example: '68ada80asd8fas812' })
-	@Prop()
+	@Prop({ required: true })
 		course_id: string;
 }
 
