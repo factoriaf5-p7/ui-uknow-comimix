@@ -7,6 +7,7 @@ import { Model, ObjectId } from 'mongoose';
 import { UsersService } from '../users/users.service';
 import { RatedCourseDto } from './dto/rate-course.dto';
 import { PurchaseCourseDto } from './dto/buy-course.dto';
+import mongoose from 'mongoose';
 
 @Injectable()
 export class CoursesService {
@@ -47,17 +48,16 @@ export class CoursesService {
 		}
 	}
 
-	async findBoughtCourses(id: ObjectId) {
+	async findBoughtCourses(id: string) {
 		try {
 			const { message, status, data } = await this.userService.findOneWithBoughtCourses(id);
 	
 			const boughtCourses = [];
 
 			const entries = Object.entries(data.bought_courses);
-			console.log(entries);
 
-			entries.forEach(course=> { 
-				boughtCourses.push({ _id: course[1].course_id['_id'] ,name: course[1].course_id.name });
+			entries.forEach(course => { 
+				boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
 			});
 
 			return {
@@ -70,12 +70,44 @@ export class CoursesService {
 		}
 	}
 
+	async calculateCoursePrice(userId: ObjectId, courseDto: RatedCourseDto) {
+		try {
+			const { data } = await this.userService.findAllBoughtCourses( courseDto._id, { bought_courses: 1, _id: 0 });
+			if(data.length < 5 && courseDto.stars < 5){
+				courseDto.stars = 4.8;
+				await this.userService.addRating(userId, courseDto);
+				return;
+			} else {
+				await this.userService.addRating(userId, courseDto);
+				let average = 0;
+				data.map(course => {
+					average += course['stars'];
+				});
+				average = average / data.length;
+				if(average < 3){
+					const course = await this.courseModel.findOne({ _id: courseDto._id });
+					const newPrice = (course.price - ((course.price * 10) / 100));
+					await this.courseModel.findOneAndUpdate({ _id: courseDto._id }, {
+						$set: { price: newPrice }
+					});
+				}
+				return;
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {
 			const { data, message, status } = await this.userService.addRating(
 				userId,
 				ratedCourse,
 			);
+
+			if(data){
+				await this.calculateCoursePrice(userId, ratedCourse);
+			}
 
 			return {
 				message: 'Course rated successfully',
@@ -122,7 +154,7 @@ export class CoursesService {
 	async findAllSortedByAverage() {
 		try {
 			const allCourses = await this.courseModel.find().select('-content -bought -__v').lean().exec();
-			const { data } = await this.userService.findAllBoughtCourses({}, { bought_courses: 1, _id: 0 });
+			const { data } = await this.userService.findBoughtCourses({}, { bought_courses: 1, _id: 0 });
 			
 			const ratedCourses = allCourses.map(course => {
 				const newCourse = {
@@ -258,9 +290,7 @@ export class CoursesService {
 			let courseUpdated;
 
 			entries.forEach(async( course) => {
-				console.log(course[1]._id);
 				if (String(updateCourse._id) === String(course[1]._id)) {
-					console.log('actualizando');
 					courseUpdated = await this.courseModel.findOneAndUpdate(
 						{ _id: updateCourse._id },
 						{
@@ -355,14 +385,11 @@ export class CoursesService {
 				throw new HttpException('INSUFFICIENT_BALANCE', HttpStatus.FORBIDDEN);
 			} else {
 				if (!course.bought) {
-					await this.courseModel.findOneAndUpdate(
-						{ _id: course._id },
-						{ bought: true },
-					);
+					await this.courseModel.findOneAndUpdate({ _id: course._id },{ bought: true });
 				}
 				user.wallet_balance -= course.price;
 				const object = {
-					course_id: course.id,
+					course_id: course._id,
 					stars: 0,
 					commented: false
 				};

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ArrayMaxSize, IsArray, IsNotEmpty, IsString, IsEnum } from 'class-validator';
 
 enum Difficulty {
-	Begginer = 'Begginer',
+	Begginer = 'Beginner',
 	Medium = 'Medium',
 	Advanced = 'Advanced'
 }
@@ -18,7 +18,7 @@ export class CreateCourseDto {
 	@IsNotEmpty()
 		topic: string;
 
-	@ApiProperty({ example: 'Beginner | Medium | Advanced' })
+	@ApiProperty({ example: 'Beginner | Intermediate | Advanced' })
 	@IsString()
 	@IsEnum(Difficulty)
 	@IsNotEmpty()

@@ -99,7 +99,6 @@ export class UsersService {
 	}
 
 	async getProfile(user: any) {
-		// console.log(user);
 		return await this.userModel.findOne({ email: user.email });
 	}
 
@@ -119,6 +118,7 @@ export class UsersService {
 	async findOneWithCreatedCourses(id : ObjectId) {
 		try {
 			const createdCourses = await this.userModel.findOne({ _id: id }).select('created_courses').populate('created_courses');
+
 			return {
 				message: 'User with created courses retrived successfully',
 				status: HttpStatus.OK,
@@ -129,10 +129,10 @@ export class UsersService {
 		}	
 	}
 
-	async findOneWithBoughtCourses(id: ObjectId){
+	async findOneWithBoughtCourses(id: string){
 		
 		try {
-			const boughtCourses = await this.userModel.findOne({ _id: id }, { bought_courses: 1 }).populate('bought_courses.course_id');
+			const boughtCourses = await this.userModel.findOne({ _id: new mongoose.Types.ObjectId(id) }).select('bought_courses.course_id').populate('bought_courses.course_id').lean().exec();
 			
 			return {
 				message: 'User with bought courses retrived successfully',
@@ -205,7 +205,24 @@ export class UsersService {
 		}
 	}
 
-	async findAllBoughtCourses( user, filter ) {
+	async findAllBoughtCourses( courseId: ObjectId, fields: object ) {
+		try {
+			const usersBoughtCoursesTemp = await this.userModel.find({ 'bought_courses.course_id': courseId, 'bought_courses.stars': { $gt: 0 } }); //.populate('bought_courses');	
+			const usersBoughtCourses = usersBoughtCoursesTemp.map(user => {
+				return user.bought_courses.filter(course => String(course.course_id) === String(courseId));
+			});
+
+			return {
+				message: 'All bought courses retrieved succesfully',
+				status: HttpStatus.OK,
+				data: usersBoughtCourses.flat(Infinity)
+			}; 	
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async findBoughtCourses( user, filter ) {
 		try {
 			const usersBoughtCoursesTemp = await this.userModel.find( user, filter ).populate('bought_courses');	
 			const usersBoughtCourses = usersBoughtCoursesTemp.map(course => course.bought_courses).flat(1);
@@ -236,6 +253,7 @@ export class UsersService {
 
 	async removeCourseFromBought(id: ObjectId) {
 		try {
+			await this.userModel.find({ _id: id });
 			return {
 				status: HttpStatus.OK,
 				message: 'Course removed from bought successfully',
@@ -248,8 +266,8 @@ export class UsersService {
 	
 	async addRating(userId: ObjectId, ratedCourse: RatedCourseDto) {
 		try {
-			const updatedUser = await this.userModel.findOneAndUpdate({ 'bought_courses.course_id': ratedCourse._id, 'bought_courses.stars': { $eq: 0 } }, {
-				'bought_courses.$.stars': ratedCourse.stars
+			const updatedUser = await this.userModel.findOneAndUpdate({ _id: userId, 'bought_courses.course_id': ratedCourse._id  }, {
+				$set: { 'bought_courses.$.stars': ratedCourse.stars }
 			}).select('bought_courses');
 			if(!updatedUser) throw new HttpException('Failed rating course', HttpStatus.BAD_REQUEST);
 
@@ -267,7 +285,7 @@ export class UsersService {
 		const update = {
 			$push: {
 			  bought_courses: {
-					course_id: course.id,
+					course_id: course.course_id,
 					stars: 0,
 					commented: false,
 			  },

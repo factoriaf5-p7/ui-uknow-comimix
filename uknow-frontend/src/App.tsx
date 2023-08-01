@@ -8,10 +8,9 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Recover from './pages/Recover'
-import Footer from './elements/Footer'
 import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
-import Navbar from './elements/Navbar'
+import AuthContexProvider from './context/AuthContex'
 
 
 
@@ -20,11 +19,11 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+   <AuthContexProvider>
     <Routes>
       <Route path='/' element={<Hero />} />
       <Route path='/home' element={<Home />} />
-      <Route path='/course' element={<Course />} />
+      <Route path='/course/:_id' element={<Course />} />
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/login' element={<Login />} />
@@ -33,7 +32,8 @@ function App() {
       <Route path='/under-construction' element={<UnderConstruction />} />
       <Route path="*" element={<NotFound/>}/>
     </Routes>
-    <Footer/>
+
+    </AuthContexProvider>
     </>
   )
 }

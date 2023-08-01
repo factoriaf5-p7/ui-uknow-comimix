@@ -10,6 +10,7 @@ import { PurchaseCourseDto } from './dto/buy-course.dto';
 import { Roles } from 'src/auth/guards/roles';
 import { Role } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/role.guard';
+import mongoose from 'mongoose';
 
 @Controller('courses')
 export class CoursesController {
@@ -44,7 +45,7 @@ export class CoursesController {
 
   @Get('bought-courses/:userid')
   // @UseGuards(AuthGuard)
-  findBoughtCourses(@Param('userid') userId: ObjectId) {
+  findBoughtCourses(@Param('userid') userId: string) {
   	return this.coursesService.findBoughtCourses(userId);
   }
 
