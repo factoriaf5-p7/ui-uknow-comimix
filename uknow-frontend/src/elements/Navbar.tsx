@@ -9,7 +9,7 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { AuthContext } from "../context/AuthContex";
+import { AuthContext } from "../context/AuthContext";
 import { UknowTheme } from "../themes/ThemeUknow";
  import AvatarBtn from "../components/AvatarBtn";
 

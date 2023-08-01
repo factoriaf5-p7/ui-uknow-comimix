@@ -2,7 +2,7 @@ import { Container, Box } from "@mui/system";
 import { TextField, Button } from "@mui/material";
 
 import { ChangeEvent, FormEvent, useContext} from "react";
-import { AuthContext } from "../context/AuthContex";
+import { AuthContext } from "../context/AuthContext";
 import { UknowTheme } from '../themes/ThemeUknow';
 
 export function LoginForm() {

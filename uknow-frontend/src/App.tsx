@@ -10,7 +10,7 @@ import Register from './pages/Register'
 import Recover from './pages/Recover'
 import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
-import AuthContexProvider from './context/AuthContex'
+import AuthContexProvider from './context/AuthContext'
 
 
 

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { UknowTheme } from '../themes/ThemeUknow';
-import { AuthContext } from '../context/AuthContex';
+import { AuthContext } from '../context/AuthContext';
 
 const Footer = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
