@@ -43,7 +43,7 @@ export default function HideAppBar() {
                     <SignupBtn />
                   </>
                 ) : (
-                  <LogoutBtn />
+                  <AvatarBtn/>
                 )}
               </div>
             </Toolbar>
