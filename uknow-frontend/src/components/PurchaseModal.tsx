@@ -1,5 +1,4 @@
-
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Button, useTheme } from '@mui/material';
 
 interface PurchaseModalProps {
   open: boolean;
@@ -8,17 +7,24 @@ interface PurchaseModalProps {
 }
 
 function PurchaseModal({ open, onClose, onConfirm }: PurchaseModalProps) {
+  const theme = useTheme();
+
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={onClose} >
       <DialogTitle>Confirm Purchase</DialogTitle>
-      <DialogContent>
+      <DialogContent >
         <p>Are you sure you want to buy the course?</p>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={onClose} color="primary" sx={{ backgroundColor: theme.palette.uDarkBlue.main, color: 'white' }}>
           No
         </Button>
-        <Button onClick={onConfirm} color="primary" autoFocus>
+        <Button
+          onClick={onConfirm}
+          color="primary"
+          autoFocus
+          sx={{ backgroundColor: theme.palette.uDarkBlue.main, color: 'white' }}
+        >
           Yes
         </Button>
       </DialogActions>
