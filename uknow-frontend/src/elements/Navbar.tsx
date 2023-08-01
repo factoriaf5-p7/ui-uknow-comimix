@@ -1,41 +1,54 @@
-import {  useContext } from "react";
+import { useContext } from "react";
 import LoginBtn from "../components/LoginBtn";
 import LogoNavbar from "../components/LogoNavbar";
 import LogoutBtn from "../components/LogoutBtn";
 import SignupBtn from "../components/SignupBtn";
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from '@mui/material/styles';
+import {
+  AppBar,
+  Slide,
+  Toolbar,
+  useMediaQuery,
+  useScrollTrigger,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "../context/AuthContex";
+import { UknowTheme } from "../themes/ThemeUknow";
 
-
-const Navbar = () => {
-
+export default function HideAppBar() {
+  const trigger = useScrollTrigger();
   const { isLoggedIn } = useContext(AuthContext);
   const theme = useTheme();
 
+  const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
-
-  const isDesktop = useMediaQuery(theme.breakpoints.only('desktop'));
-if(isDesktop)
-  {return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-      <LogoNavbar />
-      <div>
-        {!isLoggedIn ? (
-          <>
-            <LoginBtn />
-            <SignupBtn />
-          </>
-        ) : (
-          <LogoutBtn  />
-        )}
-      </div>
-    </nav>
-  );
-};
+  if (isDesktop)
+    return (
+      <>
+        <Slide appear={false} direction="down" in={!trigger}>
+          <AppBar sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
+            <Toolbar
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px",
+              }}
+            >
+              <LogoNavbar />
+              <div>
+                {!isLoggedIn ? (
+                  <>
+                    <LoginBtn />
+                    <SignupBtn />
+                  </>
+                ) : (
+                  <LogoutBtn />
+                )}
+              </div>
+            </Toolbar>
+          </AppBar>
+        </Slide>
+      </>
+    );
 }
-export default Navbar;
-
-
-
 
