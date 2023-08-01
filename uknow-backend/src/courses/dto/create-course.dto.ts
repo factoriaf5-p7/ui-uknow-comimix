@@ -42,5 +42,6 @@ export class CreateCourseDto {
     @ApiProperty( { example: 'In this course you are to learn how to create a web application using NestJS. The backend is an important piece of the...' } )
     @IsString()
 	@IsNotEmpty()
-    	description: string;
+	// eslint-disable-next-line no-mixed-spaces-and-tabs
+    		description: string;
 }
