@@ -37,7 +37,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
       const data = await response.json();
      
       onSearch(data.data); // estrutura { data: [] }.
-      console.log(data.data)
+   
     } catch (error) {
       console.error('Error during search:', error);
     }
