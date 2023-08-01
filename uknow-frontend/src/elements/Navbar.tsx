@@ -13,6 +13,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "../context/AuthContex";
 import { UknowTheme } from "../themes/ThemeUknow";
+import AvatarBtn from "../components/AvatarBtn";
 
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
