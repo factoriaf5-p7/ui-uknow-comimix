@@ -17,11 +17,11 @@ const RatingStars = ({ average }: RatingStarsProps) => {
       return <StarIcon key={index} style={{ color: uColors.uOrange }}/>;
     } else if (index === fullStars && hasHalfStar ) {
       return (
-        <div key={index} style={{ display: 'inline-flex', alignItems: 'center' }}>
+        <span key={index} style={{ display: 'inline-flex', alignItems: 'center' }}>
           <StarIcon style={{ clipPath: 'inset(0 50% 0 0)', margin: 0, color: uColors.uOrange }} />
           <StarOutlineIcon
             style={{ clipPath: 'inset(0 0 0 50%)', marginLeft: '-1.5rem', color: uColors.uOrange }} />
-        </div>
+        </span>
       );
     } else {
       return <StarOutlineIcon key={index} style={{ color: uColors.uOrange }} />;
