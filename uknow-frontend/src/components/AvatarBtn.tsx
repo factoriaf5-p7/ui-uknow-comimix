@@ -7,10 +7,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { AuthContext } from '../context/AuthContext';
+import { Popper } from '@mui/base';
  
 
 const options = [
@@ -103,6 +103,6 @@ const AvatarBtn = () => {
     </React.Fragment>
   );
 };
-
+ 
 export default AvatarBtn;
  
