@@ -3,7 +3,6 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Tooltip from '@mui/material/Tooltip';
-
 import { CourseData } from '../interfaces/course.interface';
 import { format } from 'date-fns';
 import { CardContentSection } from '../components/CardContentSection';
@@ -53,12 +52,6 @@ const CardContainer = styled(Card)({
 });
 
 export const CardProduct = ({ courseData }: CardProductProps) => {
-/*   const navigate = useNavigate();
-
-  const handleCardClick: MouseEventHandler<HTMLDivElement> = () => {
-    // pagina de detalle
-    navigate('/under-construction');
-  }; */
   const theme = useTheme();
   const create_date = courseData.createdAt ? format(new Date(courseData.createdAt), 'MM/dd/yyyy') : '';
   const update_date = courseData.updatedAt ? format(new Date(courseData.updatedAt), 'MM/dd/yyyy') : '';
@@ -77,52 +70,55 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
   };
 
 
-
   return (
     <>
-    
-      <CardContainer
-        sx={{ maxWidth: 320, height: 470, position: 'relative' }}
-        
-      >
-        <Tooltip title="Click here" placement="right" followCursor>
-          <div onClick={handleCardClick}>
-            <CardMedia
-              component="img"
-              height="170"
-              image={courseData.image}
-              alt="image de course"
+    <CardContainer sx={{ maxWidth: 320, height: 480, position: 'relative' }}>
+      <Tooltip title="Click here" placement="right" followCursor>
+        <div onClick={handleCardClick}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            fontWeight="bold"
+            sx={{
+              color: theme.palette.uDarkBlue.main,
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              padding: '8px 12px',
+              margin: '5px',
+              background: theme.palette.background.default,
+              borderRadius: '10px',
+            }}
+          >
+            knwl: {courseData.price}
+          </Typography>
+          <CardMedia component="img" height="170" image={courseData.image} alt="image de course" />
+          <TitleSubheaderContainer>
+            <CardHeader titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }} title={courseData.name} />
+          </TitleSubheaderContainer>
+          <CardContentSection
+            courseData={courseData}
+            description={courseData.description}
+            average={courseData.average}
+            difficulty={courseData.difficulty}
+            showDate={showDate}
+            price={courseData.price}
+          />
+        </div>
+      </Tooltip>
+      <CardActionsContainer disableSpacing sx={{ padding: '0px 20px', marginBottom: '30px' }}>
+        <BottomGridContainer container justifyContent="space-between" alignItems="center">
+          <Grid item>
+          </Grid>
+          <CartButtonGridItem item>
+            <BuyButton
+              courseId={courseData._id}
+              
             />
-            <TitleSubheaderContainer>
-              <CardHeader
-                titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
-                title={courseData.name}
-              />
-            </TitleSubheaderContainer>
-            <CardContentSection
-              courseData={courseData}
-              description={courseData.description}
-              average={courseData.average}
-              difficulty={courseData.difficulty}
-              showDate={showDate}
-              price={courseData.price}
-            />
-          </div>
-        </Tooltip>
-          <CardActionsContainer disableSpacing sx={{ padding: '0px 20px', marginBottom:'30px' }}>
-            <BottomGridContainer container justifyContent="space-between" alignItems="center">
-              <Grid item>
-                <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>
-                  knwl: ${courseData.price}
-                </Typography>
-              </Grid>
-              <CartButtonGridItem item>
-                <BuyButton courseId={courseData._id} />
-              </CartButtonGridItem>
-            </BottomGridContainer>
-          </CardActionsContainer>
-      </CardContainer>
-    
+          </CartButtonGridItem>
+        </BottomGridContainer>
+      </CardActionsContainer>
+    </CardContainer>
     <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
   </>
   );

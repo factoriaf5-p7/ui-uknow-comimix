@@ -1,5 +1,4 @@
-
-import { Button, } from '@mui/material'
+import { Button } from '@mui/material'
 
 import { UknowTheme } from '../themes/ThemeUknow';
 import { useState } from 'react';
@@ -11,6 +10,7 @@ interface BuyButtonProps {
 
 const BuyButton = ({ courseId }: BuyButtonProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -30,17 +30,22 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
 
   return (
     <>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ backgroundColor: UknowTheme.palette.uOrange.main, color: '#fff', marginLeft: '0px' }}
-        sx={{ fontSize: '.8rem', padding: '0.3rem 1rem' }}
-        onClick={handleOpenModal} // Use handleOpenModal directly as the onClick handler
-      >
-        Buy Now
-      </Button>
-      <PurchaseModal open={isModalOpen} onClose={handleCloseModal} onConfirm={handlePurchaseConfirm} />
-    </>
+    <Button
+      variant="contained"
+      color="primary"
+      style={{
+        backgroundColor: UknowTheme.palette.uOrange.main,
+        color: '#fff',
+        marginLeft: '0px',
+        fontSize:  '1em' , 
+        padding:'0.4rem 6.5rem', 
+      }}
+      onClick={handleOpenModal}
+    >
+      Buy Now
+    </Button>
+    <PurchaseModal open={isModalOpen} onClose={handleCloseModal} onConfirm={handlePurchaseConfirm} />
+  </>
   );
 };
 
