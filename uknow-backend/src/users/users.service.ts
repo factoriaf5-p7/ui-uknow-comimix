@@ -7,6 +7,7 @@ import { RegisterUserDto } from 'src/auth/dto/register-user.dto';
 import { RecoverUserDto } from 'src/auth/dto/recover-user.dto';
 import { RecoverRequestDto } from 'src/auth/dto/recover-request.dto';
 import { RatedCourseDto } from '../courses/dto/rate-course.dto';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 
 @Injectable()
 export class UsersService {
@@ -293,5 +294,19 @@ export class UsersService {
 		  };
 
 		  return this.userModel.findOneAndUpdate(userId, update);
+	}
+
+	async updateCommentedCourse (createCommentDto: CreateCommentDto) {
+		try {
+			await this.userModel.findOneAndUpdate({ 
+				'_id': createCommentDto.user_id, 
+				'bought_courses.course_id': createCommentDto.course_id },
+			{
+				$set: { 'bought_courses.$.commented': true }
+			}
+				 );
+		} catch (error) {
+			throw error;
+		}
 	}
 }

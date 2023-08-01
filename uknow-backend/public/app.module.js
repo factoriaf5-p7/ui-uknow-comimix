@@ -16,6 +16,7 @@ const courses_module_1 = require("./courses/courses.module");
 const auth_module_1 = require("./auth/auth.module");
 const config_1 = require("@nestjs/config");
 const chat_module_1 = require("./chat/chat.module");
+const comments_module_1 = require("./comments/comments.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -35,6 +36,7 @@ exports.AppModule = AppModule = __decorate([
             courses_module_1.CoursesModule,
             auth_module_1.AuthModule,
             chat_module_1.ChatModule,
+            comments_module_1.CommentsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

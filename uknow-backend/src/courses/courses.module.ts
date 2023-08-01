@@ -16,6 +16,7 @@ import { UsersModule } from 'src/users/users.module';
 		])
 	],
 	controllers: [ CoursesController ],
-	providers: [ CoursesService ]
+	providers: [ CoursesService ],
+	exports: [ CoursesService ]
 })
 export class CoursesModule {}
