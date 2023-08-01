@@ -23,9 +23,9 @@ const options = [
 
 const AvatarBtn = () => {
     const { logout } = useContext(AuthContext); 
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef<HTMLDivElement>(null);
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
 
 
   const handleClick = () => {
