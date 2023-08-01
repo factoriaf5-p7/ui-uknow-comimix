@@ -1,3 +1,4 @@
+import Footer from "../elements/Footer";
 import {LoginForm} from "../elements/LoginForm";
 
 export default function Login() {
@@ -5,6 +6,7 @@ export default function Login() {
     <div>
       <LoginForm />
       <a href="/signup">Si no tienes cuenta click aquí</a>
+      <Footer/>
     </div>
   )
 }

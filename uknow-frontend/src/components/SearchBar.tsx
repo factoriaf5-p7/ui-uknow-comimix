@@ -1,56 +1,59 @@
-import { useState } from 'react';
-import { TextField, IconButton, Button, Box } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { SearchCourses } from '../hooks/useQuery-SearchCourses';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { TextField } from '@mui/material';
+import { CourseData } from '../interfaces/course.interface';
+
 
 interface SearchBarProps {
   onSearch: (searchResults: CourseData[]) => void;
-  onClearSearch: () => void;
 }
 
-export default function SearchBar({ onSearch, onClearSearch }: SearchBarProps) {
+function SearchBar({ onSearch }: SearchBarProps) {
   const [searchText, setSearchText] = useState('');
-  const { searchResults } = SearchCourses(searchText);
-  const [showNoCoursesFound, setShowNoCoursesFound] = useState(false);
+ 
 
-  const handleSearch = () => {
-    // No hace nada si esta vacia
-    if (searchText.trim() === '') {
-      return;
-    }
+  useEffect(() => {
+    // Función para realizar la búsqueda automáticamente cada vez que cambie el texto del TextField
+    const handleSearch = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/courses/average`
+        );
+        const data = await response.json();
+        onSearch(data.data); // estrutura { data: [] }.
+      } catch (error) {
+        console.error('Error during search:', error);
+      }
+    };
 
-    if (searchResults && searchResults.length === 0) {
-      setShowNoCoursesFound(true);
-      onSearch([]);
-    } else {
-      setShowNoCoursesFound(false);
-      onSearch(searchResults || []);
+    handleSearch();
+  }, []);
+
+
+  const handleSearch = async (e:ChangeEvent<HTMLInputElement>) => {
+    try {
+      setSearchText(e.target.value);
+      const response = await fetch(`http://localhost:3000/courses/search?filters=name,description,tags&keywords=${e.target.value}`);
+      const data = await response.json();
+     
+      onSearch(data.data); // estrutura { data: [] }.
+      console.log(data.data)
+    } catch (error) {
+      console.error('Error during search:', error);
     }
   };
 
-  const handleClearSearch = () => {
-    setSearchText('');
-    onClearSearch();
-    setShowNoCoursesFound(false); 
-  };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
-      <Box>
-        <TextField
-          label="Search for courses"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-        <IconButton onClick={handleSearch}>
-          <SearchIcon />
-        </IconButton>
-        <Button onClick={handleClearSearch}>Clear Search</Button>
-      </Box>
-
-      {showNoCoursesFound && searchResults !== undefined && searchResults.length === 0 && searchText && (
-        <Box mt={2}>No courses found.</Box>
-      )}
-    </Box>
+    <>
+      <TextField
+        label="Search for courses"
+        value={searchText}   
+        onChange={handleSearch}
+      />
+     
+    </>
   );
 }
+
+
+export default SearchBar

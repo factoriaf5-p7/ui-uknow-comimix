@@ -1,24 +1,20 @@
 import { Container, Box } from "@mui/system";
 import { TextField, Button } from "@mui/material";
-import { useLoginUser } from "../hooks/useMutation-LoginUser";
-import { ChangeEvent, FormEvent, useState } from "react";
-import LoginData from "../interfaces/login.interface";
+
+import { ChangeEvent, FormEvent, useContext} from "react";
+import { AuthContext } from "../context/AuthContex";
 import { UknowTheme } from '../themes/ThemeUknow';
 
 export function LoginForm() {
-  const [loginData, setLoginData] = useState<LoginData>({
-    email: "",
-    password: "",
-  });
+ 
+  const {loginData, setLoginData , login} = useContext(AuthContext);
 
-  const loginMutation = useLoginUser();
+ 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { data } = await loginMutation.mutateAsync(loginData);
-    const token = data;
-    localStorage.setItem("token", token);
+   login()
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
