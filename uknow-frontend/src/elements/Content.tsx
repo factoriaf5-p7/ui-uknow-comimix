@@ -23,6 +23,8 @@ const Content = () => {
     return token 
   };
 
+
+
   return (
     <Box display="flex" flexDirection="column" alignItems="center" p={4}>
       <CourseHeader name={oneCourse.name} description={oneCourse.description} />
@@ -42,7 +44,7 @@ const Content = () => {
           </Box>
         )}
       </Box>
-      <BuyButton />
+      <BuyButton courseId={oneCourse._id}/>
     </Box>
   );
 };

@@ -64,7 +64,8 @@ module.exports = {
       "no-mixed-spaces-and-tabs": [
         "error",
         "smart-tabs"
-      ]
+      ],
+      "no-mixed-spaces-and-tabs": 0,
     },
   };
   

@@ -1,4 +1,4 @@
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -124,6 +124,6 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
       </CardActionsContainer>
     </CardContainer>
     <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
-  </>
+    </>
   );
 };

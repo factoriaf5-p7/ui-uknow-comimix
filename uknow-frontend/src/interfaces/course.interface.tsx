@@ -1,4 +1,4 @@
-export interface CourseData {
+export interface CourseData{
     _id: string;
     name: string;
     price: number;

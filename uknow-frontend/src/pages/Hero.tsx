@@ -2,7 +2,8 @@ import { HeroImage } from "../elements/HeroImage"
 
 function Hero() {
   return (
-    <>        <HeroImage/>
+    <>
+      <HeroImage/>
     </>
   )
 }

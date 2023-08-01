@@ -6,6 +6,7 @@ import { RegisterUserDto } from 'src/auth/dto/register-user.dto';
 import { RecoverUserDto } from 'src/auth/dto/recover-user.dto';
 import { RecoverRequestDto } from 'src/auth/dto/recover-request.dto';
 import { RatedCourseDto } from '../courses/dto/rate-course.dto';
+import { CreateCommentDto } from 'src/comments/dto/create-comment.dto';
 export declare class UsersService {
     private userModel;
     constructor(userModel: Model<User>);
@@ -60,12 +61,12 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
-    findOneWithBoughtCourses(id: ObjectId): Promise<{
+    findOneWithBoughtCourses(id: string): Promise<{
         message: string;
         status: HttpStatus;
-        data: mongoose.Document<unknown, {}, User> & Omit<User & {
+        data: mongoose.FlattenMaps<User> & {
             _id: mongoose.Types.ObjectId;
-        }, never>;
+        };
     }>;
     update(user: UpdateUserDto): Promise<{
         message: string;
@@ -93,7 +94,16 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
-    findAllBoughtCourses(user: any, filter: any): Promise<{
+    findAllBoughtCourses(courseId: ObjectId, fields: object): Promise<{
+        message: string;
+        status: HttpStatus;
+        data: FlatArray<{
+            course_id: import("../courses/schemas/course.schema").Course;
+            stars: number;
+            commented: boolean;
+        }[], 0 | 1 | -1 | 2 | 3 | 5 | 4 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20>[];
+    }>;
+    findBoughtCourses(user: any, filter: any): Promise<{
         message: string;
         status: HttpStatus;
         data: {
@@ -124,4 +134,5 @@ export declare class UsersService {
     updateUserBoughtCourses(userId: mongoose.Types.ObjectId, course: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
+    updateCommentedCourse(createCommentDto: CreateCommentDto): Promise<void>;
 }

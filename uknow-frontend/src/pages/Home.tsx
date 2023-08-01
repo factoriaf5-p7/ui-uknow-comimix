@@ -5,6 +5,8 @@ import uknowImg from '../assets/uknow.png';
 import { Container } from "@mui/system";
 import { useAllCourses } from "../hooks/useQuery-AllCourses";
 import { CourseData } from '../interfaces/course.interface';
+import Navbar from '../elements/Navbar';
+import Footer from '../elements/Footer';
 
 function Home() {
   const { isLoading, isError, courseList: allCourses } = useAllCourses();
@@ -16,17 +18,13 @@ function Home() {
     setIsSearching(true);
   };
 
-  const handleClearSearch = () => {
-    setCourses(allCourses || []);
-    setIsSearching(false);
-  };
-
   return (
     <div>
+      <Navbar/>
       <img src={uknowImg} alt="Uknow image" style={{ width: '100%', height: 'auto' }} />
       
       <Container sx={{ display: 'flex', justifyContent: 'center', my: 2 }}>
-        <SearchBar onSearch={handleAllCourses} onClearSearch={handleClearSearch} />
+        <SearchBar onSearch={handleAllCourses} />
       </Container>
 
       {isLoading ? (
@@ -36,6 +34,7 @@ function Home() {
       ) : (
         <CourseList courses={isSearching ? courses : allCourses} />
       )}
+      <Footer/>
     </div>
   );
 }

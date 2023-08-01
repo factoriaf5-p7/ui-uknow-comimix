@@ -1,54 +1,53 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import LoginBtn from "../components/LoginBtn";
 import LogoNavbar from "../components/LogoNavbar";
-import LogoutBtn from "../components/LogoutBtn";
-import SignupBtn from "../components/SignupBtn";
+import {
+  AppBar,
+  Slide,
+  Toolbar,
+  useMediaQuery,
+  useScrollTrigger,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { AuthContext } from "../context/AuthContex";
+import { UknowTheme } from "../themes/ThemeUknow";
+ import AvatarBtn from "../components/AvatarBtn";
 
+export default function HideAppBar() {
+  const trigger = useScrollTrigger();
+  const { isLoggedIn } = useContext(AuthContext);
+  const theme = useTheme();
 
-const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
-
-  const handleLogin = () => {
-    
-    localStorage.setItem('token', 'example-token'); 
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-  
-    localStorage.removeItem('token'); 
-    setIsLoggedIn(false);
-  };
-
-
-  return (
-    <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-      <LogoNavbar />
-      <div>
-        {!isLoggedIn ? (
-          <>
-            <LoginBtn />
-            <SignupBtn />
-          </>
-        ) : (
-          <LogoutBtn  />
-        )}
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
-
-
-
+  if (isDesktop)
+    return (
+      <>
+        <Slide appear={false} direction="down" in={!trigger}>
+          <AppBar sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
+            <Toolbar
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "10px",
+              }}
+            >
+              <LogoNavbar />
+               <div>
+                {!isLoggedIn ? (
+                  <>
+                    <LoginBtn />
+                
+                  </>
+                ) : (
+                  <AvatarBtn/>
+                )}
+              </div> 
+            </Toolbar>
+          </AppBar>
+        </Slide>
+      </>
+    );
+}
 
