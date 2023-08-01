@@ -12,6 +12,11 @@ import { CourseModal } from '../components/CourseModal';
 import BuyButton from "../components/BuyButton";
 import { CardActions, Grid, Typography } from '@mui/material';
 
+const CardActionsContainer = styled(CardActions)({
+  cursor: 'default',
+  padding: '0px 20px',
+  marginBottom: '30px',
+});
 
 const BottomGridContainer = styled(Grid)({
   bottom: 0,
@@ -75,34 +80,36 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
 
   return (
     <>
-    <Tooltip title="Click here" placement="right" followCursor>
+    
       <CardContainer
         sx={{ maxWidth: 320, height: 470, position: 'relative' }}
         
       >
-        <div onClick={handleCardClick}>
-          <CardMedia
-            component="img"
-            height="170"
-            image={courseData.image}
-            alt="image de course"
-          />
-          <TitleSubheaderContainer>
-            <CardHeader
-              titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
-              title={courseData.name}
+        <Tooltip title="Click here" placement="right" followCursor>
+          <div onClick={handleCardClick}>
+            <CardMedia
+              component="img"
+              height="170"
+              image={courseData.image}
+              alt="image de course"
             />
-          </TitleSubheaderContainer>
-          <CardContentSection
-            courseData={courseData}
-            description={courseData.description}
-            average={courseData.average}
-            difficulty={courseData.difficulty}
-            showDate={showDate}
-            price={courseData.price}
-          />
-        </div>
-          <CardActions disableSpacing sx={{ padding: '0px 20px', marginBottom:'30px' }}>
+            <TitleSubheaderContainer>
+              <CardHeader
+                titleTypographyProps={{ variant: 'h6', sx: { fontSize: '1.2rem' } }}
+                title={courseData.name}
+              />
+            </TitleSubheaderContainer>
+            <CardContentSection
+              courseData={courseData}
+              description={courseData.description}
+              average={courseData.average}
+              difficulty={courseData.difficulty}
+              showDate={showDate}
+              price={courseData.price}
+            />
+          </div>
+        </Tooltip>
+          <CardActionsContainer disableSpacing sx={{ padding: '0px 20px', marginBottom:'30px' }}>
             <BottomGridContainer container justifyContent="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="body2" color="text.secondary" fontWeight="bold" sx={{ color: theme.palette.uDarkBlue.main }}>
@@ -113,9 +120,9 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
                 <BuyButton courseId={courseData._id} />
               </CartButtonGridItem>
             </BottomGridContainer>
-          </CardActions>
+          </CardActionsContainer>
       </CardContainer>
-    </Tooltip>
+    
     <CourseModal open={modalOpen} onClose={handleCloseModal} course={courseData} />
   </>
   );
