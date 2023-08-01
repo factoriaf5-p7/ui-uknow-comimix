@@ -1,48 +1,42 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
 import { CourseData } from '../interfaces/course.interface';
+import { useAllCourses } from '../hooks/useQuery-AllCourses';
 
 
 interface SearchBarProps {
-  onSearch: (searchResults: CourseData[]) => void;
+  onSearch: (searchResults: CourseData[] | undefined) => void;
 }
-
 
 function SearchBar({ onSearch }: SearchBarProps) {
   const [searchText, setSearchText] = useState('');
- 
 
-  useEffect(() => {
-    // Función para realizar la búsqueda automáticamente cada vez que cambie el texto del TextField
-    const handleSearch = async () => {
-      try {
+  const { isLoading, isError, courseList } = useAllCourses();
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (isError) return <div>An error has occurred while retrieving the data.</div>;
+
+  const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
+    try {
+      const searchText = e.target.value;
+      setSearchText(searchText);
+
+      if (!searchText.trim()) {
+        onSearch(courseList);
+      } else {
         const response = await fetch(
-          `http://localhost:3000/courses/average`
+          `http://localhost:3000/courses/search?filters=name,description,tags&keywords=${encodeURIComponent(
+            searchText
+          )}`
         );
         const data = await response.json();
-        onSearch(data.data); // estrutura { data: [] }.
-      } catch (error) {
-        console.error('Error during search:', error);
+        onSearch(data.data);
       }
-    };
-
-    handleSearch();
-  }, []);
-
-
-  const handleSearch = async (e:ChangeEvent<HTMLInputElement>) => {
-    try {
-      setSearchText(e.target.value);
-      const response = await fetch(`http://localhost:3000/courses/search?filters=name,description,tags&keywords=${e.target.value}`);
-      const data = await response.json();
-     
-      onSearch(data.data); // estrutura { data: [] }.
-   
     } catch (error) {
       console.error('Error during search:', error);
     }
   };
-
 
   return (
     <>
@@ -58,4 +52,4 @@ function SearchBar({ onSearch }: SearchBarProps) {
 }
 
 
-export default SearchBar
+export default SearchBar;
