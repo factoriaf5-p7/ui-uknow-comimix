@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import LoginBtn from "../components/LoginBtn";
 import LogoNavbar from "../components/LogoNavbar";
-import LogoutBtn from "../components/LogoutBtn";
-import SignupBtn from "../components/SignupBtn";
 import {
   AppBar,
   Slide,
@@ -40,7 +38,6 @@ export default function HideAppBar() {
                 {!isLoggedIn ? (
                   <>
                     <LoginBtn />
-                    <SignupBtn />
                   </>
                 ) : (
                   <AvatarBtn/>
