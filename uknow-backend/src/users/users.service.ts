@@ -291,18 +291,27 @@ export class UsersService {
 		}
 	}
 
-	async updateUserBoughtCourses(userId: mongoose.Types.ObjectId , course: any) {
+	async updateUserBoughtCourses(user: any , course: any) {
+		user.bought_courses.push({
+			course_id: course.course_id,
+			stars: 0,
+			commented: false,
+		});
 		const update = {
-			$push: {
-			  bought_courses: {
-					course_id: course.course_id,
-					stars: 0,
-					commented: false,
-			  },
-			},
+			...user
 		  };
 
-		  return this.userModel.findOneAndUpdate(userId, update);
+		  return this.userModel.findOneAndUpdate(user._id, update);
+	}
+
+	async udpateBalance(userBalanceDto: any) {
+		console.log(userBalanceDto);
+		const user = await this.userModel.findOneAndUpdate(new mongoose.Types.ObjectId(userBalanceDto.userId) ,
+			{
+				wallet_balance: userBalanceDto.balance
+			});
+		console.log(user);
+		return user;
 	}
 
 	async updateCommentedCourse (createCommentDto: CreateCommentDto) {

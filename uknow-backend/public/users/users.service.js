@@ -278,17 +278,22 @@ let UsersService = exports.UsersService = class UsersService {
             throw error;
         }
     }
-    async updateUserBoughtCourses(userId, course) {
-        const update = {
-            $push: {
-                bought_courses: {
-                    course_id: course.course_id,
-                    stars: 0,
-                    commented: false,
-                },
-            },
-        };
-        return this.userModel.findOneAndUpdate(userId, update);
+    async updateUserBoughtCourses(user, course) {
+        user.bought_courses.push({
+            course_id: course.course_id,
+            stars: 0,
+            commented: false,
+        });
+        const update = Object.assign({}, user);
+        return this.userModel.findOneAndUpdate(user._id, update);
+    }
+    async udpateBalance(userBalanceDto) {
+        console.log(userBalanceDto);
+        const user = await this.userModel.findOneAndUpdate(new mongoose_2.default.Types.ObjectId(userBalanceDto.userId), {
+            wallet_balance: userBalanceDto.balance
+        });
+        console.log(user);
+        return user;
     }
     async updateCommentedCourse(createCommentDto) {
         try {

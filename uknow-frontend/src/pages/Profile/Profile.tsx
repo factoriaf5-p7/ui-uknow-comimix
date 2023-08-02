@@ -1,10 +1,10 @@
 import { SetStateAction, useState } from "react";
 import UserInfo from "../../components/UserInfo/UserInfo";
-import Navbar from "../../elements/Navbar";
 import "./Profile.css"
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Navbar from "../../components/navbar/Navbar";
 
 function Profile() {
   const [firstName, setFirstName] = useState('Diego');
