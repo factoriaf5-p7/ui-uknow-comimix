@@ -8,12 +8,8 @@ import { CourseData } from '../interfaces/course.interface';
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
 import { AuthContext } from '../context/AuthContext';
-import { User } from '../interfaces/user.interface';
 
-interface AuthContextType {
-  isLoggedIn: boolean;
-  user: User | null;
-}
+
 
 
 function Home() {
@@ -24,8 +20,8 @@ function Home() {
   const [isSearching, setIsSearching] = useState(false);
 
   // Function to filter out courses that the logged-in user has already bought or created
-  const filterUserCourses = (courses: CourseData[]) => {
-    if (!isLoggedIn || !user) {
+  const filterUserCourses = (courses: CourseData[] | undefined) => {
+    if (!isLoggedIn || !user || !courses) {
       return courses; // If no user is logged in, return all courses
     }
 
@@ -41,7 +37,8 @@ function Home() {
 
   // Handle the search results as before
   const handleAllCourses = (searchResults: CourseData[] = []) => {
-    setCourses(searchResults);
+    const filteredSearchResults = filterUserCourses(searchResults);
+    setCourses(filteredSearchResults);
     setIsSearching(true);
   };
   

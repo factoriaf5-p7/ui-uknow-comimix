@@ -40,8 +40,10 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUser = localStorage.getItem('user');
+    if (token && storedUser !== null) {
       setIsLoggedIn(true);
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
@@ -52,6 +54,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const token = data.token; 
       const user = data.user
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
       setIsLoggedIn(true);
       setUser(user)
       return user
@@ -63,6 +66,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
   };
