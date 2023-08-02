@@ -1,6 +1,6 @@
 
-import Footer from '../elements/Footer'
-import Navbar from '../elements/Navbar'
+import Footer from '../components/footer/Footer'
+import Navbar from '../components/navbar/Navbar'
 
 function Dashboard() {
   return (

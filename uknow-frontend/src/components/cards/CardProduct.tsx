@@ -3,12 +3,12 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Tooltip from '@mui/material/Tooltip';
-import { CourseData } from '../interfaces/course.interface';
+import { CourseData } from '../../interfaces/course.interface';
 import { format } from 'date-fns';
-import { CardContentSection } from '../components/CardContentSection';
+import { CardContentSection } from './CardContentSection';
 import { MouseEventHandler, useState } from 'react';
-import { CourseModal } from '../components/CourseModal';
-import BuyButton from "../components/BuyButton";
+import { CourseModal } from '../modals/CourseModal';
+import BuyButton from "../buttons/BuyButton";
 import { CardActions, Grid, Typography } from '@mui/material';
 
 const CardActionsContainer = styled(CardActions)({

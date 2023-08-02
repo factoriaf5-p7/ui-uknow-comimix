@@ -6,10 +6,10 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
-import { CourseData } from "../interfaces/course.interface";
-import BuyButton from "./BuyButton";
+import { CourseData } from "../../interfaces/course.interface";
+import BuyButton from "../buttons/BuyButton";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useCourseComments } from "../services/useQuery-CourseComments";
+import { useCourseComments } from "../../services/useQuery-CourseComments";
 
 interface CourseModalProps {
   open: boolean;
