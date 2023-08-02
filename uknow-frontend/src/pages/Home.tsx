@@ -10,15 +10,12 @@ import Footer from '../components/footer/Footer';
 import { AuthContext } from '../context/AuthContext';
 
 
-
-
-
 function Home() {
   const { isLoggedIn, user } = useContext(AuthContext); 
-
   const { isLoading, isError, courseList: allCourses } = useAllCourses();
   const [courses, setCourses] = useState<CourseData[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+ 
 
   // Function to filter out courses that the logged-in user has already bought or created
   const filterUserCourses = (courses: CourseData[] | undefined) => {
@@ -28,19 +25,25 @@ function Home() {
 
     // Filter out courses that the user has already bought or created
     const filteredCourses = courses.filter(course => {
-      const isBought = user.bought_courses.some(boughtCourse => boughtCourse.course_id === course._id);
+      const isBought = user.bought_courses.some(
+        (boughtCourse: { course_id: string }) => boughtCourse.course_id === course._id
+      );
       const isCreated = user.created_courses.includes(course._id);
       return !isBought && !isCreated;
     });
-
+  
     return filteredCourses;
   };
 
   // Handle the search results as before
-  const handleAllCourses = (searchResults: CourseData[] = []) => {
+  const handleAllCourses = (searchResults: CourseData[] | undefined = []) => {
     const filteredSearchResults = filterUserCourses(searchResults);
-    setCourses(filteredSearchResults);
-    setIsSearching(true);
+    if (filteredSearchResults) {
+      setCourses(filteredSearchResults);
+      setIsSearching(true);
+    } else {
+      console.error("Error: filteredSearchResults is undefined.");
+    }
   };
   
 

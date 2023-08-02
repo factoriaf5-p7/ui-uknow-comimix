@@ -61,6 +61,12 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    // Actualiza el estado user siempre que el user es modificado
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
+
   const loginMutation = useLoginUser();
   const login = async () => {
     try {

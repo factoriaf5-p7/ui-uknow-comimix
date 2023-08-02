@@ -61,8 +61,11 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
       const response = await purchaseMutation.mutateAsync({ courseId, userId: user._id });
       console.log(response.message);
 
+      const event = new Event('courseCreatedOrBought');
+      window.dispatchEvent(event);
+
       
-      navigate(`/course/${courseId}`);
+      navigate(`/course`);
       
 
       handleCloseModal();
