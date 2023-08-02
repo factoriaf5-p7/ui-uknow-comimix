@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ListItemText } from '@mui/material';
 import { EditNote } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 interface Props {
     courseList: CourseList[];
@@ -43,7 +44,9 @@ function DashboardCourseList(props: Props) {
                                         <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
                                     </div>
                                 }>
-                                <ListItemText primary={course.name}/>
+                                    <ListItemText primary={
+                                        <Link to='/edit' state={course._id}>{course.name}</Link>
+                                        }/>
                                 </ListItem>
                                 )
                         })
@@ -53,7 +56,9 @@ function DashboardCourseList(props: Props) {
                         courseList && courseList.map(course => {
                             return (
                                 <ListItem key={course._id}>
-                                    <ListItemText primary={course.name}/>
+                                    <ListItemText primary={
+                                        <Link to='/edit' state={course._id}>{course.name}</Link>
+                                        }/>
                                 </ListItem>
                             )
                         })

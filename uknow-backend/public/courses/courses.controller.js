@@ -26,11 +26,20 @@ let CoursesController = exports.CoursesController = class CoursesController {
     constructor(coursesService) {
         this.coursesService = coursesService;
     }
+    update(userId, updateCourseDto) {
+        return this.coursesService.update(userId, updateCourseDto);
+    }
     create(userId, createCourseDto) {
         return this.coursesService.create(userId, createCourseDto);
     }
     showCreatedCourses(userId) {
         return this.coursesService.findCreatedCourses(userId);
+    }
+    deleteCourse(id) {
+        return this.coursesService.deleteCourse(id);
+    }
+    deleteCourseByAdmin(id) {
+        return this.coursesService.deleteCourseByAdmin(id);
     }
     findAllSortedByAverage() {
         return this.coursesService.findAllSortedByAverage();
@@ -59,19 +68,18 @@ let CoursesController = exports.CoursesController = class CoursesController {
     findOneAdmin(id) {
         return this.coursesService.findOneAdmin(id);
     }
-    update(userId, updateCourseDto) {
-        return this.coursesService.update(userId, updateCourseDto);
-    }
-    deleteCourse(id) {
-        return this.coursesService.deleteCourse(id);
-    }
-    deleteCourseByAdmin(id) {
-        return this.coursesService.deleteCourseByAdmin(id);
-    }
     addRating(userId, ratedCourse) {
         return this.coursesService.addRating(userId, ratedCourse);
     }
 };
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, update_course_dto_1.UpdateCourseDto]),
+    __metadata("design:returntype", void 0)
+], CoursesController.prototype, "update", null);
 __decorate([
     (0, common_1.Post)('create/:userid'),
     __param(0, (0, common_1.Param)('userid')),
@@ -87,6 +95,20 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CoursesController.prototype, "showCreatedCourses", null);
+__decorate([
+    (0, common_1.Delete)('delete'),
+    __param(0, (0, common_1.Query)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], CoursesController.prototype, "deleteCourse", null);
+__decorate([
+    (0, common_1.Delete)('admin/delete'),
+    __param(0, (0, common_1.Query)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], CoursesController.prototype, "deleteCourseByAdmin", null);
 __decorate([
     (0, common_1.Get)('average'),
     __metadata("design:type", Function),
@@ -149,28 +171,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CoursesController.prototype, "findOneAdmin", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, update_course_dto_1.UpdateCourseDto]),
-    __metadata("design:returntype", void 0)
-], CoursesController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)('delete'),
-    __param(0, (0, common_1.Query)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], CoursesController.prototype, "deleteCourse", null);
-__decorate([
-    (0, common_1.Delete)('admin/delete'),
-    __param(0, (0, common_1.Query)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], CoursesController.prototype, "deleteCourseByAdmin", null);
 __decorate([
     (0, common_1.Patch)('rating/:userid'),
     __param(0, (0, common_1.Param)('userid')),

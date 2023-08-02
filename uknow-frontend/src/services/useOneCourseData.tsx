@@ -11,7 +11,7 @@ const useOneCourseData = (course_id:string) => {
     queryFn: async (): Promise<CourseData> => {
       const response = await fetch(`http://localhost:3000/courses/${course_id}`);
       const data = await response.json();
-      console.log(data.data);
+      console.log('inquery', data.data)
       return data.data;
     },
     staleTime: 3000000,
