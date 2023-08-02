@@ -15,14 +15,15 @@ import { UknowTheme } from "../../themes/ThemeUknow";
 
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
-  const { isLoggedIn } = useContext(AuthContext);
+  const {isLoggedIn} = useContext(AuthContext);
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
   if (isDesktop)
-    return (
+    return ( 
       <>
+   {/*    {console.log(context)} */}
         <Slide appear={false} direction="down" in={!trigger}>
           <AppBar sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
             <Toolbar

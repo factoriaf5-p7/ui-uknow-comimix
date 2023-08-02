@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { UknowTheme } from "./themes/ThemeUknow.tsx";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
