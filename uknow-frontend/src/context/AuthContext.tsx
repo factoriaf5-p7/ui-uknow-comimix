@@ -47,59 +47,44 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     email: '',
     password: '',
   });
-  const [user, setUser] = useState<User>({
-    _id: '',
-    name: '',
-    last_name: '',
-    email: '',
-    wallet_balance: 0,
-    created_courses: [],
-    chat_notifications_sent: [],
-    chat_notifications_received: [],
-    profile: '',
-    bought_courses: [],
-    __v: 0
-  },);
+
+  const [user, setUser] = useState<User | null>(null); // Cambiaremos el valor inicial a null
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     }
+
+    // Recuperar datos del usuario almacenados en el localStorage al cargar la página
+    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    setUser(storedUser);
   }, []);
 
   const loginMutation = useLoginUser();
   const login = async () => {
     try {
       const { data } = await loginMutation.mutateAsync(loginData);
-      console.log(data)
+      
       const token = data.token; 
-      const userData = data.user
+      const userData = data.user;
+
       localStorage.setItem('token', token);
-      console.log(data.user)
+      localStorage.setItem('user', JSON.stringify(userData)); // Almacenar datos del usuario en localStorage
+
       setIsLoggedIn(true);
-      setUser(userData)
+      setUser(userData);
     } catch (error) {
       console.error(error);
     }
   };
 
-
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('user'); // Eliminar los datos del usuario del localStorage al cerrar sesión
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    setUser( { _id: '',
-    name: '',
-    last_name: '',
-    email: '',
-    wallet_balance: 0,
-    created_courses: [],
-    chat_notifications_sent: [],
-    chat_notifications_received: [],
-    profile: '',
-    bought_courses: [],
-    __v: 0})
+    setUser(null); // Cambiar el estado del usuario a null al cerrar sesión
   };
 
   return (
