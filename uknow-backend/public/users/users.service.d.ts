@@ -105,7 +105,7 @@ export declare class UsersService {
             course_id: import("../courses/schemas/course.schema").Course;
             stars: number;
             commented: boolean;
-        }[], 0 | 1 | -1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20>[];
+        }[], 0 | 1 | -1 | 2 | 3 | 5 | 4 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20>[];
     }>;
     findBoughtCourses(user: any, filter: any): Promise<{
         message: string;
