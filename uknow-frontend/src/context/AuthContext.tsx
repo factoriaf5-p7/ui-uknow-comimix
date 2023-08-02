@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
 import LoginData from '../interfaces/login.interface';
 import { useLoginUser } from '../services/useMutation-LoginUser';
+import { User } from '../interfaces/user.interface';
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -8,6 +9,7 @@ interface AuthContextType {
   setLoginData: Dispatch<SetStateAction<LoginData>>;
   login: () => void;
   logout: () => void;
+  user: User | null;
 }
 
 const initialAuthContext: AuthContextType = {
@@ -19,6 +21,7 @@ const initialAuthContext: AuthContextType = {
   setLoginData: () => {},
   login: () => {},
   logout: () => {},
+  user: null,
 };
 
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
@@ -33,6 +36,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     email: '',
     password: '',
   });
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -45,9 +49,12 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const login = async () => {
     try {
       const { data } = await loginMutation.mutateAsync(loginData);
-      const token = data; 
+      const token = data.token; 
+      const user = data.user
       localStorage.setItem('token', token);
       setIsLoggedIn(true);
+      setUser(user)
+      return user
     } catch (error) {
       console.error(error);
     }
@@ -61,7 +68,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );
