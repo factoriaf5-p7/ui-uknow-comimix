@@ -39,7 +39,10 @@ let AuthService = exports.AuthService = class AuthService {
         return {
             message: 'Login success.',
             status: common_1.HttpStatus.OK,
-            data: token
+            data: {
+                token: token,
+                user: findUser
+            }
         };
     }
     async register(user) {

@@ -7,7 +7,7 @@ import { ListItem } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ListItemText } from '@mui/material';
-import { useCreatedCourses } from '../services/useCreatedCourses';
+import { useCreatedCourses } from '../../services/useCreatedCourses';
 import { EditNote } from '@mui/icons-material';
 
 function DashboardCourseList() {

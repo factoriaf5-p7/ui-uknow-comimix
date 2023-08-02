@@ -100,7 +100,16 @@ export class UsersService {
 	}
 
 	async getProfile(user: any) {
-		return await this.userModel.findOne({ email: user.email });
+		try {
+			const findUser = await this.userModel.findOne({ _id: user.sub }).select('-password -recovery_token');
+			return {
+				message: 'User retrived successfully',
+				status: HttpStatus.OK,
+				data: findUser
+			};
+		} catch (error) {
+			throw error;
+		}
 	}
 
 	async findOneAdmin(id : ObjectId) {

@@ -1,4 +1,4 @@
-import { HeroImage } from "../elements/HeroImage"
+import { HeroImage } from "../components/elements/HeroImage"
 
 function Hero() {
   return (

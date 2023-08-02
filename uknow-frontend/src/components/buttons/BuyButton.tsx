@@ -2,10 +2,10 @@ import { Button } from '@mui/material'
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { UknowTheme } from '../themes/ThemeUknow';
+import { UknowTheme } from '../../themes/ThemeUknow';
 import { useContext, useState } from 'react';
-import PurchaseModal from './PurchaseModal';
-import { AuthContext } from '../context/AuthContext';
+import PurchaseModal from '../modals/PurchaseModal';
+import { AuthContext } from '../../context/AuthContext';
 
 
 

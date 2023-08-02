@@ -1,6 +1,6 @@
 
 import { Box, Typography } from '@mui/material';
-import { UknowTheme } from '../themes/ThemeUknow';
+import { UknowTheme } from '../../themes/ThemeUknow';
 
 interface CourseHeaderProps {
   name: string;

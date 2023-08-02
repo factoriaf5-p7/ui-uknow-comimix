@@ -1,7 +1,7 @@
 import { Box, Grid } from '@mui/material';
-import { CardProduct } from './CardProduct';
+import { CardProduct } from '../cards/CardProduct';
 import { useNavigate } from 'react-router-dom';
-import { CourseData } from '../interfaces/course.interface';
+import { CourseData } from '../../interfaces/course.interface';
 
 interface CourseListProps {
   courses: CourseData[] | undefined;

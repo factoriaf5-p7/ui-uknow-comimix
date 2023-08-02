@@ -1,5 +1,5 @@
-import RecoverPasswordForm from "../components/RecoverPasswordForm"
-import Footer from "../elements/Footer"
+import RecoverPasswordForm from "../components/forms/RecoverPasswordForm"
+import Footer from "../components/footer/Footer"
 
 function Recover() {
   return (

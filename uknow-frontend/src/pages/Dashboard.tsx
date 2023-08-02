@@ -1,5 +1,5 @@
 
-import DashboardCourseList from '../elements/DashboardCourseList'
+import DashboardCourseList from '../components/elements/DashboardCourseList'
 import Footer from '../elements/Footer'
 import Navbar from '../elements/Navbar'
 
