@@ -54,8 +54,10 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUser = localStorage.getItem('user');
+    if (token && storedUser !== null) {
       setIsLoggedIn(true);
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 

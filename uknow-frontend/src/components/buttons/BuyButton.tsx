@@ -1,13 +1,11 @@
-import { Button } from '@mui/material'
-import { useMutation } from '@tanstack/react-query';
+import { Button } from '@mui/material';
+import { useMutation } from '@tanstack/react-query'; 
 import { useNavigate } from 'react-router-dom';
 
 import { UknowTheme } from '../../themes/ThemeUknow';
 import { useContext, useState } from 'react';
 import PurchaseModal from '../modals/PurchaseModal';
 import { AuthContext } from '../../context/AuthContext';
-
-
 
 interface BuyButtonProps {
   courseId: string;
@@ -17,13 +15,13 @@ interface PurchaseResponse {
   message: string;
 }
 
-const purchaseCourse = async (courseId: string): Promise<PurchaseResponse> => {
+const purchaseCourse = async (variables: { courseId: string; userId: string }): Promise<PurchaseResponse> => {
   const response = await fetch(`http://localhost:3000/courses/purchase`, {
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ courseId }),
+    body: JSON.stringify(variables),
   });
 
   if (!response.ok) {
@@ -34,20 +32,18 @@ const purchaseCourse = async (courseId: string): Promise<PurchaseResponse> => {
   return data;
 };
 
-
 const BuyButton = ({ courseId }: BuyButtonProps) => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const purchaseMutation = useMutation(purchaseCourse);
-
   const navigate = useNavigate();
 
-  
-const handleOpenModal = () => {
+  const purchaseMutation = useMutation(purchaseCourse); 
+
+  const handleOpenModal = () => {
     if (isLoggedIn) {
       setIsModalOpen(true);
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
 
@@ -57,12 +53,21 @@ const handleOpenModal = () => {
 
   const handlePurchaseConfirm = async () => {
     try {
-      const response = await purchaseMutation.mutateAsync(courseId);
-      console.log(response.message); 
+      if (!user) {
+        console.log('User not authenticated. Please log in to make a purchase.');
+        return;
+      }
+
+      const response = await purchaseMutation.mutateAsync({ courseId, userId: user._id });
+      console.log(response.message);
+
+      
+      navigate(`/course/${courseId}`);
+      
+
       handleCloseModal();
     } catch (error) {
       console.error(error);
-      
     }
   };
 
