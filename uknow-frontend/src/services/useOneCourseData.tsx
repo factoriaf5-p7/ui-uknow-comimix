@@ -10,6 +10,10 @@ const useOneCourseData = (_id: string) => {
         throw new Error('Failed to fetch course data');
       }
       const data = await response.json();
+<<<<<<< HEAD
+=======
+      console.log('inquery', data.data)
+>>>>>>> createcourse/raul
       return data.data;
     },
     staleTime: 3000000,

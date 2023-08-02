@@ -285,24 +285,25 @@ export class CoursesService {
 
 	async update(id: ObjectId, updateCourse: UpdateCourseDto) {
 		try {
-			// user que quiere actualizar curso
 			const { data, message, status } = await this.userService.findOne(id);
 			
-			const entries = Object.entries(data.created_courses);
+			const entries = Object.entries(data.created_courses).flat(Infinity);
 			let courseUpdated;
+			let isOwner = false;
 
-			entries.forEach(async( course) => {
-				if (String(updateCourse._id) === String(course[1]._id)) {
-					courseUpdated = await this.courseModel.findOneAndUpdate(
-						{ _id: updateCourse._id },
-						{
-							...updateCourse,
-						},
-					);
-				} else {
-					throw new Error('Course not found');
-				}
+			entries.forEach(course => {
+				if (String(updateCourse._id) === String(course._id)) isOwner = true;
 			});
+
+			if(isOwner){
+				courseUpdated = await this.courseModel.findOneAndUpdate(
+					{ _id: updateCourse._id },
+					{ ...updateCourse },
+				);
+			} else {
+				throw new HttpException('Course not found', HttpStatus.BAD_REQUEST);
+			}
+
 			return {
 				message: 'Course updated successfully',
 				status: HttpStatus.OK,
