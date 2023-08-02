@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CourseData } from '../interfaces/course.interface';
 
 const useOneCourseData = (_id: string) => {
-  const { data: oneCourse, isLoading, error, isFetching } = useQuery<CourseData>({
+  const { data: oneCourse, isLoading, error  } = useQuery<CourseData>({
     queryKey: ['course', _id],
     queryFn: async (): Promise<CourseData> => {
       const response = await fetch(`http://localhost:3000/courses/${_id}`);
@@ -19,7 +19,7 @@ const useOneCourseData = (_id: string) => {
     oneCourse,
     isLoading,
     error,
-    isFetching,
+    
   };
 };
 
