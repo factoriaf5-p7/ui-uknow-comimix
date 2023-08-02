@@ -37,7 +37,10 @@ export class AuthService {
 		return { 
 			message: 'Login success.', 
 			status: HttpStatus.OK,
-			data: token
+			data: {
+				token: token,
+				user: findUser
+			}
 		};
 	}
 
