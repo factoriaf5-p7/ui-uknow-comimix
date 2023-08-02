@@ -1,26 +1,25 @@
-
-
 import { useQuery } from "@tanstack/react-query";
 import { CourseData } from '../interfaces/course.interface';
 
-const useOneCourseData = (course_id:string) => {
-  
-
-  const { isLoading, isError, data: oneCourse } = useQuery<CourseData>({
-    queryKey: ['course',course_id],
+const useOneCourseData = (_id: string) => {
+  const { data: oneCourse, isLoading, error  } = useQuery<CourseData>({
+    queryKey: ['course', _id],
     queryFn: async (): Promise<CourseData> => {
-      const response = await fetch(`http://localhost:3000/courses/${course_id}`);
+      const response = await fetch(`http://localhost:3000/courses/${_id}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch course data');
+      }
       const data = await response.json();
-      console.log(data.data);
       return data.data;
     },
     staleTime: 3000000,
   });
 
   return {
-    isLoading,
-    isError,
     oneCourse,
+    isLoading,
+    error,
+    
   };
 };
 

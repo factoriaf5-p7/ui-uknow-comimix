@@ -1,53 +1,44 @@
 
-import { Box } from "@mui/system";
-import BuyButton from "../buttons/BuyButton";
-import CourseContent from "./CourseContent";
-import CourseDetails from "./CourseDetails";
-import CourseHeader from "./CourseHeader";
-import useOneCourseData from "../../services/useOneCourseData";
+import { Box,  Typography, Grid, Paper } from "@mui/material";
 
+import { CourseData } from "../../interfaces/course.interface";
 
-const Content = () => {
-  const { isLoading, isError, oneCourse } = useOneCourseData();
+interface CourseListProps {
+  oneCourse: CourseData ;
+}
+const Content = ({ oneCourse }: CourseListProps) => {
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError || !oneCourse) {
-    return <div>Error al cargar el curso.</div>;
-  }
-
-  const isValidToken = () => {
-    const token = localStorage.getItem('token');
-    return token 
-  };
-
-
+ 
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" p={4}>
-      <CourseHeader name={oneCourse.name} description={oneCourse.description} />
-      <Box
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-between"
-        width="100%"
-        alignItems="center"
-      >
-        <Box flexBasis="48%">
-          <CourseDetails course={oneCourse} />
-        </Box>
-        {isValidToken() && (
-          <Box flexBasis="48%">
-            <CourseContent content={oneCourse.content} />
-          </Box>
-        )}
-      </Box>
-      <BuyButton courseId={oneCourse._id}/>
+    <Box p={4}>
+      <Typography variant="h4">{oneCourse.name}</Typography>
+      <Typography variant="body1">{oneCourse.description}</Typography>
+
+      {/* Agregar más detalles del curso utilizando los componentes de Material-UI */}
+      <Grid container spacing={2} mt={4}>
+        <Grid >
+          <Paper>
+            <Box p={2}>
+              <Typography variant="h6">Price: ${oneCourse.price}</Typography>
+              <Typography variant="h6">Topic: {oneCourse.topic}</Typography>
+              <Typography variant="h6">Difficulty: {oneCourse.difficulty}</Typography>
+              <Typography variant="h6">Tags: {oneCourse.tags.join(", ")}</Typography>
+            </Box>
+          </Paper>
+        </Grid>
+
+        <Grid >
+          <Paper>
+            <Box p={2}>
+              <Typography variant="h6">Content:</Typography>
+              <Typography variant="body2">{oneCourse.content}</Typography>
+            </Box>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
 
-
-export default Content;
+export default Content

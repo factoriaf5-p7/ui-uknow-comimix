@@ -11,7 +11,7 @@ import Recover from './pages/Recover'
 import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
 import AuthContexProvider from './context/AuthContext'
-
+import EditCourse from './pages/EditCourse'
 
 
 function App() {
@@ -23,8 +23,9 @@ function App() {
       <Routes>
         <Route path='/' element={<Hero />} />
         <Route path='/home' element={<Home />} />
-        <Route path='/course/:_id' element={<Course />} />
+        <Route path='/course' element={<Course />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/edit' element={<EditCourse />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Register />} />

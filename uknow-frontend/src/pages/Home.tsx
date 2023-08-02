@@ -12,6 +12,7 @@ import { AuthContext } from '../context/AuthContext';
 
 
 
+
 function Home() {
   const { isLoggedIn, user } = useContext(AuthContext); 
 

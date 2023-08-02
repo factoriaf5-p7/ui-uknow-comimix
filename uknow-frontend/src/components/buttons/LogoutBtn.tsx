@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
-import React from 'react'
+
 import { useNavigate } from 'react-router-dom';
+
 
 const LogoutBtn = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const LogoutBtn = () => {
       <Button variant="outlined" color="secondary" onClick={handleLogout}>
         Cerrar sesión
       </Button>
+      
     );
 }
 
