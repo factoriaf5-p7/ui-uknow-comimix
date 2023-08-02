@@ -140,23 +140,17 @@ export const CourseModal = ({ open, onClose, course }: CourseModalProps) => {
           <div>Error loading comments</div>
         ) : (
           <div>
-            <h3>Comments:</h3>
-            {comments?.slice(0, 2).map((comment) => (
+          <h3 style={{ marginBottom: "5px" }}>Comments:</h3>
+          <div style={{ maxHeight: "100px", overflowY: "auto" }}>
+            {comments?.map((comment) => (
               <div key={comment.course_id}>
                 <p>{comment.text}</p>
-                {/*    <p>By: {comment.user_id}</p> */}
+                {/* <p>By: {comment.user_id}</p> */}
               </div>
             ))}
-            <div style={{ maxHeight: "400px", overflowY: "auto" }}>
-              {comments?.slice(2).map((comment) => (
-                <div key={comment.course_id}>
-                  <p>{comment.text}</p>
-                  <p>By: {comment.user_id}</p>
-                </div>
-              ))}
-            </div>
           </div>
-        )}
+        </div>
+      )}
       </DialogContent>
       <BuyButton courseId={course._id} />
     </Dialog>
