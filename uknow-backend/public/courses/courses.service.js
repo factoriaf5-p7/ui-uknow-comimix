@@ -387,7 +387,7 @@ let CoursesService = exports.CoursesService = class CoursesService {
                     stars: 0,
                     commented: false
                 };
-                await this.userService.updateUserBoughtCourses(user._id, object);
+                await this.userService.updateUserBoughtCourses(user, object);
                 return {
                     message: 'Course purchased.',
                     status: common_1.HttpStatus.OK,

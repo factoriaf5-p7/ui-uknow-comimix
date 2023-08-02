@@ -1,33 +1,29 @@
-
 import { Box } from "@mui/system";
 import BuyButton from "../buttons/BuyButton";
 import CourseContent from "./CourseContent";
 import CourseDetails from "./CourseDetails";
 import CourseHeader from "./CourseHeader";
 import useOneCourseData from "../../services/useOneCourseData";
+import { CourseData } from "../../interfaces/course.interface";
 
+interface ContentProps {
+  course: CourseData;
+}
 
-const Content = () => {
-  const { isLoading, isError, oneCourse } = useOneCourseData();
+const Content = ({ course }: ContentProps) => {
+  const { oneCourse, isLoading, error } = useOneCourseData(course._id);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  if (isError || !oneCourse) {
-    return <div>Error al cargar el curso.</div>;
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
-
-  const isValidToken = () => {
-    const token = localStorage.getItem('token');
-    return token 
-  };
-
-
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" p={4}>
-      <CourseHeader name={oneCourse.name} description={oneCourse.description} />
+      <CourseHeader name={oneCourse?.name} description={oneCourse?.description} />
       <Box
         display="flex"
         flexDirection="row"
@@ -36,18 +32,19 @@ const Content = () => {
         alignItems="center"
       >
         <Box flexBasis="48%">
-          <CourseDetails course={oneCourse} />
+          {oneCourse ? <CourseDetails course={oneCourse} /> : <div>No course details available</div>}
         </Box>
-        {isValidToken() && (
+        {oneCourse ? (
           <Box flexBasis="48%">
             <CourseContent content={oneCourse.content} />
           </Box>
+        ) : (
+          <div>No course content available</div>
         )}
       </Box>
-      <BuyButton courseId={oneCourse._id}/>
+      <BuyButton courseId={oneCourse?._id} />
     </Box>
   );
 };
-
 
 export default Content;

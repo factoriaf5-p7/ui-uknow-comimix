@@ -12,47 +12,79 @@ import Dashboard from "../pages/Dashboard";
 import Home from "../pages/Home";
 import { MemoryRouter } from "react-router-dom";
 import { AuthContext, AuthContextType } from "../context/AuthContext";
-import {User} from "../interfaces/user.interface"
+import { User } from "../interfaces/user.interface";
+import { CourseData } from "../interfaces/course.interface";
 
 const RouterWrapper = ({ children }: any) => {
-  return (
-    <MemoryRouter>
-              {children}
-    </MemoryRouter>
-  );
+  return <MemoryRouter>{children}</MemoryRouter>;
 };
 const mockAuthContextValue: AuthContextType = {
-    isLoggedIn: true,
-    loginData: {
-      email: '',
-      password: '',
-    },
-    setLoginData: () => {},
-    login: () => {},
-    logout: () => {},
-    user: {
-        _id: "1a",
-        name: "john",
-        last_name: "doe",
-        email: "john@example.com",
-        wallet_balance: 1000,
-        created_courses: [],
-        chat_notifications_sent: [],
-        chat_notifications_received: [], 
-        profile: "yes",
-        bought_courses: [],
-        __v: 0
-    } as User,
+  isLoggedIn: true,
+  loginData: {
+    email: "",
+    password: "",
+  },
+  setLoginData: () => {},
+  login: () => {},
+  logout: () => {},
+  user: {
+    _id: "1a",
+    name: "john",
+    last_name: "doe",
+    email: "john@example.com",
+    wallet_balance: 1000,
+    created_courses: [],
+    chat_notifications_sent: [],
+    chat_notifications_received: [],
+    profile: "yes",
+    bought_courses: [],
+    __v: 0,
+  } as User,
+};
+
+interface UseOneCourseDataMock {
+  oneCourse: CourseData | null;
+  isLoading: boolean;
+  error: any | null;
+}
+
+export default function useOneCourseData(
+  _id: string
+): UseOneCourseDataMock {
+  const mockCourse: CourseData = {
+    _id: "mockCourseId",
+    name: "string",
+    price: 100,
+    topic: "string",
+    difficulty: "string",
+    tags: [],
+    bought: true,
+    content: "string",
+    createdAt: "string",
+    updatedAt: "string",
+    description: "string",
+    image: "string",
+    average: 3,
   };
-  
-  const AuthContextMockProvider = ({ children }: { children: React.ReactNode }) => {
-    return (
-      <AuthContext.Provider value={mockAuthContextValue}>
-        {children}
-      </AuthContext.Provider>
-    );
+
+  return {
+    oneCourse: mockCourse,
+    isLoading: false,
+    error: null,
   };
-  
+}
+
+const AuthContextMockProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return (
+    <AuthContext.Provider value={mockAuthContextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 describe("Checks if the pages render the pages correctly", () => {
   test("Snapshot test for Course page", () => {
@@ -60,7 +92,11 @@ describe("Checks if the pages render the pages correctly", () => {
 
     const html = renderToString(
       <QueryClientProvider client={queryClient}>
-        <Course />
+      <AuthContextMockProvider> {/* Assuming you have defined this mock provider */}
+          <RouterWrapper>
+            <Course />
+          </RouterWrapper>
+        </AuthContextMockProvider>
       </QueryClientProvider>
     );
 
@@ -72,11 +108,10 @@ describe("Checks if the pages render the pages correctly", () => {
     const html = renderToString(
       <QueryClientProvider client={queryClient}>
         <RouterWrapper>
-        <AuthContextMockProvider>
+          <AuthContextMockProvider>
             <Dashboard />
-          </AuthContextMockProvider>        
-          </RouterWrapper>
-
+          </AuthContextMockProvider>
+        </RouterWrapper>
       </QueryClientProvider>
     );
 
@@ -131,7 +166,7 @@ describe("Checks if the pages render the pages correctly", () => {
     const html = renderToString(
       <QueryClientProvider client={queryClient}>
         <RouterWrapper>
-        <NotFound />
+          <NotFound />
         </RouterWrapper>
       </QueryClientProvider>
     );
@@ -187,7 +222,7 @@ describe("Checks if the pages render the pages correctly", () => {
     const html = renderToString(
       <QueryClientProvider client={queryClient}>
         <RouterWrapper>
-        <UnderConstruction />
+          <UnderConstruction />
         </RouterWrapper>
       </QueryClientProvider>
     );
