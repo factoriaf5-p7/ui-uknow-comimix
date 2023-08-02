@@ -1,14 +1,19 @@
+import Navbar from '../components/navbar/Navbar';
+import { useLocation } from 'react-router-dom';
+import CourseDetails from '../components/course/CourseDetails';
 
-import Content from '../components/course/Content'
-import Navbar from '../components/navbar/Navbar'
+
 
 const Course = () => {
+
+  const location = useLocation()
+  const course = location.state
   return (
-  <>
-    <Navbar/>
-    <Content/>
-  </>
-  )
+    <>
+      <Navbar />
+      <CourseDetails course={course}/>
+    </>
+  );
 }
 
-export default Course
+export default Course;

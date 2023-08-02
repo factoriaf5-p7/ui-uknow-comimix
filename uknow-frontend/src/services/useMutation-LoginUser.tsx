@@ -23,8 +23,12 @@ export const useLoginUser = () => {
   const navigate = useNavigate(); 
 
   return useMutation(loginUser, {
-    onSuccess: () => {
-      navigate("/home");
+    onSuccess: (data) => {
+      if (data.success) {
+        navigate("/home");
+      } else {
+        throw new Error("Email or password is incorrect");
+      }
     },
   });
 };

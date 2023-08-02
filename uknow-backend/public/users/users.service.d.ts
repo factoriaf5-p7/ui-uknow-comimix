@@ -135,7 +135,10 @@ export declare class UsersService {
             commented: boolean;
         }[];
     }>;
-    updateUserBoughtCourses(userId: mongoose.Types.ObjectId, course: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
+    updateUserBoughtCourses(user: any, course: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
+        _id: mongoose.Types.ObjectId;
+    }, never>>;
+    udpateBalance(userBalanceDto: any): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
         _id: mongoose.Types.ObjectId;
     }, never>>;
     updateCommentedCourse(createCommentDto: CreateCommentDto): Promise<void>;
