@@ -9,7 +9,6 @@ export function LoginForm() {
  
   const {loginData, setLoginData , login} = useContext(AuthContext);
 
- 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

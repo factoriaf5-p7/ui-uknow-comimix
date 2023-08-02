@@ -3,7 +3,7 @@ import LoginData from '../interfaces/login.interface';
 import { useLoginUser } from '../services/useMutation-LoginUser';
 import { User } from '../interfaces/user.interface';
 
-interface AuthContextType {
+export interface AuthContextType {
   isLoggedIn: boolean;
   loginData: LoginData;
   setLoginData: Dispatch<SetStateAction<LoginData>>;
