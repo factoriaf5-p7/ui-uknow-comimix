@@ -4,16 +4,14 @@ import { TextField, Button, Snackbar } from "@mui/material";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { UknowTheme } from "../../themes/ThemeUknow";
-import { useLoginUser } from "../../services/useMutation-LoginUser";
 import MuiAlert from "@mui/material/Alert";
 
 export function LoginForm() {
-  const { loginData, setLoginData } = useContext(AuthContext);
+  const { loginData, setLoginData, login } = useContext(AuthContext);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [generalError, setGeneralError] = useState("");
 
-  const handleLogin = useLoginUser();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,12 +27,15 @@ export function LoginForm() {
     }
 
     try {
-      await handleLogin.mutateAsync(loginData);
+      login()
     } catch (error) {
-      setGeneralError("Email or password is incorrect");
+      if (error instanceof Error) {
+        setGeneralError(error.message);
+      } else {
+        setGeneralError("An error occurred");
+      }
     }
   };
-
   const handleCloseSnackbar = () => {
     setGeneralError("");
   };
@@ -133,3 +134,5 @@ export function LoginForm() {
     </Container>
   );
 }
+
+
