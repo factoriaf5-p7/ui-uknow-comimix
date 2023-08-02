@@ -6,8 +6,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 
-import RatingStars from "./RatingStars";
-import { CourseData } from "../interfaces/course.interface";
+import RatingStars from "../elements/RatingStars";
+import { CourseData } from "../../interfaces/course.interface";
 
 interface CardContentSectionProps {
   courseData: CourseData;
