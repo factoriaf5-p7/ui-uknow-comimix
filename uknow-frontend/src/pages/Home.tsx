@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import CourseList from "../components/course/CourseList";
 import SearchBar from '../components/elements/SearchBar';
 import uknowImg from '../assets/uknow.png';
@@ -7,6 +7,7 @@ import { useAllCourses } from "../services/useQuery-AllCourses";
 import { CourseData } from '../interfaces/course.interface';
 import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
+import { AuthContext } from '../context/AuthContext';
 
 function Home() {
   const { isLoading, isError, courseList: allCourses } = useAllCourses();
@@ -17,7 +18,8 @@ function Home() {
     setCourses(searchResults);
     setIsSearching(true);
   };
-
+  const{user} = useContext(AuthContext)
+  console.log(user)
   return (
     <div>
       <Navbar/>

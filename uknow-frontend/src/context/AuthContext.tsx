@@ -9,7 +9,7 @@ interface AuthContextType {
   setLoginData: Dispatch<SetStateAction<LoginData>>;
   login: () => void;
   logout: () => void;
-  user: User | null;
+  user: User  ;
 }
 
 const initialAuthContext: AuthContextType = {
@@ -21,9 +21,20 @@ const initialAuthContext: AuthContextType = {
   setLoginData: () => {},
   login: () => {},
   logout: () => {},
-  user: null,
-};
-
+  user: {
+    _id: '',
+    name: '',
+    last_name: '',
+    email: '',
+    wallet_balance: 0,
+    created_courses: [],
+    chat_notifications_sent: [],
+    chat_notifications_received: [],
+    profile: '',
+    bought_courses: [],
+    __v: 0
+  },
+}
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
 interface AuthContextProviderProps {
@@ -36,7 +47,19 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     email: '',
     password: '',
   });
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User>({
+    _id: '',
+    name: '',
+    last_name: '',
+    email: '',
+    wallet_balance: 0,
+    created_courses: [],
+    chat_notifications_sent: [],
+    chat_notifications_received: [],
+    profile: '',
+    bought_courses: [],
+    __v: 0
+  },);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -49,12 +72,13 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const login = async () => {
     try {
       const { data } = await loginMutation.mutateAsync(loginData);
+      console.log(data)
       const token = data.token; 
-      const user = data.user
+      const userData = data.user
       localStorage.setItem('token', token);
+      console.log(data.user)
       setIsLoggedIn(true);
-      setUser(user)
-      return user
+      setUser(userData)
     } catch (error) {
       console.error(error);
     }
@@ -65,6 +89,17 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.removeItem('token');
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
+    setUser( { _id: '',
+    name: '',
+    last_name: '',
+    email: '',
+    wallet_balance: 0,
+    created_courses: [],
+    chat_notifications_sent: [],
+    chat_notifications_received: [],
+    profile: '',
+    bought_courses: [],
+    __v: 0})
   };
 
   return (
