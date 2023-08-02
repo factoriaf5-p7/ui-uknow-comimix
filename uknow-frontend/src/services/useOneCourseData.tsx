@@ -1,15 +1,15 @@
 
-import { useParams } from 'react-router-dom';
+
 import { useQuery } from "@tanstack/react-query";
 import { CourseData } from '../interfaces/course.interface';
 
-const useOneCourseData = () => {
-  const { _id } = useParams();
+const useOneCourseData = (course_id:string) => {
+  
 
   const { isLoading, isError, data: oneCourse } = useQuery<CourseData>({
-    queryKey: ['course', _id],
+    queryKey: ['course',course_id],
     queryFn: async (): Promise<CourseData> => {
-      const response = await fetch(`http://localhost:3000/courses/${_id}`);
+      const response = await fetch(`http://localhost:3000/courses/${course_id}`);
       const data = await response.json();
       console.log(data.data);
       return data.data;
