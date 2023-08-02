@@ -78,6 +78,9 @@ export declare class UsersController {
             _id: import("mongoose").Types.ObjectId;
         }, never>;
     }>;
+    updateBalance(userBalanceDto: any): Promise<import("mongoose").Document<unknown, {}, import("./schemas/user.schema").User> & Omit<import("./schemas/user.schema").User & {
+        _id: import("mongoose").Types.ObjectId;
+    }, never>>;
     updateUserByAdmin(updateUserByAdminDto: UpdateUserByAdminDto): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;

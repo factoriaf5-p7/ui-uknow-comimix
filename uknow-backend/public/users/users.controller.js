@@ -44,6 +44,9 @@ let UsersController = exports.UsersController = class UsersController {
     update(updateUserDto) {
         return this.usersService.update(updateUserDto);
     }
+    updateBalance(userBalanceDto) {
+        return this.usersService.udpateBalance(userBalanceDto);
+    }
     updateUserByAdmin(updateUserByAdminDto) {
         return this.usersService.updateUserByAdmin(updateUserByAdminDto);
     }
@@ -99,6 +102,13 @@ __decorate([
     __metadata("design:paramtypes", [update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
+__decorate([
+    (0, common_1.Patch)('admin/update-balance/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateBalance", null);
 __decorate([
     (0, common_1.Patch)('admin'),
     __param(0, (0, common_1.Body)()),
