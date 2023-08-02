@@ -40,9 +40,9 @@ export declare class AuthService {
         status: HttpStatus;
         data: {
             token: string;
-            user: import("mongoose").Document<unknown, {}, import("../users/schemas/user.schema").User> & Omit<import("../users/schemas/user.schema").User & {
+            user: import("mongoose").FlattenMaps<import("../users/schemas/user.schema").User> & {
                 _id: import("mongoose").Types.ObjectId;
-            }, never>;
+            };
         };
     }>;
     register(user: RegisterUserDto): Promise<{

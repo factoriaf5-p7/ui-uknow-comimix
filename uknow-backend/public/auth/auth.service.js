@@ -36,6 +36,7 @@ let AuthService = exports.AuthService = class AuthService {
             email: findUser.email
         };
         const token = await this.jwtService.signAsync(payload, { expiresIn: '1d' });
+        delete findUser.password;
         return {
             message: 'Login success.',
             status: common_1.HttpStatus.OK,

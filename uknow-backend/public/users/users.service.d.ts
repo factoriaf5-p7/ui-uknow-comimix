@@ -34,9 +34,9 @@ export declare class UsersService {
             _id: mongoose.Types.ObjectId;
         }, never>)[];
     }>;
-    findOneLogin(email: string): Promise<mongoose.Document<unknown, {}, User> & Omit<User & {
+    findOneLogin(email: string): Promise<mongoose.FlattenMaps<User> & {
         _id: mongoose.Types.ObjectId;
-    }, never>>;
+    }>;
     findOne(id: ObjectId): Promise<{
         message: string;
         status: HttpStatus;
