@@ -54,11 +54,13 @@ export class CoursesService {
 	
 			const boughtCourses = [];
 
-			const entries = Object.entries(data.bought_courses);
+			if(data.bought_courses.length !== 0){
+				const entries = Object.entries(data.bought_courses);
 
-			entries.forEach(course => { 
-				boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
-			});
+				entries.forEach(course => { 
+					boughtCourses.push({ _id: course[1].course_id['_id'], name: course[1].course_id.name });
+				});
+			}
 
 			return {
 				message: 'Retrieved all courses purchased by user successfully',
