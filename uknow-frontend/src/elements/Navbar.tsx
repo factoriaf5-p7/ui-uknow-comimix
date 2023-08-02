@@ -13,10 +13,12 @@ import { AuthContext } from "../context/AuthContext";
 import { UknowTheme } from "../themes/ThemeUknow";
  import AvatarBtn from "../components/AvatarBtn";
 
+
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
   const { isLoggedIn } = useContext(AuthContext);
   const theme = useTheme();
+ 
 
   const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
@@ -24,7 +26,7 @@ export default function HideAppBar() {
     return (
       <>
         <Slide appear={false} direction="down" in={!trigger}>
-          <AppBar sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
+          <AppBar  sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
             <Toolbar
               style={{
                 display: "flex",
