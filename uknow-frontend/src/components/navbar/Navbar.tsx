@@ -12,6 +12,8 @@ import { useTheme } from "@mui/material/styles";
 import { AuthContext } from "../../context/AuthContext";
 import { UknowTheme } from "../../themes/ThemeUknow";
  import AvatarBtn from "../buttons/AvatarBtn";
+import UserBalance from "./UserBalance";
+
 
 
 export default function HideAppBar() {
@@ -23,33 +25,43 @@ export default function HideAppBar() {
   const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
   if (isDesktop)
-    return (
-      <>
-        <Slide appear={false} direction="down" in={!trigger}>
-          <AppBar  sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
-            <Toolbar
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "10px",
-              }}
-            >
+  return (
+    <>
+      <Slide appear={false} direction="down" in={!trigger}>
+        <AppBar sx={{ backgroundColor: UknowTheme.palette.uOrange.main }}>
+          <Toolbar
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "row", 
+              alignItems: "center",
+              padding: "10px",
+           
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center" }}>
               <LogoNavbar />
-               <div>
-                {!isLoggedIn ? (
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {!isLoggedIn ? (
+                <>
+                  <LoginBtn />
+                </>
+              ) : (
+                < div style={{gap : '1rem' , display : 'flex', flexDirection : 'row'}}>
                   <>
-                    <LoginBtn />
-                
+                  <UserBalance />
                   </>
-                ) : (
-                  <AvatarBtn/>
-                )}
-              </div> 
-            </Toolbar>
-          </AppBar>
-        </Slide>
-      </>
-    );
+                  <>
+                  <AvatarBtn />
+                  </>
+                </div>
+              )}
+            </div>
+          </Toolbar>
+        </AppBar>
+      </Slide>
+    </>
+  );
 }
 
