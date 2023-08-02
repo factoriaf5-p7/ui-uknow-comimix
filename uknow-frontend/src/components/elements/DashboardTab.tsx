@@ -10,19 +10,16 @@ import { useBoughtCourses } from "../../services/useBoughtCourses"
 import { AuthContext } from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom"
 
-interface Props {
-  userId: string;
-}
-
-function DashboardTab(props: Props) {
+function DashboardTab() {
   const { isLogged, user } = useContext(AuthContext);
   const navigate = useNavigate();
   // if(!isLogged) navigate('/login');
 
-  const { userId } = props;
-  const createdCourses = useCreatedCourses('64c7a7ccbb9cc787c92592f9');
+  console.log(user)
+
+  const createdCourses = useCreatedCourses(user._id);
   createdCourses.listType = 'Created';
-  const boughtCourses = useBoughtCourses('64c7a7ccbb9cc787c92592f9');
+  const boughtCourses = useBoughtCourses(user._id);
   boughtCourses.listType = 'Bought';
 
     const [value, setValue] = useState(0);
