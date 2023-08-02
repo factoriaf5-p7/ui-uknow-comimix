@@ -1,12 +1,13 @@
-import { useState } from 'react';
-import CourseList from "../elements/CourseList";
-import SearchBar from '../components/SearchBar';
+import {  useState } from 'react';
+import CourseList from "../components/course/CourseList";
+import SearchBar from '../components/elements/SearchBar';
 import uknowImg from '../assets/uknow.png';
 import { Container } from "@mui/system";
 import { useAllCourses } from "../services/useQuery-AllCourses";
 import { CourseData } from '../interfaces/course.interface';
-import Navbar from '../elements/Navbar';
-import Footer from '../elements/Footer';
+import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/footer/Footer';
+
 
 function Home() {
   const { isLoading, isError, courseList: allCourses } = useAllCourses();

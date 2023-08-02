@@ -1,7 +1,7 @@
 
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import { uColors } from '../themes/ThemeUknow';
+import { uColors } from '../../themes/ThemeUknow';
 
 interface RatingStarsProps {
   average: number;

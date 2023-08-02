@@ -1,10 +1,10 @@
 
 import { Box } from "@mui/system";
-import BuyButton from "../components/BuyButton";
-import CourseContent from "../components/CourseContent";
-import CourseDetails from "../components/CourseDetails";
-import CourseHeader from "../components/CourseHeader";
-import useOneCourseData from "../services/useOneCourseData";
+import BuyButton from "../buttons/BuyButton";
+import CourseContent from "./CourseContent";
+import CourseDetails from "./CourseDetails";
+import CourseHeader from "./CourseHeader";
+import useOneCourseData from "../../services/useOneCourseData";
 
 
 const Content = () => {

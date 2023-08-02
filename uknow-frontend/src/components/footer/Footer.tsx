@@ -9,8 +9,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { UknowTheme } from '../themes/ThemeUknow';
-import { AuthContext } from '../context/AuthContext';
+import { UknowTheme } from '../../themes/ThemeUknow';
+import { AuthContext } from '../../context/AuthContext';
 
 const Footer = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);

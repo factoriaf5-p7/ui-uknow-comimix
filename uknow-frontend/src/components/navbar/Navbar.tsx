@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import LoginBtn from "../components/LoginBtn";
-import LogoNavbar from "../components/LogoNavbar";
+import LoginBtn from "../buttons/LoginBtn";
+import LogoNavbar from "./LogoNavbar";
 import {
   AppBar,
   Slide,
@@ -9,9 +9,9 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { AuthContext } from "../context/AuthContext";
-import { UknowTheme } from "../themes/ThemeUknow";
- import AvatarBtn from "../components/AvatarBtn";
+import { AuthContext } from "../../context/AuthContext";
+import { UknowTheme } from "../../themes/ThemeUknow";
+ import AvatarBtn from "../buttons/AvatarBtn";
 
 
 export default function HideAppBar() {

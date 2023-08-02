@@ -1,8 +1,8 @@
 import { CardMedia, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { CourseData } from "../interfaces/course.interface";
-import { UknowTheme } from "../themes/ThemeUknow";
-import RatingStars from "./RatingStars";
+import { CourseData } from "../../interfaces/course.interface";
+import { UknowTheme } from "../../themes/ThemeUknow";
+import RatingStars from "../elements/RatingStars";
 
 
 
