@@ -15,8 +15,6 @@ function DashboardTab() {
   const navigate = useNavigate();
   // if(!isLogged) navigate('/login');
 
-  console.log(user)
-
   const createdCourses = useCreatedCourses(user._id);
   createdCourses.listType = 'Created';
   const boughtCourses = useBoughtCourses(user._id);
