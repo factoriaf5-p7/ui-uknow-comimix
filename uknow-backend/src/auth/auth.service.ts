@@ -33,6 +33,7 @@ export class AuthService {
 		};
 		
 		const token = await this.jwtService.signAsync(payload, { expiresIn: '1d' });
+		delete findUser.password;
 		
 		return { 
 			message: 'Login success.', 

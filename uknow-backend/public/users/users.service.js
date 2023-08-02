@@ -84,7 +84,7 @@ let UsersService = exports.UsersService = class UsersService {
         }
     }
     async findOneLogin(email) {
-        return await this.userModel.findOne({ email });
+        return await this.userModel.findOne({ email }).select('-recovery_token -__v').lean();
     }
     async findOne(id) {
         try {
