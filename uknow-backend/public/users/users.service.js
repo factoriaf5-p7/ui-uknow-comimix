@@ -101,11 +101,11 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async getProfile(user) {
         try {
-            const user = await this.userModel.findOne({ _id: id }).select('-password -recovery_token');
+            const findUser = await this.userModel.findOne({ _id: user.sub }).select('-password -recovery_token');
             return {
                 message: 'User retrived successfully',
                 status: common_1.HttpStatus.OK,
-                data: user
+                data: findUser
             };
         }
         catch (error) {
