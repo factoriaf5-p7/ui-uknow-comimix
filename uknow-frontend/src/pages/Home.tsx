@@ -3,7 +3,7 @@ import CourseList from "../elements/CourseList";
 import SearchBar from '../components/SearchBar';
 import uknowImg from '../assets/uknow.png';
 import { Container } from "@mui/system";
-import { useAllCourses } from "../hooks/useQuery-AllCourses";
+import { useAllCourses } from "../services/useQuery-AllCourses";
 import { CourseData } from '../interfaces/course.interface';
 import Navbar from '../elements/Navbar';
 import Footer from '../elements/Footer';

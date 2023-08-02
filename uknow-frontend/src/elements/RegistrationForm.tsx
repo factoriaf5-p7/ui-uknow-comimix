@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Box, Container, TextField, Button } from "@mui/material";
-import { useUserRegistrationMutation } from "../hooks/useMutation-UserRegistration";
+import { useUserRegistrationMutation } from "../services/useMutation-UserRegistration";
 import { UknowTheme } from '../themes/ThemeUknow';
 
 export const RegistrationForm = () => {

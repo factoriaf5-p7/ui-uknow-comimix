@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -47,8 +47,11 @@ const AvatarBtn = () => {
     setOpen(false);
   };
 
+  const navigate = useNavigate()
+
   const handleLogout = () => {
     logout(); 
+    navigate("/home")
   };
 
   return (

@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
 import { CourseData } from '../interfaces/course.interface';
-import { useAllCourses } from '../hooks/useQuery-AllCourses';
+import { useAllCourses } from '../services/useQuery-AllCourses';
 
 
 interface SearchBarProps {
