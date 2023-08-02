@@ -1,0 +1,754 @@
+{
+	"info": {
+		"_postman_id": "acec15d9-bb4e-46d3-a00a-c746b8614ff9",
+		"name": "uknow backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13319229"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "add User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "12341234123412341234",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Prueba 9\",\n  \"last_name\": \"Alhena\",\n  \"email\": \"prueba9@uknow.com\", \n  \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"_id\": \"6490c9d3e77da73b3fd06299\",\n  \"name\": \"Jhon Bartolomiu\",\n  \"last_name\": \"Connors\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/6490c9d3e77da73b3fd06299",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"6490c9d3e77da73b3fd06299"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update User (admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all users (admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"prueba1@uknow.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recover password request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"64905b60558ac28e56d3078e\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/recover/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"recover",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDkwYzlkM2U3N2RhNzNiM2ZkMDYyOTkiLCJlbWFpbCI6Impob25AY29ubm9ycy5jb20iLCJpYXQiOjE2ODczODUwMTB9.iOT_5RevW22xURD9D8-XhRgs57bY-l46_jz_WDvKBWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345\",\n    \"recovery_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk0NDRmNTU1OTljYWQyNzAyZDA2NWEiLCJlbWFpbCI6ImphbmVzbWl0aEBleG1wbGUuY29tIiwiaWF0IjoxNjkwMjM4MDA4LCJleHAiOjE2OTAzMjQ0MDh9.ogZBpNlbCuGPPdz93h0JiAVej-bMH4Nk-RgFH9Qq8GY\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/upassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"upassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one user (admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/admin/64c849ba7af6754c004b6b34",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"admin",
+								"64c849ba7af6754c004b6b34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGMwZGMxNGVlMDczOTJmZDI0ZmZmNGQiLCJlbWFpbCI6InBydWViYTFAdWtub3cuY29tIiwiaWF0IjoxNjkwMzY4MzQ5LCJleHAiOjE2OTA0NTQ3NDl9.imWFXC4FMvhzWV78M1CXFO2ee9kzYt1r-hjqpTFFaOs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/users/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courses",
+			"item": [
+				{
+					"name": "get all courses sortered by average",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/average",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"average"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add course",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "secret",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibGF1cmEiLCJhY2Nlc3MiOiJmdWxsIiwiaWF0IjoxNjgxNDEyNzM3LCJleHAiOjE2ODE0MTYzMzd9.cWoCK6qVt-rRCWC925FtiidBXjzSFU4YjbqwPnHqeEc",
+									"type": "string"
+								},
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Express the best backend library for NodeJS\",\n  \"topic\": \"Backend\", \n  \"difficulty\": \"Beginner\",\n  \"tags\": [\"#web\", \"#express\", \"#backend\"],\n  \"content\": \"### Second course ever lorem ipsum y cosas mas de contenido del curso.\",\n  \"image\": \"https://raw.githubusercontent.com/raulalhena/stablediffusionapi/main/1.png\",\n  \"description\": \"Nice course, you should buy it! Nice course, you should buy it Nice course, you should buy it Nice course, you should buy it Nice course, you should buy it \"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/courses/create/64c7a7ccbb9cc787c92592f9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"create",
+								"64c7a7ccbb9cc787c92592f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find Created Courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/created-courses/64c7a7ccbb9cc787c92592f9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"created-courses",
+								"64c7a7ccbb9cc787c92592f9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search a course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://polimatartstudio.com:5000/search?filters=difficulty&keywords=Medium",
+							"protocol": "http",
+							"host": [
+								"polimatartstudio",
+								"com"
+							],
+							"port": "5000",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "topic",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "tags",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "filters",
+									"value": "difficulty"
+								},
+								{
+									"key": "keywords",
+									"value": "Medium"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search a coures (admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/search/admin?filters=name,price&keywords=80",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"search",
+								"admin"
+							],
+							"query": [
+								{
+									"key": "filters",
+									"value": "name,price"
+								},
+								{
+									"key": "keywords",
+									"value": "80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update course",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"new course\",\n\t\"topic\": \"Web development\",\n\t\"difficulty\": \"Medium\",\n\t\"tags\": [ \"#frontend\", \"#react\", \"#css\" ],\n    \"description\": \"Description\",\n    \"image\": \"url image\",\n\t\"content\": \"### this is the frontend course you need\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/courses/6490cb44e77da73b3fd0629c/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"6490cb44e77da73b3fd0629c",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get one course",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/64c7b5f85494b266606f1ff1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"64c7b5f85494b266606f1ff1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDk0NDRmNTg3OTljYWQyNzAyZDE2NWEiLCJlbWFpbCI6ImVtaWx5LmpvaG5zb25AZXhhbXBsZS5jb20iLCJpYXQiOjE2ODgwNTAwOTksImV4cCI6MTY4ODEzNjQ5OX0.PLCxzNcOE_oeZCChd5XaEjPzNZpxndCXTgGwi3bERMk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"64c83dfe6cc07ac643937229\",\n    \"stars\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/courses/rating/64c849ba7af6754c004b6b34",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"rating",
+								"64c849ba7af6754c004b6b34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "purchase course",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userId\": \"64c849ba7af6754c004b6b34\",\n    \"courseId\": \"64c83dfe6cc07ac643937229\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/courses/purchase",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one (admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Role",
+								"value": "admin",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/courses/admin/64c83dfe6cc07ac643937229",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"admin",
+								"64c83dfe6cc07ac643937229"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all bought courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/courses/bought-courses/64c7bd46cec6f3047cf6232d",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"courses",
+								"bought-courses",
+								"64c7bd46cec6f3047cf6232d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "add comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"I liked the course! Well done\",\n    \"user_id\": \"64c849877af6754c004b6b0b\",\n    \"course_id\": \"64c83dfe6cc07ac643937229\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/comments/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/comments/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get course comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/comments/64c83dfe6cc07ac643937229",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"comments",
+								"64c83dfe6cc07ac643937229"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
