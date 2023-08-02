@@ -100,7 +100,17 @@ let UsersService = exports.UsersService = class UsersService {
         }
     }
     async getProfile(user) {
-        return await this.userModel.findOne({ email: user.email });
+        try {
+            const user = await this.userModel.findOne({ _id: id }).select('-password -recovery_token');
+            return {
+                message: 'User retrived successfully',
+                status: common_1.HttpStatus.OK,
+                data: user
+            };
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async findOneAdmin(id) {
         try {
