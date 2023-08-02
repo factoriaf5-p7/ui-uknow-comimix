@@ -84,7 +84,7 @@ let UsersService = exports.UsersService = class UsersService {
         }
     }
     async findOneLogin(email) {
-        return await this.userModel.findOne({ email });
+        return await this.userModel.findOne({ email }).select('-recovery_token -__v').lean();
     }
     async findOne(id) {
         try {
@@ -100,7 +100,17 @@ let UsersService = exports.UsersService = class UsersService {
         }
     }
     async getProfile(user) {
-        return await this.userModel.findOne({ email: user.email });
+        try {
+            const findUser = await this.userModel.findOne({ _id: user.sub }).select('-password -recovery_token');
+            return {
+                message: 'User retrived successfully',
+                status: common_1.HttpStatus.OK,
+                data: findUser
+            };
+        }
+        catch (error) {
+            throw error;
+        }
     }
     async findOneAdmin(id) {
         try {

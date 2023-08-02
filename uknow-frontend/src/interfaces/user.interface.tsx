@@ -1,4 +1,4 @@
-import { CourseData } from "./course.interface";
+
 
 export interface User {
   _id: string;
@@ -10,6 +10,6 @@ export interface User {
   chat_notifications_sent: any[];
   chat_notifications_received: any[]; 
   profile: string;
-  bought_courses: CourseData[];
+  bought_courses: [];
   __v: number;
 }
