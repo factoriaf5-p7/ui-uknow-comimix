@@ -143,9 +143,8 @@ export const CourseModal = ({ open, onClose, course }: CourseModalProps) => {
           <h3 style={{ marginBottom: "5px" }}>Comments:</h3>
           <div style={{ maxHeight: "100px", overflowY: "auto" }}>
             {comments?.map((comment) => (
-              <div key={comment.course_id}>
+              <div key={comment._id}>
                 <p>{comment.text}</p>
-                {/* <p>By: {comment.user_id}</p> */}
               </div>
             ))}
           </div>
