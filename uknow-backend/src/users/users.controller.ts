@@ -54,6 +54,11 @@ export class UsersController {
   		return this.usersService.update(updateUserDto);
 	}
 
+	@Patch('admin/update-balance/')
+  	updateBalance(@Body() userBalanceDto: any) {
+  		return this.usersService.udpateBalance(userBalanceDto);
+  	}
+
 	@Patch('admin')
 	// @UseGuards(AuthGuard)
   	updateUserByAdmin(@Body() updateUserByAdminDto: UpdateUserByAdminDto) {

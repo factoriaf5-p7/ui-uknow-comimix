@@ -395,7 +395,7 @@ export class CoursesService {
 					stars: 0,
 					commented: false
 				};
-				await this.userService.updateUserBoughtCourses(user._id, object);
+				await this.userService.updateUserBoughtCourses(user, object);
 
 				return {
 					message: 'Course purchased.',
