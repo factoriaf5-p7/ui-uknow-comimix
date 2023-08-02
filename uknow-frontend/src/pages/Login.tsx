@@ -1,5 +1,5 @@
-import Footer from "../elements/Footer";
-import {LoginForm} from "../elements/LoginForm";
+import Footer from "../components/footer/Footer";
+import {LoginForm} from "../components/forms/LoginForm";
 
 export default function Login() {
   return (

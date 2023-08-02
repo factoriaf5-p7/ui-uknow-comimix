@@ -1,6 +1,6 @@
 
-import Content from '../elements/Content'
-import Navbar from '../elements/Navbar'
+import Content from '../components/course/Content'
+import Navbar from '../components/navbar/Navbar'
 
 const Course = () => {
   return (
