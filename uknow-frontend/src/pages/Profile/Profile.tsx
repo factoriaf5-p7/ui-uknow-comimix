@@ -5,6 +5,10 @@ import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Navbar from "../../components/navbar/Navbar";
+// import { AuthContext } from "../../context/AuthContext";
+
+
+// const {user}=useContext(AuthContext)
 
 function Profile() {
   const [firstName, setFirstName] = useState('Diego');
