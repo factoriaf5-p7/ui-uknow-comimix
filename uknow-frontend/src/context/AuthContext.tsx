@@ -48,17 +48,15 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     password: '',
   });
 
-  const [user, setUser] = useState<User | null>(null); // Cambiaremos el valor inicial a null
+  
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+  const [user, setUser] = useState<User>(storedUser);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setIsLoggedIn(true);
     }
-
-    // Recuperar datos del usuario almacenados en el localStorage al cargar la página
-    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-    setUser(storedUser);
   }, []);
 
   const loginMutation = useLoginUser();
@@ -70,8 +68,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       const userData = data.user;
 
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData)); // Almacenar datos del usuario en localStorage
-
+      localStorage.setItem('user', JSON.stringify(userData));
       setIsLoggedIn(true);
       setUser(userData);
     } catch (error) {
@@ -81,10 +78,22 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user'); // Eliminar los datos del usuario del localStorage al cerrar sesión
+    localStorage.removeItem('user'); 
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    setUser(null); // Cambiar el estado del usuario a null al cerrar sesión
+    setUser({ 
+      _id: '',
+      name: '',
+      last_name: '',
+      email: '',
+      wallet_balance: 0,
+      created_courses: [],
+      chat_notifications_sent: [],
+      chat_notifications_received: [],
+      profile: '',
+      bought_courses: [],
+      __v: 0,
+    });
   };
 
   return (
