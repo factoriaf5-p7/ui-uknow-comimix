@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { UknowTheme } from '../themes/ThemeUknow';
 import { useContext, useState } from 'react';
 import PurchaseModal from './PurchaseModal';
-import { AuthContext } from '../context/AuthContex';
+import { AuthContext } from '../context/AuthContext';
 
 
 

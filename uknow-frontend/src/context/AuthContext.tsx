@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
 import LoginData from '../interfaces/login.interface';
-import { useLoginUser } from '../hooks/useMutation-LoginUser';
+import { useLoginUser } from '../services/useMutation-LoginUser';
 
 interface AuthContextType {
   isLoggedIn: boolean;

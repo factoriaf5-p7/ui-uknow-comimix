@@ -9,7 +9,7 @@ import { Typography } from "@mui/material";
 import { CourseData } from "../interfaces/course.interface";
 import BuyButton from "./BuyButton";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useCourseComments } from "../hooks/useQuery-CourseComments";
+import { useCourseComments } from "../services/useQuery-CourseComments";
 
 interface CourseModalProps {
   open: boolean;
