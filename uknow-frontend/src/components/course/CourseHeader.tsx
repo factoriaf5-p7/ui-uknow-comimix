@@ -1,22 +1,24 @@
 
 import { Box, Typography } from '@mui/material';
 import { UknowTheme } from '../../themes/ThemeUknow';
+import { CourseData } from '../../interfaces/course.interface';
 
 interface CourseHeaderProps {
-  name: string;
-  description?: string;
+  course: CourseData;
 }
 
-const CourseHeader = ({ name, description }: CourseHeaderProps) => {
-  const descriptionMessage = description ? description : 'Description not available';
+const CourseHeader = ({ course }: CourseHeaderProps) => {
+
 
   return (
-    <Box my={4}>
-      <Typography variant="h3" gutterBottom style={{ color: UknowTheme.palette.uBlue.main }}>
-        {name}
+    <Box my={4} sx={{
+      margin : '2em'
+    }}>
+      <Typography variant="h3" gutterBottom style={{ color: UknowTheme.palette.uBlue.main , padding : '5% 0 0 0'}}>
+        {course.name}
       </Typography>
       <Typography variant="body1" style={{ color: UknowTheme.palette.uDarkBlue.main }}>
-        {descriptionMessage}
+        {course.description}
       </Typography>
     </Box>
   );
