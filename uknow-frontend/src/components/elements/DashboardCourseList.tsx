@@ -68,12 +68,12 @@ function DashboardCourseList(props: Props) {
                     )
                     :
                     (
-                        // <Button>Create</Button>
                         courseList && courseList.map(course => {
+                            console.log(course._id)
                             return (
                                 <ListItem key={course._id}>
                                     <ListItemText primary={
-                                        <Link to='/edit' state={course._id}>{course.name}</Link>
+                                        <Link to='/course' state={course}>{course.name}</Link>
                                         }/>
                                 </ListItem>
                             )

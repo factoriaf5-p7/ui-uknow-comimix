@@ -5,7 +5,7 @@ interface Props {
     userId: string;
 }
 
-export const useBoughtCourses = ( userId: Props ) => {
+export const useBoughtCourses = ( userId: string ) => {
     const { isLoading, isError, data: courseList } = useQuery({
       queryKey: ['boughtCourses'],
       queryFn: async (): Promise<CourseData[]> => {
