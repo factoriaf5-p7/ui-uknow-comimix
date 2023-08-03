@@ -8,6 +8,11 @@ import mongoose from 'mongoose';
 export declare class CoursesController {
     private readonly coursesService;
     constructor(coursesService: CoursesService);
+    purchaseCourse(purchaseCourseDto: PurchaseCourseDto): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: string;
+    }>;
     update(userId: ObjectId, updateCourseDto: UpdateCourseDto): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
@@ -89,11 +94,6 @@ export declare class CoursesController {
         data: mongoose.Document<unknown, {}, import("./schemas/course.schema").Course> & Omit<import("./schemas/course.schema").Course & {
             _id: mongoose.Types.ObjectId;
         }, never>;
-    }>;
-    purchaseCourse(purchaseCourseDto: PurchaseCourseDto): Promise<{
-        message: string;
-        status: import("@nestjs/common").HttpStatus;
-        data: string;
     }>;
     findOneAdmin(id: ObjectId): Promise<{
         message: string;
