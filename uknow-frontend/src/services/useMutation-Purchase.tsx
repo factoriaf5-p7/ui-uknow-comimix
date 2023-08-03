@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 interface PurchaseResponse {
     message: string;
+    course: courseData;
 }
 
 export const usePurchaseCourseMutation = () => {
@@ -18,7 +19,6 @@ export const usePurchaseCourseMutation = () => {
         });
     
         const data = await response.json();
-        console.log("purchase: " + data)
         return data;
     };
     

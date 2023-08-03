@@ -9,7 +9,6 @@ import Navbar from '../components/navbar/Navbar';
 import Footer from '../components/footer/Footer';
 import { AuthContext } from '../context/AuthContext';
 
-
 function Home() {
   const { isLoggedIn, user } = useContext(AuthContext); 
   const { isLoading, isError, courseList: allCourses } = useAllCourses();
@@ -46,9 +45,11 @@ function Home() {
     }
   };
   
+  
 
   // Filter the courses based on the logged-in user data
   const filteredCourses = filterUserCourses(allCourses);
+
 
   return (
     <div>
