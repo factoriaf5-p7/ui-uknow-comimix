@@ -1,18 +1,18 @@
-import { Container, Box } from "@mui/system";
+import { Container, Box } from "@mui/material";
 import { TextField, Button, Snackbar } from "@mui/material";
 
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { UknowTheme } from "../../themes/ThemeUknow";
 import MuiAlert from "@mui/material/Alert";
+import { useAPIError } from "../../hooks/useAPIError";
 
 export function LoginForm() {
   const { loginData, setLoginData, login } = useContext(AuthContext);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [generalError, setGeneralError] = useState<string | null>(null);
-
-
+  const { error, addError, removeError } = useAPIError(); 
+  
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -25,20 +25,15 @@ export function LoginForm() {
       setPasswordError("Please enter your password");
       return;
     }
+
     try {
-       login();
+      login();
     } catch (error) {
-      if (error instanceof Error) {
-        setGeneralError("Email or password is incorrect");
-      } else {
-        setGeneralError("An error occurred");
-      }
     }
   };
-
   const handleCloseSnackbar = () => {
-    setGeneralError(null);
-  };
+    removeError();
+    };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -116,23 +111,18 @@ export function LoginForm() {
             Submit
           </Button>
         </Box>
-        <Snackbar
-  open={generalError !== null} 
-  autoHideDuration={6000}
-  onClose={handleCloseSnackbar}
->
-  <MuiAlert
-    onClose={handleCloseSnackbar}
-    severity="error"
-    elevation={6}
-    variant="filled"
-  >
-    {generalError}
-  </MuiAlert>
-</Snackbar>
+        <Snackbar open={!!error} autoHideDuration={5000} onClose={handleCloseSnackbar}  sx={{
+          position: "absolute",
+          top: "-90%", 
+          left: "50%", 
+          transform: "translateX(-50%)",
+          width: '100%' 
+        }}>
+          <MuiAlert sx={{ width: '100%' }} onClose={handleCloseSnackbar} severity="error" elevation={6} variant="filled">
+          {error && <div>{error.message}</div>}
+          </MuiAlert>
+        </Snackbar>
       </Box>
     </Container>
   );
 }
-
-

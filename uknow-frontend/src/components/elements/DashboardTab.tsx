@@ -29,7 +29,7 @@ function DashboardTab() {
 
   return (
     <>
-      <Box sx={{ border: '1px solid red', marginTop: '80px' }}>
+      <Box sx={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', marginTop: '80px' }}>
           <Tabs value={value} onChange={handleChange} centered>
               <Tab label="Cursos Comprados" />
               <Tab label="Cursos Creados" />
