@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import { CardProduct } from '../cards/CardProduct';
 import { useNavigate } from 'react-router-dom';
 import { CourseData } from '../../interfaces/course.interface';
-import Btnpruerba from '../buttons/Btnpruerba';
+// import Btnpruerba from '../buttons/Btnpruerba';
 interface CourseListProps {
   courses: CourseData[] | undefined;
 }
@@ -26,7 +26,7 @@ export default function CourseList({ courses }: CourseListProps ) {
             <Box my={2} style={{ width: '330px', height: '450px' }}>
               <CardProduct courseData={course} onCardClick={() => handleCardClick(course._id)} />
             </Box>
-            <Btnpruerba course={course}/>
+            {/* <Btnpruerba course={course}/> */}
           </Grid>
          
         ))}

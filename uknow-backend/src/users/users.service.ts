@@ -305,12 +305,10 @@ export class UsersService {
 	}
 
 	async udpateBalance(userBalanceDto: any) {
-		console.log(userBalanceDto);
 		const user = await this.userModel.findOneAndUpdate(new mongoose.Types.ObjectId(userBalanceDto.userId) ,
 			{
 				wallet_balance: userBalanceDto.balance
 			});
-		console.log(user);
 		return user;
 	}
 

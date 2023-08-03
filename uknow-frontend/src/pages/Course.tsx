@@ -11,17 +11,16 @@ import CourseNewComment from '../components/course/CourseNewComment';
 const Course = () => {
 
   const location = useLocation()
-  const course = location.state
-  const courseid = course._id
+  const course = location.state;
+
   return (
     <>
     
       <Navbar />
-      
       <CourseHeader course={course}/>
       <CourseDetails course={course}/>
       <CourseContent course={course}/>
-      <CommentsSection courseId={courseid}/>
+      <CommentsSection courseId={course._id}/>
       <CourseNewComment course={course}/>
       <Footer/>
     </>

@@ -288,11 +288,9 @@ let UsersService = exports.UsersService = class UsersService {
         return this.userModel.findOneAndUpdate(user._id, update);
     }
     async udpateBalance(userBalanceDto) {
-        console.log(userBalanceDto);
         const user = await this.userModel.findOneAndUpdate(new mongoose_2.default.Types.ObjectId(userBalanceDto.userId), {
             wallet_balance: userBalanceDto.balance
         });
-        console.log(user);
         return user;
     }
     async updateCommentedCourse(createCommentDto) {
