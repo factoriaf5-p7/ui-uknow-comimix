@@ -31,6 +31,7 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
           text: commentText,
           user_id: user._id,
           course_id: course._id
+          
         });
        
         setCommentText('');

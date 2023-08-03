@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Box } from '@mui/system';
 
 interface CommentsSectionProps {
   courseId: string;
@@ -25,6 +26,9 @@ const CourseCommentsSection = ({ courseId }: CommentsSectionProps) => {
 
   return (
     <>
+    <Box my={4} sx={{
+      margin : '2em'
+    }}>
       <Typography variant="h5" gutterBottom>
         Comentarios
       </Typography>
@@ -43,6 +47,7 @@ const CourseCommentsSection = ({ courseId }: CommentsSectionProps) => {
           No hay comentarios aún.
         </Typography>
       )}
+      </Box>
     </>
   );
 };
