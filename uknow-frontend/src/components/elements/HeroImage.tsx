@@ -112,7 +112,7 @@ export const HeroImage = () => {
   return (
     <Container sx={{padding: '0'}}>
       <Box sx={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
-        <Image src="./hero-image.jpg" alt="Splash" onLoad={handleImageLoad} />
+        <Image src="src/assets/hero-image.jpg" alt="Splash" onLoad={handleImageLoad} />
         <HeroContent>
           <Box>
             {showText !== "" && (

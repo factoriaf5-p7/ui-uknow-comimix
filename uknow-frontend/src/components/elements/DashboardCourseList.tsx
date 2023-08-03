@@ -16,6 +16,7 @@ interface DashboardList {
     isLoading: boolean,
     isError: boolean,
     listType: string;
+    prop: Props;
 }
 
 interface Props {
