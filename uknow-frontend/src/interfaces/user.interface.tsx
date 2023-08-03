@@ -1,7 +1,7 @@
 
 
 export interface User {
-  password: ReactNode;
+ 
   _id: string;
   name: string;
   last_name: string;

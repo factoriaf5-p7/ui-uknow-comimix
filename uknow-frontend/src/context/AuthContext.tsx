@@ -83,19 +83,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.removeItem('user'); 
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    setUser({ 
-      _id: '',
-      name: '',
-      last_name: '',
-      email: '',
-      wallet_balance: 0,
-      created_courses: [],
-      chat_notifications_sent: [],
-      chat_notifications_received: [],
-      profile: '',
-      bought_courses: [],
-      __v: 0,
-    });
+    
   };
 
   // const updateUser = (userData: User) => {
