@@ -121,9 +121,7 @@ export const CardProduct = ({ courseData }: CardProductProps) => {
           <Grid item>
           </Grid>
           <CartButtonGridItem item>
-            <BuyButton
-              courseId={courseData._id}
-            />
+            <BuyButton course={courseData} />
           </CartButtonGridItem>
         </BottomGridContainer>
       </CardActionsContainer>

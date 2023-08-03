@@ -1,4 +1,4 @@
-import { createTheme,PaletteColor, PaletteColorOptions } from "@mui/material";
+import { createTheme,PaletteColor, PaletteColorOptions } from "@mui/material/styles";
 import '@fontsource/poppins'
 import '@fontsource/poppins/700.css'
 import '@fontsource/poppins/500.css'
