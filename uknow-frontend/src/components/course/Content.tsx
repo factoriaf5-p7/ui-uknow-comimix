@@ -15,7 +15,6 @@ const Content = ({ oneCourse }: CourseListProps) => {
       <Typography variant="h4">{oneCourse.name}</Typography>
       <Typography variant="body1">{oneCourse.description}</Typography>
 
-      {/* Agregar más detalles del curso utilizando los componentes de Material-UI */}
       <Grid container spacing={2} mt={4}>
         <Grid >
           <Paper>
