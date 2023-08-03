@@ -16,11 +16,17 @@ import mongoose from 'mongoose';
 export class CoursesController {
 	constructor(private readonly coursesService: CoursesService) {}
 
+  @Patch('purchase')
+  //@UseGuards(AuthGuard)
+	purchaseCourse(@Body() purchaseCourseDto: PurchaseCourseDto) {
+  	return this.coursesService.purchaseCourse(purchaseCourseDto);
+	}
+
   @Patch(':id')
   // @UseGuards(AuthGuard)
-	update(@Param('id') userId: ObjectId, @Body() updateCourseDto: UpdateCourseDto){
+  update(@Param('id') userId: ObjectId, @Body() updateCourseDto: UpdateCourseDto){
   	return this.coursesService.update(userId, updateCourseDto);
-	}
+  }
 
   @Post('create/:userid')
   // @UseGuards(AuthGuard)
@@ -81,12 +87,6 @@ export class CoursesController {
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
   	return this.coursesService.findOne(id);
-  }
-
-  @Patch('purchase')
-  //@UseGuards(AuthGuard)
-  purchaseCourse(@Body() purchaseCourseDto: PurchaseCourseDto) {
-  	return this.coursesService.purchaseCourse(purchaseCourseDto);
   }
 
   @Get('admin/:id')
