@@ -23,7 +23,7 @@ function DashboardTab() {
     const [value, setValue] = useState(0);
 
     const handleChange = (event: SyntheticEvent, newValue: number) => {
-        console.log(newValue)
+
         setValue(newValue);
     }
 

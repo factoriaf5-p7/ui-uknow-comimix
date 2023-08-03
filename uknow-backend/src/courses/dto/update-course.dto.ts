@@ -29,5 +29,13 @@ export class UpdateCourseDto {
 	@ApiProperty({ example: '### New course name' })
 	@IsNotEmpty()
 		content: string;
+
+	@ApiProperty({ example: '### New course name' })
+	@IsNotEmpty()
+		description: string;
+
+	@ApiProperty({ example: '### New course name' })
+	@IsNotEmpty()
+		image: string;
 	
 }

@@ -35,6 +35,7 @@ function Home() {
       ) : (
         <CourseList courses={isSearching ? courses : allCourses} />
       )}
+      
       <Footer/>
     </div>
   );
