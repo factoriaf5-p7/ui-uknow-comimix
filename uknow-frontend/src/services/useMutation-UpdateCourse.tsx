@@ -35,7 +35,7 @@ export const useCourseUpdateMutation = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation(updateCourse, {
     onSuccess: () => {
-        queryClient.invalidateQueries("createdCourses");
+        queryClient.invalidateQueries("course");
         // queryClient.invalidateQueries("user");
     },
     onError: (error: any) => {
