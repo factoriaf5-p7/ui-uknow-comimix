@@ -10,6 +10,7 @@ interface AuthContextType {
   login: () => void;
   logout: () => void;
   user: User  ;
+  // updateUser: (userData: User) => void;
 }
 
 const initialAuthContext: AuthContextType = {
@@ -34,6 +35,7 @@ const initialAuthContext: AuthContextType = {
     bought_courses: [],
     __v: 0
   },
+  // updateUser: () => {},
 }
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
@@ -96,8 +98,14 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     });
   };
 
+  // const updateUser = (userData: User) => {
+  //   setUser(userData);
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  // };
+
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user }}>
+    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user, /*updateUser*/ }}>
       {children}
     </AuthContext.Provider>
   );
