@@ -26,6 +26,9 @@ let CoursesController = exports.CoursesController = class CoursesController {
     constructor(coursesService) {
         this.coursesService = coursesService;
     }
+    purchaseCourse(purchaseCourseDto) {
+        return this.coursesService.purchaseCourse(purchaseCourseDto);
+    }
     update(userId, updateCourseDto) {
         return this.coursesService.update(userId, updateCourseDto);
     }
@@ -62,9 +65,6 @@ let CoursesController = exports.CoursesController = class CoursesController {
     findOne(id) {
         return this.coursesService.findOne(id);
     }
-    purchaseCourse(purchaseCourseDto) {
-        return this.coursesService.purchaseCourse(purchaseCourseDto);
-    }
     findOneAdmin(id) {
         return this.coursesService.findOneAdmin(id);
     }
@@ -72,6 +72,13 @@ let CoursesController = exports.CoursesController = class CoursesController {
         return this.coursesService.addRating(userId, ratedCourse);
     }
 };
+__decorate([
+    (0, common_1.Patch)('purchase'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [buy_course_dto_1.PurchaseCourseDto]),
+    __metadata("design:returntype", void 0)
+], CoursesController.prototype, "purchaseCourse", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -155,13 +162,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CoursesController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)('purchase'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [buy_course_dto_1.PurchaseCourseDto]),
-    __metadata("design:returntype", void 0)
-], CoursesController.prototype, "purchaseCourse", null);
 __decorate([
     (0, common_1.Get)('admin/:id'),
     (0, roles_1.Roles)(roles_enum_1.Role.Admin),
