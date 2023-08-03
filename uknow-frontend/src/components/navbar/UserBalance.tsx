@@ -1,17 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { Typography, Avatar, Box } from "@mui/material";
 import { AccountBalanceWalletOutlined } from "@mui/icons-material";
-import { AuthContext } from "../../context/AuthContext";
 import { UknowTheme } from "../../themes/ThemeUknow";
+import { UserContext } from "../../context/UserContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const UserBalance = () => {
-  const { isLoggedIn, user } = useContext(AuthContext);
+  // const { updatedUser } = useContext(UserContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
+  
   const [balance, setBalance] = useState(user.wallet_balance);
 
-  useEffect(() => {
-    const localUser = JSON.parse(localStorage.getItem('user') as string);
-    if(localUser.wallet_balance !== user.wallet_balance) setBalance(localUser.wallet_balance);
-  }, [])
+  const localUser = JSON.parse(localStorage.getItem('user') as string);
+  console.log('localUser', localUser.wallet_balance)
+  console.log('contextUser', user.wallet_balance)
+
+
+  // useEffect(() => {
+  //   // // updateUser();
+  //   // if(localUser.wallet_balance !== user.wallet_balance) {
+  //   //     setBalance(localUser.wallet_balance);
+  //   //     console.log('equal')
+  //   //   }
+  //   setBalance(updatedUser.wallet_balance);
+  // }, []);
 
   if (isLoggedIn && user) {
     return (

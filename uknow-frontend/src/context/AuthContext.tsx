@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
+import { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 import LoginData from '../interfaces/login.interface';
 import { useLoginUser } from '../services/useMutation-LoginUser';
 import { User } from '../interfaces/user.interface';
@@ -10,7 +10,6 @@ interface AuthContextType {
   login: () => void;
   logout: () => void;
   user: User  ;
-  // updateUser: (userData: User) => void;
 }
 
 const initialAuthContext: AuthContextType = {
@@ -34,8 +33,7 @@ const initialAuthContext: AuthContextType = {
     profile: '',
     bought_courses: [],
     __v: 0
-  },
-  // updateUser: () => {},
+  }
 }
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
@@ -49,25 +47,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     email: '',
     password: '',
   });
-
   
-  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const [user, setUser] = useState<User>(storedUser);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-    if (token && storedUser !== null) {
-      setIsLoggedIn(true);
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  useEffect(() => {
-    // Actualiza el estado user siempre que el user es modificado
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
-
+  const [user, setUser] = useState<User>({});
 
   const loginMutation = useLoginUser();
   const login = async () => {
@@ -91,17 +72,10 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.removeItem('user'); 
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    
   };
 
-  // const updateUser = (userData: User) => {
-  //   setUser(userData);
-  //   localStorage.setItem('user', JSON.stringify(userData));
-  // };
-
-
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user, /*updateUser*/ }}>
+    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );

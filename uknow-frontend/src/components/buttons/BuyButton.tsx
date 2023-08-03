@@ -1,18 +1,14 @@
 import { Button } from '@mui/material'; 
 import { useNavigate } from 'react-router-dom';
-
 import { UknowTheme } from '../../themes/ThemeUknow';
 import { useContext, useState } from 'react';
 import PurchaseModal from '../modals/PurchaseModal';
 import { AuthContext } from '../../context/AuthContext';
 import { usePurchaseCourseMutation } from '../../services/useMutation-Purchase';
-import { useQueryClient } from '@tanstack/react-query';
-
 
 interface BuyButtonProps {
   courseId: string;
 }
-
 
 const BuyButton = ({ courseId }: BuyButtonProps) => {
   const { isLoggedIn, user, } = useContext(AuthContext);
@@ -33,8 +29,6 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
     setIsModalOpen(false);
   };
 
-  const queryClient = useQueryClient();
-
   const handlePurchaseConfirm = async () => {
     try {
       if (!user) {
@@ -45,18 +39,11 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
       const response = await purchaseMutation.mutateAsync({ courseId, userId: user._id });
       console.log(response.message);
 
-      if (user.bought_courses) {
-        user.bought_courses.push({ course_id: courseId, stars: 0, commented: false });
-      } 
-    
+      user.bought_courses.push({ course_id: courseId, stars: 0, commented: false });
       localStorage.setItem('user', JSON.stringify(user));
-
-      queryClient.invalidateQueries(['courses', 'user']);
       
       navigate(`/course`);
       
-      
-
       handleCloseModal();
     } catch (error) {
       console.error(error);

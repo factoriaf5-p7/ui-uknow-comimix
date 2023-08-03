@@ -12,6 +12,7 @@ import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
 import AuthContexProvider from './context/AuthContext'
 import EditCourse from './pages/EditCourse'
+import UserContextProvider from './context/UserContext'
 
 
 function App() {
