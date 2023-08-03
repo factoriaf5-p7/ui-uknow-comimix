@@ -10,6 +10,7 @@ import { CourseData } from "../../interfaces/course.interface";
 import BuyButton from "../buttons/BuyButton";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useCourseComments } from "../../services/useQuery-CourseComments";
+import RatingStars from "../elements/RatingStars";
 
 interface CourseModalProps {
   open: boolean;
@@ -112,7 +113,7 @@ export const CourseModal = ({ open, onClose, course }: CourseModalProps) => {
       fontWeight: "bold", 
     }}
   >
-    Rating: <span style={{ fontWeight: "normal" }}>{course.average}</span>
+    Rating: <span style={{verticalAlign: "middle" }}><RatingStars average={course.average}/></span>
   </Typography>
   <div
     style={{

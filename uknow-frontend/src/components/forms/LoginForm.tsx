@@ -10,7 +10,7 @@ export function LoginForm() {
   const { loginData, setLoginData, login } = useContext(AuthContext);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [generalError, setGeneralError] = useState("");
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -25,19 +25,19 @@ export function LoginForm() {
       setPasswordError("Please enter your password");
       return;
     }
-
     try {
-      login()
+       login();
     } catch (error) {
       if (error instanceof Error) {
-        setGeneralError(error.message);
+        setGeneralError("Email or password is incorrect");
       } else {
         setGeneralError("An error occurred");
       }
     }
   };
+
   const handleCloseSnackbar = () => {
-    setGeneralError("");
+    setGeneralError(null);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -117,19 +117,19 @@ export function LoginForm() {
           </Button>
         </Box>
         <Snackbar
-          open={!!generalError}
-          autoHideDuration={6000}
-          onClose={handleCloseSnackbar}
-        >
-          <MuiAlert
-            onClose={handleCloseSnackbar}
-            severity="error"
-            elevation={6}
-            variant="filled"
-          >
-            {generalError}
-          </MuiAlert>
-        </Snackbar>
+  open={generalError !== null} 
+  autoHideDuration={6000}
+  onClose={handleCloseSnackbar}
+>
+  <MuiAlert
+    onClose={handleCloseSnackbar}
+    severity="error"
+    elevation={6}
+    variant="filled"
+  >
+    {generalError}
+  </MuiAlert>
+</Snackbar>
       </Box>
     </Container>
   );
