@@ -21,33 +21,38 @@ function EditCourseForm() {
 
   const location = useLocation();
   const courseId = location.state;
-
-  useEffect (() => {
-    // if(!isLogged) navigate('/login');
-    console.log(isLoading, updatedCourse)
-
-    if(!isLoading || !updatedCourse){
-        setUpdatedCourse({
-            userId: user._id,
-            _id: courseId,
-            name: oneCourse.name,
-            description: oneCourse.description, 
-            topic: oneCourse.topic,
-            difficulty: oneCourse.difficulty,
-            image: oneCourse.image,
-            tags: oneCourse.tags,
-            content: oneCourse.content
-        });
-        setContent(oneCourse.content);
-    }
-
-  }, [isLoading, updatedCourse]);
-
-
   const { isLoading, isError, oneCourse } = useOneCourseData(courseId);
 
   const [content, setContent] = useState();
-  const [updatedCourse, setUpdatedCourse] = useState(null);
+  const [updatedCourse, setUpdatedCourse] = useState({
+    userId: '',
+    _id: '',
+    name: '',
+    description: '',
+    topic: '',
+    difficulty: '',
+    image: '',
+    tags: '',
+    content: ''
+  });
+
+  useEffect (() => {
+    // if(!isLogged) navigate('/login');
+        if(!isLoading){
+            setUpdatedCourse({
+                userId: user._id,
+                _id: courseId,
+                name: oneCourse.name,
+                description: oneCourse.description, 
+                topic: oneCourse.topic,
+                difficulty: oneCourse.difficulty,
+                image: oneCourse.image,
+                tags: oneCourse.tags,
+                content: oneCourse.content
+            });
+            setContent(oneCourse.content);
+        }
+  }, [isLoading]);
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
