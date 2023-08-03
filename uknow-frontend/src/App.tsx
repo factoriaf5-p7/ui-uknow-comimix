@@ -16,8 +16,6 @@ import UserContextProvider from './context/UserContext'
 
 
 function App() {
-
-
   return (
     <>
    <AuthContexProvider>
@@ -36,7 +34,7 @@ function App() {
       </Routes>
     </AuthContexProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Router renders the correct pages > Snapshot test for Course page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Dashboard page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Home page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Login page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Profile page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Recover page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Register page 1`] = `<DocumentFragment />`;
+
+exports[`Router renders the correct pages > Snapshot test for Under Construction page 1`] = `<DocumentFragment />`;
