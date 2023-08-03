@@ -3,11 +3,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useAddCommentMutation } from '../../services/useAddCommentMutation';
 import { AuthContext } from '../../context/AuthContext';
-import { BoughtCourse } from '../../interfaces/boughtCourse';
 import { CourseData } from '../../interfaces/course.interface';
 
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 interface CourseNewCommentProps {
   course: CourseData;
@@ -18,7 +18,7 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
 
   const [commentText, setCommentText] = useState('');
   const addCommentMutation = useAddCommentMutation();
-
+    const navigate = useNavigate()
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCommentText(event.target.value);
   };
@@ -32,7 +32,11 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
           user_id: user._id,
           course_id: course._id
         });
+       
         setCommentText('');
+        navigate("/course", {
+            state: course
+        })
       } catch (error) {
         console.error('Error adding comment:', error);
       }
@@ -40,9 +44,7 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
   };
 
   // Check if the user already commented on the course
-  const hasCommented = user?.bought_courses.find(
-    (boughtCourse) => boughtCourse.course_id === course._id && boughtCourse.commented
-  );
+
 
   return (
     <Paper elevation={3} sx={{ p: 3, mt: 4, mx: 'auto', maxWidth: 600 }}>
@@ -65,7 +67,6 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
           variant="contained"
           color="primary"
           fullWidth
-          disabled={!!hasCommented} // Disable the button if the user has already commented
         >
           Agregar Comentario
         </Button>
