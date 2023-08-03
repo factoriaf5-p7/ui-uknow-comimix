@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useAddCommentMutation } from '../../services/useAddCommentMutation';
 import { AuthContext } from '../../context/AuthContext';
-
+import { BoughtCourse } from '../../interfaces/boughtCourse';
 import { CourseData } from '../../interfaces/course.interface';
 
 import Paper from '@mui/material/Paper';
@@ -39,6 +39,11 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
     }
   };
 
+  // Check if the user already commented on the course
+  const hasCommented = user?.bought_courses.find(
+    (boughtCourse) => boughtCourse.course_id === course._id && boughtCourse.commented
+  );
+
   return (
     <Paper elevation={3} sx={{ p: 3, mt: 4, mx: 'auto', maxWidth: 600 }}>
       <Typography variant="h6" gutterBottom>
@@ -55,13 +60,18 @@ const CourseNewComment = ({ course }: CourseNewCommentProps) => {
           rows={3}
           sx={{ mb: 2 }}
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          disabled={!!hasCommented} // Disable the button if the user has already commented
+        >
           Agregar Comentario
         </Button>
       </form>
     </Paper>
   );
 };
-
 
 export default CourseNewComment;
