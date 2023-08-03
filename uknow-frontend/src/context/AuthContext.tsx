@@ -10,6 +10,7 @@ interface AuthContextType {
   login: () => void;
   logout: () => void;
   user: User  ;
+  // updateUser: (userData: User) => void;
 }
 
 const initialAuthContext: AuthContextType = {
@@ -34,6 +35,7 @@ const initialAuthContext: AuthContextType = {
     bought_courses: [],
     __v: 0
   },
+  // updateUser: () => {},
 }
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
@@ -54,10 +56,18 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUser = localStorage.getItem('user');
+    if (token && storedUser !== null) {
       setIsLoggedIn(true);
+      setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  useEffect(() => {
+    // Actualiza el estado user siempre que el user es modificado
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
 
   const loginMutation = useLoginUser();
   const login = async () => {
@@ -81,23 +91,17 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.removeItem('user'); 
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    setUser({ 
-      _id: '',
-      name: '',
-      last_name: '',
-      email: '',
-      wallet_balance: 0,
-      created_courses: [],
-      chat_notifications_sent: [],
-      chat_notifications_received: [],
-      profile: '',
-      bought_courses: [],
-      __v: 0,
-    });
+    
   };
 
+  // const updateUser = (userData: User) => {
+  //   setUser(userData);
+  //   localStorage.setItem('user', JSON.stringify(userData));
+  // };
+
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user }}>
+    <AuthContext.Provider value={{ isLoggedIn, loginData, setLoginData, login, logout, user, /*updateUser*/ }}>
       {children}
     </AuthContext.Provider>
   );

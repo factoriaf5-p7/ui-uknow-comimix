@@ -22,7 +22,7 @@ interface CourseDetailsProps {
           component="img"
           src={imageUrl}
           alt={course.name}
-          style={{ width: '50%', borderRadius: '50%', marginBottom: 16, order: 1 }}
+          style={{ width: '50%', borderRadius: '10%', marginBottom: 16, order: 1 }}
         />
         <Box display="flex" flexDirection="column" alignItems="center" order={2}>
           <Typography variant="h5" style={{ color: UknowTheme.palette.uBlue.main }}>
@@ -35,7 +35,9 @@ interface CourseDetailsProps {
         </Box>
         
       </Box>
-       <RatingStars average={average}  />
+      <Box sx={{width: '100%' , display :'flex' , justifyContent:'center'}}>
+      <RatingStars average={average}  />
+      </Box>
        </>
     );
   };

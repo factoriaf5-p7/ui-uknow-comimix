@@ -1,15 +1,14 @@
-import Footer from "../components/footer/Footer"
-import Navbar from "../components/navbar/Navbar"
+import React from 'react'
+import {ProfileForm} from '../components/forms/ProfileForm'
+import Navbar from '../components/navbar/Navbar'
+import Footer from '../components/footer/Footer'
 
 function Profile() {
   return (
-    <div>
-      <Navbar/>
-      <div>
-       Profile
-      </div>
-      <Footer/>
-    </div>
+    <><Navbar />
+    <ProfileForm />
+    <Footer />
+    </>
   )
 }
 
