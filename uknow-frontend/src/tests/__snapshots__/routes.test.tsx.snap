@@ -15,7 +15,7 @@ exports[`Router renders the correct pages > Snapshot test for Hero page 1`] = `
       <img
         alt="Splash"
         class="css-k7hb9y"
-        src="./hero-image.jpg"
+        src="src/assets/hero-image.jpg"
       />
       <div
         class="css-z0heb MuiBox-root css-0"

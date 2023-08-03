@@ -14,6 +14,7 @@ import { MemoryRouter } from "react-router-dom";
 import { AuthContext, AuthContextType } from "../context/AuthContext";
 import { User } from "../interfaces/user.interface";
 import { CourseData } from "../interfaces/course.interface";
+import EditCourse from "../pages/EditCourse";
 
 const RouterWrapper = ({ children }: any) => {
   return <MemoryRouter>{children}</MemoryRouter>;
@@ -42,15 +43,8 @@ const mockAuthContextValue: AuthContextType = {
   } as User,
 };
 
-interface UseOneCourseDataMock {
-  oneCourse: CourseData | null;
-  isLoading: boolean;
-  error: any | null;
-}
 
-export default function useOneCourseData(
-  _id: string
-): UseOneCourseDataMock {
+
   const mockCourse: CourseData = {
     _id: "mockCourseId",
     name: "string",
@@ -67,12 +61,6 @@ export default function useOneCourseData(
     average: 3,
   };
 
-  return {
-    oneCourse: mockCourse,
-    isLoading: false,
-    error: null,
-  };
-}
 
 const AuthContextMockProvider = ({
   children,
@@ -92,7 +80,7 @@ describe("Checks if the pages render the pages correctly", () => {
 
     const html = renderToString(
       <QueryClientProvider client={queryClient}>
-      <AuthContextMockProvider> {/* Assuming you have defined this mock provider */}
+      <AuthContextMockProvider> 
           <RouterWrapper>
             <Course />
           </RouterWrapper>
@@ -229,4 +217,21 @@ describe("Checks if the pages render the pages correctly", () => {
 
     expect(html).toMatchSnapshot();
   });
+/* 
+  test("Snapshot test for Edit Course page", () => {
+    const queryClient = new QueryClient();
+
+    const html = renderToString(
+      <QueryClientProvider client={queryClient}>
+        <RouterWrapper>
+        <AuthContextMockProvider>
+          <EditCourse />
+          </AuthContextMockProvider>
+        </RouterWrapper>
+      </QueryClientProvider>
+    );
+
+    expect(html).toMatchSnapshot();
+  }); */
+
 });
