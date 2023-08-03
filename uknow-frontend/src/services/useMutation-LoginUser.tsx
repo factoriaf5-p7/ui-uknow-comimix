@@ -30,7 +30,6 @@ export const useLoginUser = () => {
       navigate("/home");
     },
     onError: (error:any) => {
-      console.log('Error occurred:', error.message);
       addError(error.message || 'An error occurred', 500);
     },
   });
