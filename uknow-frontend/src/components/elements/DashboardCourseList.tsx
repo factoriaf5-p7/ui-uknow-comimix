@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Typography } from '@mui/material';
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
@@ -26,6 +26,8 @@ interface Props {
 function DashboardCourseList(props: Props) {
 
     const { isLoading, isError, courseList, listType } = props.prop;
+
+    console.log(courseList)
     
     return (
         <Box sx={{ border: '1px solid blue', marginTop: '50px', paddingLeft: '10px' }}>
@@ -42,23 +44,31 @@ function DashboardCourseList(props: Props) {
                     :
                 listType === 'Created' ?
                     (
-                        courseList && courseList.map(course => {
-                            return (
-                                <ListItem key={course._id} secondaryAction={
-                                    <div>
-                                        <IconButton edge="end" aria-label="edit"> <EditNote /> </IconButton>
-                                        <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
-                                    </div>
-                                }>
-                                    <ListItemText primary={
-                                        <Link to='/edit' state={course._id}>{course.name}</Link>
-                                        }/>
-                                </ListItem>
-                                )
-                        })
+                        <>
+                        <Box>
+                            <Button>Create</Button>
+                        </Box>
+                        {
+                            courseList && courseList.map(course => {
+                                return (
+                                    <ListItem key={course._id} secondaryAction={
+                                        <div>
+                                            <IconButton edge="end" aria-label="edit"> <EditNote /> </IconButton>
+                                            <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
+                                        </div>
+                                    }>
+                                        <ListItemText primary={
+                                            <Link to='/edit' state={course._id}>{course.name}</Link>
+                                            }/>
+                                    </ListItem>
+                                    )
+                            })
+                        }
+                        </>
                     )
                     :
                     (
+                        // <Button>Create</Button>
                         courseList && courseList.map(course => {
                             return (
                                 <ListItem key={course._id}>

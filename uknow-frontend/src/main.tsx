@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import  CssBaseline  from "@mui/material/CssBaseline";
 import { UknowTheme } from "./themes/ThemeUknow.tsx";
 import APIErrorProvider from "./context/APIErrorContext.tsx";
 

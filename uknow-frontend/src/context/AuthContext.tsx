@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
+import { createContext, useState, ReactNode, Dispatch, SetStateAction } from 'react';
 import LoginData from '../interfaces/login.interface';
 import { useLoginUser } from '../services/useMutation-LoginUser';
 import { User } from '../interfaces/user.interface';
@@ -33,7 +33,7 @@ const initialAuthContext: AuthContextType = {
     profile: '',
     bought_courses: [],
     __v: 0
-  },
+  }
 }
 export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
@@ -47,17 +47,8 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     email: '',
     password: '',
   });
-
   
-  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-  const [user, setUser] = useState<User>(storedUser);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  const [user, setUser] = useState<User>({});
 
   const loginMutation = useLoginUser();
   const login = async () => {
@@ -81,19 +72,6 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     localStorage.removeItem('user'); 
     setLoginData({ email: '', password: '' });
     setIsLoggedIn(false);
-    setUser({ 
-      _id: '',
-      name: '',
-      last_name: '',
-      email: '',
-      wallet_balance: 0,
-      created_courses: [],
-      chat_notifications_sent: [],
-      chat_notifications_received: [],
-      profile: '',
-      bought_courses: [],
-      __v: 0,
-    });
   };
 
   return (
