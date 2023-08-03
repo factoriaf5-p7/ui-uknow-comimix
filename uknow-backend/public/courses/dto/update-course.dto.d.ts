@@ -6,4 +6,6 @@ export declare class UpdateCourseDto {
     difficulty: string;
     tags: [string, string, string];
     content: string;
+    description: string;
+    image: string;
 }

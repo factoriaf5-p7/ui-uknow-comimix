@@ -4,16 +4,14 @@ import { TextField, Button, Snackbar } from "@mui/material";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { UknowTheme } from "../../themes/ThemeUknow";
-import { useLoginUser } from "../../services/useMutation-LoginUser";
 import MuiAlert from "@mui/material/Alert";
 
 export function LoginForm() {
-  const { loginData, setLoginData } = useContext(AuthContext);
+  const { loginData, setLoginData, login } = useContext(AuthContext);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [generalError, setGeneralError] = useState("");
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
-  const handleLogin = useLoginUser();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,16 +25,19 @@ export function LoginForm() {
       setPasswordError("Please enter your password");
       return;
     }
-
     try {
-      await handleLogin.mutateAsync(loginData);
+       login();
     } catch (error) {
-      setGeneralError("Email or password is incorrect");
+      if (error instanceof Error) {
+        setGeneralError("Email or password is incorrect");
+      } else {
+        setGeneralError("An error occurred");
+      }
     }
   };
 
   const handleCloseSnackbar = () => {
-    setGeneralError("");
+    setGeneralError(null);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -116,20 +117,22 @@ export function LoginForm() {
           </Button>
         </Box>
         <Snackbar
-          open={!!generalError}
-          autoHideDuration={6000}
-          onClose={handleCloseSnackbar}
-        >
-          <MuiAlert
-            onClose={handleCloseSnackbar}
-            severity="error"
-            elevation={6}
-            variant="filled"
-          >
-            {generalError}
-          </MuiAlert>
-        </Snackbar>
+  open={generalError !== null} 
+  autoHideDuration={6000}
+  onClose={handleCloseSnackbar}
+>
+  <MuiAlert
+    onClose={handleCloseSnackbar}
+    severity="error"
+    elevation={6}
+    variant="filled"
+  >
+    {generalError}
+  </MuiAlert>
+</Snackbar>
       </Box>
     </Container>
   );
 }
+
+

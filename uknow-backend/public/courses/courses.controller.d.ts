@@ -8,6 +8,16 @@ import mongoose from 'mongoose';
 export declare class CoursesController {
     private readonly coursesService;
     constructor(coursesService: CoursesService);
+    purchaseCourse(purchaseCourseDto: PurchaseCourseDto): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: string;
+    }>;
+    update(userId: ObjectId, updateCourseDto: UpdateCourseDto): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: any;
+    }>;
     create(userId: ObjectId, createCourseDto: CreateCourseDto): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
@@ -19,6 +29,16 @@ export declare class CoursesController {
         message: string;
         status: import("@nestjs/common").HttpStatus;
         data: any[];
+    }>;
+    deleteCourse(id: ObjectId): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: string;
+    }>;
+    deleteCourseByAdmin(id: ObjectId): Promise<{
+        message: string;
+        status: import("@nestjs/common").HttpStatus;
+        data: string;
     }>;
     findAllSortedByAverage(): Promise<{
         message: string;
@@ -75,32 +95,12 @@ export declare class CoursesController {
             _id: mongoose.Types.ObjectId;
         }, never>;
     }>;
-    purchaseCourse(purchaseCourseDto: PurchaseCourseDto): Promise<{
-        message: string;
-        status: import("@nestjs/common").HttpStatus;
-        data: string;
-    }>;
     findOneAdmin(id: ObjectId): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
         data: mongoose.Document<unknown, {}, import("./schemas/course.schema").Course> & Omit<import("./schemas/course.schema").Course & {
             _id: mongoose.Types.ObjectId;
         }, never>;
-    }>;
-    update(userId: ObjectId, updateCourseDto: UpdateCourseDto): Promise<{
-        message: string;
-        status: import("@nestjs/common").HttpStatus;
-        data: any;
-    }>;
-    deleteCourse(id: ObjectId): Promise<{
-        message: string;
-        status: import("@nestjs/common").HttpStatus;
-        data: string;
-    }>;
-    deleteCourseByAdmin(id: ObjectId): Promise<{
-        message: string;
-        status: import("@nestjs/common").HttpStatus;
-        data: string;
     }>;
     addRating(userId: ObjectId, ratedCourse: RatedCourseDto): Promise<{
         message: string;

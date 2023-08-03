@@ -16,16 +16,40 @@ import mongoose from 'mongoose';
 export class CoursesController {
 	constructor(private readonly coursesService: CoursesService) {}
 
+  @Patch('purchase')
+  //@UseGuards(AuthGuard)
+	purchaseCourse(@Body() purchaseCourseDto: PurchaseCourseDto) {
+  	return this.coursesService.purchaseCourse(purchaseCourseDto);
+	}
+
+  @Patch(':id')
+  // @UseGuards(AuthGuard)
+  update(@Param('id') userId: ObjectId, @Body() updateCourseDto: UpdateCourseDto){
+  	return this.coursesService.update(userId, updateCourseDto);
+  }
+
   @Post('create/:userid')
   // @UseGuards(AuthGuard)
-	create(@Param('userid') userId: ObjectId, @Body() createCourseDto: CreateCourseDto) {
-		return this.coursesService.create(userId, createCourseDto);
-	}
+  create(@Param('userid') userId: ObjectId, @Body() createCourseDto: CreateCourseDto) {
+  	return this.coursesService.create(userId, createCourseDto);
+  }
 
   @Get('created-courses/:userid')
   // @UseGuards(AuthGuard)
   showCreatedCourses(@Param('userid') userId: ObjectId){
   	return this.coursesService.findCreatedCourses(userId);
+  }
+
+  @Delete('delete')
+  // @UseGuards(AuthGuard)
+  deleteCourse(@Query('id') id: ObjectId) {
+  	return this.coursesService.deleteCourse(id);
+  }
+
+  @Delete('admin/delete')
+  // @UseGuards(AuthGuard)
+  deleteCourseByAdmin(@Query('id') id: ObjectId) {
+  	return this.coursesService.deleteCourseByAdmin(id);
   }
 
   @Get('average')
@@ -65,36 +89,12 @@ export class CoursesController {
   	return this.coursesService.findOne(id);
   }
 
-  @Patch('purchase')
-  //@UseGuards(AuthGuard)
-  purchaseCourse(@Body() purchaseCourseDto: PurchaseCourseDto) {
-  	return this.coursesService.purchaseCourse(purchaseCourseDto);
-  }
-
   @Get('admin/:id')
   @Roles(Role.Admin)
   @UseGuards(RolesGuard)
   // @UseGuards(AuthGuard)
   findOneAdmin(@Param('id') id: ObjectId ) {
   	return this.coursesService.findOneAdmin(id);
-  }
-
-  @Patch(':id')
-  // @UseGuards(AuthGuard)
-  update(@Param('id') userId: ObjectId, @Body() updateCourseDto: UpdateCourseDto){
-  	return this.coursesService.update(userId, updateCourseDto);
-  }
-
-  @Delete('delete')
-  // @UseGuards(AuthGuard)
-  deleteCourse(@Query('id') id: ObjectId) {
-  	return this.coursesService.deleteCourse(id);
-  }
-
-  @Delete('admin/delete')
-  // @UseGuards(AuthGuard)
-  deleteCourseByAdmin(@Query('id') id: ObjectId) {
-  	return this.coursesService.deleteCourseByAdmin(id);
   }
 
   @Patch('rating/:userid')
