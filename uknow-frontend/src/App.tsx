@@ -2,7 +2,7 @@ import Home from './pages/Home'
 import Hero from './pages/Hero'
 
 import Dashboard from './pages/Dashboard'
-import Profile from './pages/Profile'
+import Profile from './pages/Profile/Profile'
 import NotFound from './pages/NotFound'
 import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'

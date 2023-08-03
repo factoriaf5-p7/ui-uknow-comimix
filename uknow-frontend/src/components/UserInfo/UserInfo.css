@@ -1,0 +1,22 @@
+.Main-UserInfo-Container {
+  height: 100%;
+  width: 100%;
+  margin: 2rem 2rem 2rem 0rem;
+  padding: 1rem;
+  box-shadow: 1rem 1rem 2rem 1rem lightgray;
+  border-radius: 0.5rem;
+  text-align: left;
+}
+.Main-UserInfo-Container #hr_info {
+  background-color: lightgray;
+  height: 1px;
+  border: none;
+  width: 95%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.Main-UserInfo-Container .info-container h6 {
+  font-size: 1rem;
+  color: #DEA01E;
+}/*# sourceMappingURL=UserInfo.css.map */
