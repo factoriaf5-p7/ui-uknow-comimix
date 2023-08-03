@@ -47,4 +47,14 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UpdateCourseDto.prototype, "content", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '### New course name' }),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UpdateCourseDto.prototype, "description", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '### New course name' }),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UpdateCourseDto.prototype, "image", void 0);
 //# sourceMappingURL=update-course.dto.js.map
