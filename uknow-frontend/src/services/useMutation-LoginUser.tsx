@@ -1,8 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import LoginData from "../interfaces/login.interface";
 import { useNavigate } from "react-router-dom";
+import { useAPIError } from "../hooks/useAPIError";
 
 const loginUser = async (loginData: LoginData) => {
+  
   const response = await fetch("http://localhost:3000/auth/login", {
     method: "POST",
     headers: {
@@ -19,12 +21,17 @@ const loginUser = async (loginData: LoginData) => {
 
   return result
 };
+
 export const useLoginUser = () => {
   const navigate = useNavigate(); 
-
+  const { addError } = useAPIError();
   return useMutation(loginUser, {
     onSuccess: () => {
       navigate("/home");
+    },
+    onError: (error:any) => {
+      console.log('Error occurred:', error.message);
+      addError(error.message || 'An error occurred', 500);
     },
   });
 };
