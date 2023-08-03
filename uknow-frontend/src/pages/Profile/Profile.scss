@@ -1,0 +1,109 @@
+$main-color: #DEA01E;
+$secondary-color: #124873;
+
+
+.MainProfileDiv{
+    height: 100vh;
+    width: 100vw;
+    background: $main-color;
+    overflow-x: hidden;
+    .profile-container{
+    width: 90%;
+    height: 100vh;
+    background: white;
+    margin: auto;
+    .top-portion{
+        height: 45%;
+        width: 100%;
+        position: relative;
+        .user-profile-bg-image{
+            height: 100%;
+            width: 100%;
+            background:$main-color;
+            overflow: hidden;
+            #prf-bg-img{
+                height: 100vh;              
+                width: 100vw;
+                margin-top: -12rem;
+
+            }
+        }
+        .user-profile-img{
+        position: absolute;
+        height: 60%;
+        width: 15%;
+        border-radius: 50%;
+        transform: translateX(50%);
+        right: 50%;
+        background-color:$secondary-color;
+        bottom: -2rem;
+        border: 2px solid white;
+        #prf-img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+
+
+        }
+        }
+    }.userNam{
+        text-align:center;
+        padding-top: 2rem;
+        width: 100%;
+        position:absolute;
+        font-size: 2rem;
+        color: black;
+       
+
+
+    }.bottom-portion{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 5rem;
+        text-align: center;
+        color: black;
+        // background-color: #dbf2ff;
+        .right-side{
+            flex: 0.90;
+            display: flex;
+            justify-content: space-between;
+            height: 90%;
+            margin-top: 5rem;
+            // background-color: #dbf2ff;
+             color: black;
+        }
+        .left-side{
+            flex: 0.90;
+            // background-color: #dbf2ff;
+            // height: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5rem;
+            box-shadow: 1rem 1rem 2rem 1rem lightgray;
+            margin: 2rem 2rem 2rem 0rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            
+        }
+
+
+    }
+    
+
+    }
+.image-input{
+    position: absolute;
+    transform: translateX(150%);
+    right: 53%;  
+    }
+    .form{
+        height: 50%;
+        margin-top: 1rem;
+        width: 100%;
+       
+    }
+    
+}

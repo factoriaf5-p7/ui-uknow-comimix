@@ -43,7 +43,7 @@ function EditCourse() {
         userId: user._id,
         _id: courseId,
         name: oneCourse.name,
-        description: oneCourse.description,
+        description: oneCourse.description, 
         topic: oneCourse.topic,
         difficulty: oneCourse.difficulty,
         image: oneCourse.image,
