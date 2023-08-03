@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Typography } from '@mui/material';
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
@@ -40,22 +40,27 @@ function DashboardCourseList(props: Props) {
                 isError ?
                     ( <div>Error consultando los cursos</div>)
                     :
-                listType === 'Created' ?
-                    (
-                        courseList && courseList.map(course => {
-                            return (
-                                <ListItem key={course._id} secondaryAction={
-                                    <div>
-                                        <IconButton edge="end" aria-label="edit"> <EditNote /> </IconButton>
-                                        <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
-                                    </div>
-                                }>
-                                    <ListItemText primary={
-                                        <Link to='/edit' state={course._id}>{course.name}</Link>
-                                        }/>
-                                </ListItem>
-                                )
-                        })
+                listType === 'Bought' ?
+                    (   
+                        <>
+                            <Button></Button>
+                            {
+                                courseList && courseList.map(course => {
+                                    return (
+                                        <ListItem key={course._id} secondaryAction={
+                                            <div>
+                                                <IconButton edge="end" aria-label="edit"> <EditNote /> </IconButton>
+                                                <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
+                                            </div>
+                                        }>
+                                            <ListItemText primary={
+                                                <Link to='/edit' state={course._id}>{course.name}</Link>
+                                                }/>
+                                        </ListItem>
+                                    )
+                                })
+                            }
+                        </> 
                     )
                     :
                     (
