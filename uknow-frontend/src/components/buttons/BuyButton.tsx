@@ -46,7 +46,7 @@ const BuyButton = ({ courseId }: BuyButtonProps) => {
       console.log(response.message);
 
       if (user.bought_courses) {
-        user.bought_courses.push({ course_id: courseId });
+        user.bought_courses.push({ course_id: courseId, stars: 0, commented: false });
       } 
     
       localStorage.setItem('user', JSON.stringify(user));

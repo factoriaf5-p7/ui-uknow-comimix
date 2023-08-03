@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 interface PurchaseResponse {
     message: string;
-    course: courseData;
 }
 
 export const usePurchaseCourseMutation = () => {
