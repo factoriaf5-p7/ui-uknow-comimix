@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface updateCourseData {
     userId: string;
@@ -15,8 +15,6 @@ interface updateCourseData {
 export const useCourseUpdateMutation = () => {
 
   const updateCourse = async ({ userId, ...course }: updateCourseData) => {
-    // console.log('sting', JSON.stringify(course))
-    // console.log('USER ID', userId)
     try{
         const response = await fetch(`http://localhost:3000/courses/${userId}`, {
         method: 'PATCH',
@@ -34,9 +32,11 @@ export const useCourseUpdateMutation = () => {
     }
   };
 
+  const queryClient = useQueryClient();
   const mutation = useMutation(updateCourse, {
     onSuccess: () => {
-      alert('updated success')
+        queryClient.invalidateQueries("createdCourses");
+        // queryClient.invalidateQueries("user");
     },
     onError: (error: any) => {
       console.error('Error updating course:', error);
