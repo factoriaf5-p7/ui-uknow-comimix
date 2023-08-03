@@ -36,7 +36,6 @@ export const useCourseUpdateMutation = () => {
   const mutation = useMutation(updateCourse, {
     onSuccess: () => {
         queryClient.invalidateQueries("course");
-        // queryClient.invalidateQueries("user");
     },
     onError: (error: any) => {
       console.error('Error updating course:', error);
