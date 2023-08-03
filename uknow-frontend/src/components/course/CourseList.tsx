@@ -3,7 +3,6 @@ import { CardProduct } from '../cards/CardProduct';
 import { useNavigate } from 'react-router-dom';
 import { CourseData } from '../../interfaces/course.interface';
 
-
 interface CourseListProps {
   courses: CourseData[] | undefined;
 }
@@ -26,7 +25,6 @@ export default function CourseList({ courses }: CourseListProps ) {
           <Grid item key={course._id} sx={{ display: { xs: 'none', sm: 'block' } }} component="div">
             <Box my={2} style={{ width: '330px', height: '450px' }}>
               <CardProduct courseData={course} onCardClick={() => handleCardClick(course._id)} />
-              <BtnPruevaCurso key={course._id} course={course} />
             </Box>
           </Grid>
         ))}

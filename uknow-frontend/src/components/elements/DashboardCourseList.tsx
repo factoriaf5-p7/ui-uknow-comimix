@@ -9,14 +9,18 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { ListItemText } from '@mui/material';
 import { EditNote } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import {CourseData} from '../../interfaces/course.interface'
+import { CourseData } from '../../interfaces/course.interface';
 
-interface Props {
+interface DashboardList {
     courseList: CourseData[];
     isLoading: boolean,
     isError: boolean,
     listType: string;
     prop: Props;
+}
+
+interface Props {
+    prop: DashboardList
 }
 
 function DashboardCourseList(props: Props) {
