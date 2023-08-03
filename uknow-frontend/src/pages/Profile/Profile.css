@@ -1,0 +1,91 @@
+.MainProfileDiv {
+  height: 100vh;
+  width: 100vw;
+  background: #DEA01E;
+  overflow-x: hidden;
+}
+.MainProfileDiv .profile-container {
+  width: 90%;
+  height: 100vh;
+  background: white;
+  margin: auto;
+}
+.MainProfileDiv .profile-container .top-portion {
+  height: 45%;
+  width: 100%;
+  position: relative;
+}
+.MainProfileDiv .profile-container .top-portion .user-profile-bg-image {
+  height: 100%;
+  width: 100%;
+  background: #DEA01E;
+  overflow: hidden;
+}
+.MainProfileDiv .profile-container .top-portion .user-profile-bg-image #prf-bg-img {
+  height: 100vh;
+  width: 100vw;
+  margin-top: -12rem;
+}
+.MainProfileDiv .profile-container .top-portion .user-profile-img {
+  position: absolute;
+  height: 60%;
+  width: 15%;
+  border-radius: 50%;
+  transform: translateX(50%);
+  right: 50%;
+  background-color: #124873;
+  bottom: -2rem;
+  border: 2px solid white;
+}
+.MainProfileDiv .profile-container .top-portion .user-profile-img #prf-img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.MainProfileDiv .profile-container .userNam {
+  text-align: center;
+  padding-top: 2rem;
+  width: 100%;
+  position: absolute;
+  font-size: 2rem;
+  color: black;
+}
+.MainProfileDiv .profile-container .bottom-portion {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 5rem;
+  text-align: center;
+  color: black;
+}
+.MainProfileDiv .profile-container .bottom-portion .right-side {
+  flex: 0.9;
+  display: flex;
+  justify-content: space-between;
+  height: 90%;
+  margin-top: 5rem;
+  color: black;
+}
+.MainProfileDiv .profile-container .bottom-portion .left-side {
+  flex: 0.9;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+  box-shadow: 1rem 1rem 2rem 1rem lightgray;
+  margin: 2rem 2rem 2rem 0rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.MainProfileDiv .image-input {
+  position: absolute;
+  transform: translateX(150%);
+  right: 53%;
+}
+.MainProfileDiv .form {
+  height: 50%;
+  margin-top: 1rem;
+  width: 100%;
+}/*# sourceMappingURL=Profile.css.map */

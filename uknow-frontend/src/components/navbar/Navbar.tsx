@@ -15,10 +15,12 @@ import { UknowTheme } from "../../themes/ThemeUknow";
 import UserBalance from "./UserBalance";
 
 
+
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
   const { isLoggedIn } = useContext(AuthContext);
   const theme = useTheme();
+ 
 
   const isDesktop = useMediaQuery(theme.breakpoints.only("desktop"));
 
