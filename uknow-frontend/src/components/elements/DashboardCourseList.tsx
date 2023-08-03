@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/system';
-import { Button, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { Typography } from '@mui/material';
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
@@ -9,12 +9,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { ListItemText } from '@mui/material';
 import { EditNote } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { CourseData } from '../../interfaces/course.interface';
 
-interface Props {
-    courseList: CourseList[];
+interface DashboardList {
+    courseList: CourseData[];
     isLoading: boolean,
     isError: boolean,
     listType: string;
+}
+
+interface Props {
+    prop: DashboardList
 }
 
 function DashboardCourseList(props: Props) {
