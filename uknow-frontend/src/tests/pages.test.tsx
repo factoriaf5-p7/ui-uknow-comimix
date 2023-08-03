@@ -82,7 +82,7 @@ describe("Checks if the pages render the pages correctly", () => {
       <QueryClientProvider client={queryClient}>
       <AuthContextMockProvider> 
           <RouterWrapper>
-            <Course />
+            <Course/>
           </RouterWrapper>
         </AuthContextMockProvider>
       </QueryClientProvider>
@@ -217,21 +217,4 @@ describe("Checks if the pages render the pages correctly", () => {
 
     expect(html).toMatchSnapshot();
   });
-/* 
-  test("Snapshot test for Edit Course page", () => {
-    const queryClient = new QueryClient();
-
-    const html = renderToString(
-      <QueryClientProvider client={queryClient}>
-        <RouterWrapper>
-        <AuthContextMockProvider>
-          <EditCourse />
-          </AuthContextMockProvider>
-        </RouterWrapper>
-      </QueryClientProvider>
-    );
-
-    expect(html).toMatchSnapshot();
-  }); */
-
 });
