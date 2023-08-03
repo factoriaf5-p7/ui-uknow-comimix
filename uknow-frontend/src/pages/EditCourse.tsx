@@ -38,20 +38,23 @@ function EditCourse() {
 
   useEffect (() => {
     // if(!isLogged) navigate('/login');
-    if(!isLoading){
-      setUpdatedCourse({
-        userId: user._id,
-        _id: courseId,
-        name: oneCourse.name,
-        description: oneCourse.description, 
-        topic: oneCourse.topic,
-        difficulty: oneCourse.difficulty,
-        image: oneCourse.image,
-        tags: oneCourse.tags,
-        content: oneCourse.content
-      })
-      setContent(oneCourse.content);
-    }
+    const tId = setTimeout(() => {
+      if(!isLoading){
+        setUpdatedCourse({
+          userId: user._id,
+          _id: courseId,
+          name: oneCourse.name,
+          description: oneCourse.description, 
+          topic: oneCourse.topic,
+          difficulty: oneCourse.difficulty,
+          image: oneCourse.image,
+          tags: oneCourse.tags,
+          content: oneCourse.content
+        });
+        setContent(oneCourse.content);
+        clearTimeout(tId);
+      }
+    }, 300);
 
   }, []);
 
