@@ -2,7 +2,7 @@ import { Box, Grid } from '@mui/material';
 import { CardProduct } from '../cards/CardProduct';
 import { useNavigate } from 'react-router-dom';
 import { CourseData } from '../../interfaces/course.interface';
-import BtnPruevaCurso from '../buttons/BtnPruevaCurso';
+
 
 interface CourseListProps {
   courses: CourseData[] | undefined;
