@@ -1,6 +1,8 @@
 import Navbar from '../components/navbar/Navbar';
 import { useLocation } from 'react-router-dom';
 import CourseDetails from '../components/course/CourseDetails';
+import Footer from '../components/footer/Footer';
+import CourseHeader from '../components/course/CourseHeader';
 
 const Course = () => {
 
@@ -9,7 +11,9 @@ const Course = () => {
   return (
     <>
       <Navbar />
+      <CourseHeader name={''}/>
       <CourseDetails course={course}/>
+      <Footer/>
     </>
   );
 }
