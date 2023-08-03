@@ -127,6 +127,7 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async findOneWithCreatedCourses(id) {
         try {
+            console.log(id);
             const createdCourses = await this.userModel.findOne({ _id: id }).select('created_courses').populate('created_courses');
             return {
                 message: 'User with created courses retrived successfully',

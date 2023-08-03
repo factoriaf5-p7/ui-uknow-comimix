@@ -48,7 +48,19 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     password: '',
   });
   
-  const [user, setUser] = useState<User>({});
+  const [user, setUser] = useState<User>({
+    _id: '',
+  name: '',
+  last_name: '',
+  email: '',
+  wallet_balance: 0,
+  created_courses: [],
+  chat_notifications_sent: [],
+  chat_notifications_received: [],
+  profile: '',
+  bought_courses: [],
+  __v: 0,
+  });
 
   const loginMutation = useLoginUser();
   const login = async () => {
