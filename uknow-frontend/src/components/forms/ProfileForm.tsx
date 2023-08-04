@@ -33,8 +33,6 @@ export const ProfileForm = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    console.log(profile);
-    
     userProfileMutation.mutate({_id: profile._id, name: profile.name, last_name: profile.last_name});
     localStorage.setItem('user', JSON.stringify(profile));
   };
@@ -43,8 +41,6 @@ export const ProfileForm = () => {
     const userString = localStorage.getItem('user') as string;
     const user = JSON.parse(userString);
     setProfile(user);
-    console.log(user)
-
   },[])
 
   return (

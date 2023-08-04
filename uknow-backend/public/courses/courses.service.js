@@ -34,7 +34,6 @@ let CoursesService = exports.CoursesService = class CoursesService {
         this.courseModel = courseModel;
     }
     async create(userId, createCourseDto) {
-        console.log('creating..');
         try {
             const newCourse = await this.courseModel.create(createCourseDto);
             this.userService.addCreatedCourse(userId, newCourse._id);

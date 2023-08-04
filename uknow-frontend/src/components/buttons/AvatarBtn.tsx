@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import { AuthContext } from '../../context/AuthContext';
-import Popper from '@mui/material/Popper/';
+import { Popper } from '@mui/material';
 
 
  

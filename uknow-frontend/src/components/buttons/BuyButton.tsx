@@ -6,7 +6,6 @@ import PurchaseModal from '../modals/PurchaseModal';
 import { AuthContext } from '../../context/AuthContext';
 import { usePurchaseCourseMutation } from '../../services/useMutation-Purchase';
 import { CourseData } from '../../interfaces/course.interface';
-import { Navigate } from 'react-router-dom';
 
 interface BuyButtonProps {
   course: CourseData;
@@ -15,7 +14,7 @@ interface BuyButtonProps {
 const BuyButton = ({ course }: BuyButtonProps) => {
   const { isLoggedIn, user, } = useContext(AuthContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const purchaseMutation = usePurchaseCourseMutation(); 
 
@@ -30,8 +29,6 @@ const BuyButton = ({ course }: BuyButtonProps) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
-  const navigate = useNavigate();
 
   const handlePurchaseConfirm = async () => {
     try {

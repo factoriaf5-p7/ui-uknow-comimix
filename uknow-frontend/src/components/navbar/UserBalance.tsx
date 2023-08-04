@@ -12,9 +12,6 @@ const UserBalance = () => {
   const [balance, setBalance] = useState(user.wallet_balance);
 
   const localUser = JSON.parse(localStorage.getItem('user') as string);
-  console.log('localUser', localUser.wallet_balance)
-  console.log('contextUser', user.wallet_balance)
-
 
   // useEffect(() => {
   //   // // updateUser();

@@ -27,9 +27,7 @@ export const usePurchaseCourseMutation = () => {
         onSuccess: (data) => {
             // queryClient.setQueryData(["users", "courses", "boughtCourses", "createdCourses"], data);
             // queryClient.invalidateQueries(["users", "courses"]);
-        console.log("Datos de compra:", JSON.stringify(data, null, 2));
-        navigate('/course');
-        
+            navigate('/course');        
         },
         onError: (error: any) => {
         console.error('Failed to purchase course:', error);

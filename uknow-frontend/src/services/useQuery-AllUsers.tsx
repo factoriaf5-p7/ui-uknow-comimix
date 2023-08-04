@@ -13,7 +13,6 @@ export const useUserProfile = () => {
             }
           });
         const data = await response.json();
-        console.log("users" + data.data)
         return data.data;
       },
       staleTime: 3000000,

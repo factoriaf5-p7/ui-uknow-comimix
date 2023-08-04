@@ -25,7 +25,7 @@ export const useAddCommentMutation = () => {
 
   return useMutation(addCommentMutation, {
     onSuccess: () => {
-      console.log("new comment created")
+      console.log("New comment created")
     },
   });
 };

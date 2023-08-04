@@ -15,10 +15,6 @@ import EditCourse from './pages/EditCourse'
 import CreateCourse from './pages/CreateCourse'
 
 function App() {
-<<<<<<< HEAD
-
-=======
->>>>>>> a23ac3b0f1c898b10d93b9b58575f6227e89285c
   return (
     <>
    <AuthContexProvider>

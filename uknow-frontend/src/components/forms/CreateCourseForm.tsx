@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react'
 import MDEditor from '@uiw/react-md-editor';
-import { Box, Container } from '@mui/system';
+import { Container } from '@mui/system';
+import Box from '@mui/system/Box';
 import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer';
 import { AuthContext } from '../../context/AuthContext';
-import useOneCourseData from '../../services/useOneCourseData';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
 import { UknowTheme } from '../../themes/ThemeUknow';
 import { InputLabel, Select, MenuItem } from '@mui/material'
 import { FormEvent } from 'react';
-import { useAddCourseMutation } from '../../services/useAddCourseMutation';
+import useAddCourseMutation from '../../services/useAddCourseMutation';
 
 function CreateCourseForm() {
   const { user, isLogged } = useContext(AuthContext);
@@ -51,9 +49,8 @@ function CreateCourseForm() {
       ...newCourse
     });
 
-    console.log('New course from form', newCourse);
     addCourseMutation.mutate(newCourse);
-    // navigate('/dashboard');
+    navigate('/dashboard');
   }
 
   return (
