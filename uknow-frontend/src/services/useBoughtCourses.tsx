@@ -5,15 +5,18 @@ interface Props {
     userId: string;
 }
 
-export const useBoughtCourses = ( userId: string ) => {
+export const useBoughtCourses = ( userId: Props) => {
     const { isLoading, isError, data: courseList } = useQuery({
       queryKey: ['boughtCourses'],
       queryFn: async (): Promise<CourseData[]> => {
         const response = await fetch(`http://localhost:3000/courses/bought-courses/${userId}`);
         const data = await response.json();
+        console.log('bought courses', data.data)
         return data.data;
       },
+      enabled: true,
       staleTime: 3000000,
+      structuralSharing: false
     });
   
     return {

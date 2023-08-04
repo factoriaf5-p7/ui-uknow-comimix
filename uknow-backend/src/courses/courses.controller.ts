@@ -11,6 +11,7 @@ import { Roles } from 'src/auth/guards/roles';
 import { Role } from 'src/auth/guards/roles.enum';
 import { RolesGuard } from 'src/auth/guards/role.guard';
 import mongoose from 'mongoose';
+import { DeleteCourseDto } from './dto/delete-course.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -42,8 +43,8 @@ export class CoursesController {
 
   @Delete('delete')
   // @UseGuards(AuthGuard)
-  deleteCourse(@Query('id') id: ObjectId) {
-  	return this.coursesService.deleteCourse(id);
+  deleteCourse(@Body() deleteCourseDto: DeleteCourseDto) {
+  	return this.coursesService.deleteCourse(deleteCourseDto);
   }
 
   @Delete('admin/delete')

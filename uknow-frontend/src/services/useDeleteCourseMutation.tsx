@@ -1,22 +1,22 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"; // Make sure to import from 'react-query' directly
-import { NewCourseData } from "../interfaces/new_course.interface";
+import { useMutation } from "@tanstack/react-query"; // Make sure to import from 'react-query' directly
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from '@tanstack/react-query'
 
-interface AddCourseVariables {
+interface DeleteCourseVariables {
     userId: string;
-    newCourse: NewCourseData;
+    _id: string;
 }
 
-const useAddCourseMutation = () => {
+const useDeleteCourseMutation = () => {
     const navigate = useNavigate();
 
-    const addCourse = async ({ userId, ...newCourse }: AddCourseVariables) => {
-        const response = await fetch(`http://localhost:3000/courses/create/${userId}`, {
-          method: 'POST',
+    const deleteCourse = async ( deleteCourseDto: DeleteCourseVariables) => {
+        const response = await fetch(`http://localhost:3000/courses/delete`, {
+          method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(newCourse),
+          body: JSON.stringify(deleteCourseDto)
         });
       
         if (!response.ok) {
@@ -30,7 +30,7 @@ const useAddCourseMutation = () => {
 
     const queryClient = useQueryClient();
 
-    const mutation = useMutation(addCourse, {
+    const mutation = useMutation(deleteCourse, {
       onSuccess: () => {
         navigate('/dashboard');
         queryClient.invalidateQueries("users");
@@ -43,4 +43,4 @@ const useAddCourseMutation = () => {
     return mutation;
 };
 
-export default useAddCourseMutation;
+export default useDeleteCourseMutation;

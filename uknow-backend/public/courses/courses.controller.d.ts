@@ -5,6 +5,7 @@ import { ObjectId } from 'mongoose';
 import { RatedCourseDto } from './dto/rate-course.dto';
 import { PurchaseCourseDto } from './dto/buy-course.dto';
 import mongoose from 'mongoose';
+import { DeleteCourseDto } from './dto/delete-course.dto';
 export declare class CoursesController {
     private readonly coursesService;
     constructor(coursesService: CoursesService);
@@ -30,7 +31,7 @@ export declare class CoursesController {
         status: import("@nestjs/common").HttpStatus;
         data: any[];
     }>;
-    deleteCourse(id: ObjectId): Promise<{
+    deleteCourse(deleteCourseDto: DeleteCourseDto): Promise<{
         message: string;
         status: import("@nestjs/common").HttpStatus;
         data: string;

@@ -267,7 +267,11 @@ export class UsersService {
 
 	async removeCourseFromBought(id: ObjectId) {
 		try {
-			await this.userModel.find({ _id: id });
+			await this.userModel.findOneAndUpdate({ _id: id }, {
+				$pull: {
+					created_courses: id
+				}
+			});
 			return {
 				status: HttpStatus.OK,
 				message: 'Course removed from bought successfully',

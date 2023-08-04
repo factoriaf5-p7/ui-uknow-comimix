@@ -8,6 +8,7 @@ import { UsersService } from '../users/users.service';
 import { RatedCourseDto } from './dto/rate-course.dto';
 import { PurchaseCourseDto } from './dto/buy-course.dto';
 import mongoose from 'mongoose';
+import { DeleteCourseDto } from './dto/delete-course.dto';
 
 @Injectable()
 export class CoursesService {
@@ -314,9 +315,9 @@ export class CoursesService {
 		}
 	}
 
-	async deleteCourse(id: ObjectId) {
+	async deleteCourse(deleteCourseDto: DeleteCourseDto) {
 		try {
-			const course = await this.courseModel.findOne({ _id: id });
+			const course = await this.courseModel.findOne({ _id: deleteCourseDto._id });
 
 			if (course) {
 				if (course.bought)
@@ -324,8 +325,9 @@ export class CoursesService {
 						'Course cannot be deleted.',
 						HttpStatus.UNAUTHORIZED,
 					);
-
-				await this.courseModel.deleteOne({ _id: id });
+				
+				const courseDeleted = await this.userService.removeCourseFromBought(deleteCourseDto.userId);
+				if(courseDeleted) await this.courseModel.deleteOne({ _id: deleteCourseDto._id });
 
 				return {
 					message: 'Course deleted.',

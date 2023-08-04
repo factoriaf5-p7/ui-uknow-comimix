@@ -22,6 +22,7 @@ const buy_course_dto_1 = require("./dto/buy-course.dto");
 const roles_1 = require("../auth/guards/roles");
 const roles_enum_1 = require("../auth/guards/roles.enum");
 const role_guard_1 = require("../auth/guards/role.guard");
+const delete_course_dto_1 = require("./dto/delete-course.dto");
 let CoursesController = exports.CoursesController = class CoursesController {
     constructor(coursesService) {
         this.coursesService = coursesService;
@@ -38,8 +39,8 @@ let CoursesController = exports.CoursesController = class CoursesController {
     showCreatedCourses(userId) {
         return this.coursesService.findCreatedCourses(userId);
     }
-    deleteCourse(id) {
-        return this.coursesService.deleteCourse(id);
+    deleteCourse(deleteCourseDto) {
+        return this.coursesService.deleteCourse(deleteCourseDto);
     }
     deleteCourseByAdmin(id) {
         return this.coursesService.deleteCourseByAdmin(id);
@@ -104,9 +105,9 @@ __decorate([
 ], CoursesController.prototype, "showCreatedCourses", null);
 __decorate([
     (0, common_1.Delete)('delete'),
-    __param(0, (0, common_1.Query)('id')),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [delete_course_dto_1.DeleteCourseDto]),
     __metadata("design:returntype", void 0)
 ], CoursesController.prototype, "deleteCourse", null);
 __decorate([

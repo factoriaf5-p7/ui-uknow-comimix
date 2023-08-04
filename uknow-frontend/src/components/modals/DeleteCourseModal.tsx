@@ -23,7 +23,7 @@ function DeleteCourseModal({ open, onClose, onConfirm }: DeleteCourseModalProps)
           onClick={onConfirm}
           color="primary"
           autoFocus
-          sx={{ backgroundColor: theme.palette.uDarkBlue.main, color: 'white' }}
+          sx={{ backgroundColor: theme.palette.uOrange.main, color: 'white' }}
         >
           Yes
         </Button>

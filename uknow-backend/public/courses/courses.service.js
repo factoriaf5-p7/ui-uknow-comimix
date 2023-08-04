@@ -311,13 +311,15 @@ let CoursesService = exports.CoursesService = class CoursesService {
             throw error;
         }
     }
-    async deleteCourse(id) {
+    async deleteCourse(deleteCourseDto) {
         try {
-            const course = await this.courseModel.findOne({ _id: id });
+            const course = await this.courseModel.findOne({ _id: deleteCourseDto._id });
             if (course) {
                 if (course.bought)
                     throw new common_1.HttpException('Course cannot be deleted.', common_1.HttpStatus.UNAUTHORIZED);
-                await this.courseModel.deleteOne({ _id: id });
+                const courseDeleted = await this.userService.removeCourseFromBought(deleteCourseDto.userId);
+                if (courseDeleted)
+                    await this.courseModel.deleteOne({ _id: deleteCourseDto._id });
                 return {
                     message: 'Course deleted.',
                     status: common_1.HttpStatus.OK,
