@@ -18,7 +18,7 @@ import UserBalance from "./UserBalance";
 
 export default function HideAppBar() {
   const trigger = useScrollTrigger();
-  const { isLoggedIn } = useContext(AuthContext);
+  const {isLoggedIn} = useContext(AuthContext);
   const theme = useTheme();
  
 

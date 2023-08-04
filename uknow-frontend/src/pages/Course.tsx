@@ -15,7 +15,7 @@ const Course = () => {
 
   return (
     <>
-    
+    <div style={{padding : ' 0 0 7% 0'}}>
       <Navbar />
       <CourseHeader course={course}/>
       <CourseDetails course={course}/>
@@ -23,6 +23,7 @@ const Course = () => {
       <CommentsSection courseId={course._id}/>
       <CourseNewComment course={course}/>
       <Footer/>
+      </div>
     </>
   );
 }

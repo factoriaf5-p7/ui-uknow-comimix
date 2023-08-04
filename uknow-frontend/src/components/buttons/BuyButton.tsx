@@ -36,16 +36,13 @@ const BuyButton = ({ course }: BuyButtonProps) => {
   const handlePurchaseConfirm = async () => {
     try {
       if (!user) {
-        console.log('User not authenticated. Please log in to make a purchase.');
         return;
       }
 
       const response = await purchaseMutation.mutateAsync({ courseId: course._id, userId: user._id });
-      console.log(response.message);
 
       user.bought_courses.push({ course_id: course._id, stars: 0, commented: false });
       localStorage.setItem('user', JSON.stringify(user));
-      console.log('buy', course);
 
       navigate('/course', { 
         state: course

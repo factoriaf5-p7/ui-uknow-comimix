@@ -26,8 +26,6 @@ interface Props {
 function DashboardCourseList(props: Props) {
 
     const { isLoading, isError, courseList, listType } = props.prop;
-
-    console.log(courseList)
     
     return (
         <Box sx={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', marginTop: '50px', paddingLeft: '10px' }}>
@@ -53,8 +51,8 @@ function DashboardCourseList(props: Props) {
                                 return (
                                     <ListItem key={course._id} secondaryAction={
                                         <div>
-                                            <IconButton edge="end" aria-label="edit"> <EditNote /> </IconButton>
-                                            <IconButton edge="end" aria-label="delete"> <DeleteIcon /> </IconButton>
+                                            <IconButton edge="end" aria-label="edit"> <Link to='/edit' state={course._id}><EditNote /></Link> </IconButton>
+                                            <IconButton edge="end" aria-label="delete"> <Link to='/delete' state={course._id}><DeleteIcon /></Link> </IconButton>
                                         </div>
                                     }>
                                         <ListItemText primary={
@@ -69,7 +67,6 @@ function DashboardCourseList(props: Props) {
                     :
                     (
                         courseList && courseList.map(course => {
-                            console.log(course._id)
                             return (
                                 <ListItem key={course._id}>
                                     <ListItemText primary={

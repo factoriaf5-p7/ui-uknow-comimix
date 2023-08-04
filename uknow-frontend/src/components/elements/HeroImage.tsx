@@ -78,7 +78,7 @@ export const HeroImage = () => {
       if (!isMounted || !imageLoaded) return; 
 
       setShowText(""); // Reset the text
-      const letters = "UKNOW".split("");
+      const letters = "U,KNOW".split("");
       letters.forEach((letter, index) => {
         setTimeout(() => {
           if (!isMounted) return; 
