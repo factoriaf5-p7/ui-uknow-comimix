@@ -12,11 +12,9 @@ import UnderConstruction from './pages/UnderConstruction';
 import Course from './pages/Course'
 import AuthContexProvider from './context/AuthContext'
 import EditCourse from './pages/EditCourse'
-import UserContextProvider from './context/UserContext'
-
+import CreateCourse from './pages/CreateCourse'
 
 function App() {
-
 
   return (
     <>
@@ -27,6 +25,7 @@ function App() {
         <Route path='/course' element={<Course />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/edit' element={<EditCourse />} />
+        <Route path='/create' element={<CreateCourse />} />
         <Route path='/profile' element={<Profile/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Register />} />

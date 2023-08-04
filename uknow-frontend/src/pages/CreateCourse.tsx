@@ -3,7 +3,7 @@ import CreateCourseForm from '../components/forms/CreateCourseForm'
 
 function CreateCourse() {
   return (
-    <CreateCourseForm />
+    <CreateCourseForm sx={{ backgroundColor: '#fff' }} />
   )
 }
 

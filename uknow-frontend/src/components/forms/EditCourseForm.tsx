@@ -80,7 +80,7 @@ function EditCourseForm() {
   return (
     <>
     <Navbar />
-    <Container sx={{ marginTop: '80px', display: 'flex', justifyContent: 'center', maxWidth: '80%', border: '1px solid green' }}>
+    <Container sx={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', marginTop: '80px', display: 'flex', justifyContent: 'center', maxWidth: '80%' }}>
       <Box maxWidth="sm" width="100%" component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
           {isLoading ?
             <div>Loading...</div>

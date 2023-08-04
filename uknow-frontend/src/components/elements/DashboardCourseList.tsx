@@ -46,7 +46,7 @@ function DashboardCourseList(props: Props) {
                     (
                         <>
                         <Box>
-                            <Button>Create</Button>
+                            <Button sx={{ boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}><Link to='/create'>New Course</Link></Button>
                         </Box>
                         {
                             courseList && courseList.map(course => {
