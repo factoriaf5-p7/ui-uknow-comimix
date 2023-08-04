@@ -11,7 +11,6 @@ export const useBoughtCourses = ( userId: Props) => {
       queryFn: async (): Promise<CourseData[]> => {
         const response = await fetch(`http://localhost:3000/courses/bought-courses/${userId}`);
         const data = await response.json();
-        console.log('bought courses', data.data)
         return data.data;
       },
       enabled: true,
