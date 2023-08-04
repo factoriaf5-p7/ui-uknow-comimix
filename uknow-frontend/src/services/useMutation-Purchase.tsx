@@ -1,5 +1,7 @@
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useAPIError } from "../hooks/useAPIError";
+
 
 interface PurchaseResponse {
     message: string;
@@ -7,6 +9,7 @@ interface PurchaseResponse {
 
 export const usePurchaseCourseMutation = () => {
     const navigate = useNavigate();
+    const { addError } = useAPIError();
 
     const purchaseCourse = async (variables: { courseId: string; userId: string }): Promise<PurchaseResponse> => {
         const response = await fetch(`http://localhost:3000/courses/purchase`, {
@@ -16,6 +19,11 @@ export const usePurchaseCourseMutation = () => {
         },
         body: JSON.stringify(variables),
         });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || "Purchase failed");
+          }
     
         const data = await response.json();
         return data;
@@ -30,7 +38,7 @@ export const usePurchaseCourseMutation = () => {
             navigate('/course');        
         },
         onError: (error: any) => {
-            console.error('Failed to purchase course:', error);
+            addError(error.message || 'An error occurred', 500);
         },
     });
     
