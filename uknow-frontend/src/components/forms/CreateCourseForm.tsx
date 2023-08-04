@@ -5,7 +5,6 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer';
 import { AuthContext } from '../../context/AuthContext';
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import { Button } from '@mui/material';
 import { UknowTheme } from '../../themes/ThemeUknow';
@@ -14,8 +13,7 @@ import { FormEvent } from 'react';
 import useAddCourseMutation from '../../services/useAddCourseMutation';
 
 function CreateCourseForm() {
-  const { user, isLogged } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const [content, setContent] = useState();
   const [newCourse, setNewCourse] = useState({
@@ -49,8 +47,8 @@ function CreateCourseForm() {
       ...newCourse
     });
 
+    // console.log('course MUtation', addCourseMutation)
     addCourseMutation.mutate(newCourse);
-    navigate('/dashboard');
   }
 
   return (

@@ -40,9 +40,13 @@ export class UsersService {
 
 	async addCreatedCourse(userId: ObjectId, courseId: mongoose.Types.ObjectId) {
 		try {
-			await this.userModel.findOneAndUpdate({ _id: userId }, 
+			const createdCourse = await this.userModel.findOneAndUpdate({ _id: userId }, 
 				{ $push: { created_courses: courseId } }
 			);
+
+			if(!createdCourse) throw new HttpException('Error adding new course to user', HttpStatus.NOT_MODIFIED);
+			
+			this.incrementBalance({ balance: 100, userId: userId });
 
 			return {
 				message: 'Created course added successfully',
@@ -302,6 +306,14 @@ export class UsersService {
 		  };
 
 		  return this.userModel.findOneAndUpdate(user._id, update);
+	}
+
+	async incrementBalance(userBalanceDto: any) {
+		const user = await this.userModel.findOneAndUpdate(new mongoose.Types.ObjectId(userBalanceDto.userId) ,
+			{
+				$inc: { wallet_balance: userBalanceDto.balance }
+			});
+		return user;
 	}
 
 	async udpateBalance(userBalanceDto: any) {

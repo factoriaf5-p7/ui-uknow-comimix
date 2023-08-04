@@ -30,7 +30,7 @@ export const usePurchaseCourseMutation = () => {
             navigate('/course');        
         },
         onError: (error: any) => {
-        console.error('Failed to purchase course:', error);
+            console.error('Failed to purchase course:', error);
         },
     });
     

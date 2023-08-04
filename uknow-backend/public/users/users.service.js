@@ -46,7 +46,10 @@ let UsersService = exports.UsersService = class UsersService {
     }
     async addCreatedCourse(userId, courseId) {
         try {
-            await this.userModel.findOneAndUpdate({ _id: userId }, { $push: { created_courses: courseId } });
+            const createdCourse = await this.userModel.findOneAndUpdate({ _id: userId }, { $push: { created_courses: courseId } });
+            if (!createdCourse)
+                throw new common_1.HttpException('Error adding new course to user', common_1.HttpStatus.NOT_MODIFIED);
+            this.incrementBalance({ balance: 100, userId: userId });
             return {
                 message: 'Created course added successfully',
                 status: common_1.HttpStatus.OK,
@@ -286,6 +289,12 @@ let UsersService = exports.UsersService = class UsersService {
         });
         const update = Object.assign({}, user);
         return this.userModel.findOneAndUpdate(user._id, update);
+    }
+    async incrementBalance(userBalanceDto) {
+        const user = await this.userModel.findOneAndUpdate(new mongoose_2.default.Types.ObjectId(userBalanceDto.userId), {
+            $inc: { wallet_balance: userBalanceDto.balance }
+        });
+        return user;
     }
     async udpateBalance(userBalanceDto) {
         const user = await this.userModel.findOneAndUpdate(new mongoose_2.default.Types.ObjectId(userBalanceDto.userId), {

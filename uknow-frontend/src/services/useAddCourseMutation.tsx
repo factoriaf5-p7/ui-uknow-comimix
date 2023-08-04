@@ -1,16 +1,17 @@
-import { useMutation, } from "@tanstack/react-query"; // Make sure to import from 'react-query' directly
+import { useMutation } from "@tanstack/react-query"; // Make sure to import from 'react-query' directly
 import { NewCourseData } from "../interfaces/new_course.interface";
 import { useNavigate } from "react-router-dom";
+import { queryClient } from "../main";
 
-interface Props {
+interface AddCourseVariables {
     userId: string;
     newCourse: NewCourseData;
 }
 
-const useAddCourseMutation = async ({ userId, ...newCourse }: Props) => {
+const useAddCourseMutation = () => {
     const navigate = useNavigate();
 
-    const addCourse = async () => {
+    const addCourse = async ({ userId, ...newCourse }: AddCourseVariables) => {
         const response = await fetch(`http://localhost:3000/courses/create/${userId}`, {
           method: 'POST',
           headers: {
@@ -26,18 +27,20 @@ const useAddCourseMutation = async ({ userId, ...newCourse }: Props) => {
 
         const result = await response.json();
         return result;
-
     }
 
+    const queryClient = useQueryClient();
+
     const mutation = useMutation(addCourse, {
-        onSuccess: () => {
-            navigate('/dashboard');
-        },
-        onError: (e) => {
-            throw new Error(e.message | 'Error creating course');
-        }
+      onSuccess: () => {
+        navigate('/dashboard');
+        queryClient.invalidateQueries("users");
+      },
+      onError: (error: Error) => {
+        throw new Error(error.message | 'Error while creating course');
+      },
     });
-    
+
     return mutation;
 };
 
